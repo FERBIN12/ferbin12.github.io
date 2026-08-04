@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferbin Richard — Robotics Engineer</title>
+<meta name="description" content="Robotics engineer building autonomy for vehicles that go in the water. Factor-graph SLAM, perception, and firmware flash-verified on a real 8-thruster ROV. Three published papers. M.S. Robotics, Northeastern.">
+
+<link rel="canonical" href="https://ferbin12.github.io/">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<meta property="og:title" content="Ferbin Richard — Robotics Engineer">
+<meta property="og:description" content="Autonomy and perception for vehicles that go in the water. Sim, then hardware, then the pool.">
+<meta property="og:image" content="https://ferbin12.github.io/assets/img/hero_gazebo.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="Inspection vehicle beneath a ship hull">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ferbin12.github.io/">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ferbin Richard — Robotics Engineer">
+<meta name="twitter:description" content="Autonomy and perception for vehicles that go in the water.">
+<meta name="twitter:image" content="https://ferbin12.github.io/assets/img/hero_gazebo.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Ferbin Richard",
+ "jobTitle":"Robotics Engineer",
+ "url":"https://ferbin12.github.io/","email":"franklinrichardjep.f@northeastern.edu",
+ "sameAs":["https://github.com/FERBIN12","https://www.linkedin.com/in/ferbin12/"],
+ "alumniOf":[{"@type":"CollegeOrUniversity","name":"Northeastern University"},
+             {"@type":"CollegeOrUniversity","name":"Vellore Institute of Technology"}],
+ "worksFor":{"@type":"Organization","name":"Archenaux Robotics"},
+ "knowsAbout":["Robotics","ROS 2","SLAM","Perception","Underwater Robotics","Embedded Systems"],
+ "address":{"@type":"PostalAddress","addressLocality":"Boston","addressRegion":"MA","addressCountry":"US"}}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Ferbin&nbsp;Richard</a>
+    <nav aria-label="Sections">
+      <a href="#work"><span class="n">01</span> Work</a>
+      <a href="#more"><span class="n">02</span> Projects</a>
+      <a href="#experience"><span class="n">03</span> Experience</a>
+      <a href="#about"><span class="n">04</span> About</a>
+      <a href="#contact"><span class="n">05</span> Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-meta">
+      <span>Ferbin Richard</span>
+      <span>Robotics Engineer</span>
+      <span>Boston, MA</span>
+    </div>
+    <hr class="rule-heavy">
+    <h1 class="display">I build robots that have to work in the <em>water.</em></h1>
+  </div>
+
+  <figure class="hero-figure">
+    <img src="assets/img/hero_gazebo.jpg" alt="Inspection vehicle beneath a ship hull on the seabed">
+    <figcaption>Inspection vehicle under a hull. Gazebo Harmonic, physics in the loop with the autopilot.</figcaption>
+  </figure>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-lead">
+        <p>
+          Five years of robotics, most of it with a vehicle in front of me. I work on an
+          eight-thruster ROV: factor-graph SLAM, learned detection, the containerized runtime
+          that ships to its flight controller, and firmware I flash-verified on the vehicle
+          before it went in the pool.
+        </p>
+        <p>
+          Simulation is how I get there safely, not what I do. The mapping result on this page
+          was validated on a real pool dataset, and the sensor bring-up behind it meant I2C
+          bitmasks, refraction calibration, and a power tree that could not hold its rail.
+        </p>
+        <p class="hero-links">
+          <a href="mailto:franklinrichardjep.f@northeastern.edu">Email</a>
+          <a href="https://github.com/FERBIN12">GitHub</a>
+          <a href="https://www.linkedin.com/in/ferbin12/">LinkedIn</a>
+          <a href="assets/Ferbin_Richard_Brag_Doc_2026-07.pdf">Engineering record</a>
+        </p>
+      </div>
+      <dl class="stats">
+        <div><dt>Robotics</dt><dd>5 yrs</dd></div>
+        <div><dt>Papers</dt><dd>3</dd></div>
+        <div><dt>Vehicles built</dt><dd>8</dd></div>
+        <div><dt>Repos</dt><dd>44</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURED WORK ================= -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2>Selected work</h2>
+      <span class="sec-note">Six featured projects</span>
+    </div>
+  </div>
+
+  <!-- 01 SLAM -->
+  <article class="proj">
+    <div class="wrap">
+      <div class="proj-head">
+        <p class="proj-num">01</p>
+        <div>
+          <h3>Mapping without the most expensive sensor on the vehicle</h3>
+          <p class="proj-role">Archenaux Robotics &middot; Primary engineer, sensor simulation and SLAM back end &middot; 45 commits</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="proj-figure">
+      <img src="assets/img/slam_final.jpg" alt="Optimized coloured point cloud with vehicle trajectory in RViz" loading="lazy">
+      <figcaption>Optimized trajectory and reconstructed geometry after loop closure. RViz.</figcaption>
+    </figure>
+
+    <div class="wrap">
+      <div class="proj-body">
+        <div class="proj-text">
+          <p>
+            A Doppler Velocity Log costs $8,710 and was the single most expensive item in the
+            sensor budget, roughly four times the sonar and seventeen times the IMU. I helped
+            validate that it is not required.
+          </p>
+          <p>
+            An IMU, a 2D mechanical scanning sonar, the known contour of the structure, and loop
+            closure together produce a metrically accurate map. The back end is GTSAM iSAM2 with
+            corner-based loop closure and GICP registration.
+          </p>
+          <p>
+            The interesting failure was that the graph diverged whenever a closure fired, which
+            is the failure mode that makes a factor graph worse than dead reckoning. Separately,
+            the registration acceptance threshold shipped at 0.15 and admitted bad matches.
+            Raising it to 0.6 after characterizing the score distribution made the pipeline
+            drift-free without tuning.
+          </p>
+          <p>
+            These numbers are from the Bremen MSS real-pool dataset, not the simulator. I also
+            characterized the IMU that feeds it: a 30-minute stationary log, 321k samples, Allan
+            variance, and Kalibr noise parameters. The first attempt was contaminated by a nearby
+            speaker coupling into the MEMS accelerometer, which is the kind of thing you only find
+            by looking at the FFT.
+          </p>
+        </div>
+        <dl class="figs">
+          <div><dt>Trajectory error</dt><dd>1.62 m</dd><dd class="vs">vs 5.04 m, real pool data</dd></div>
+          <div><dt>Wall RMSE</dt><dd>0.08 m</dd></div>
+          <div><dt>Cost removed</dt><dd>$8,710</dd></div>
+          <div><dt>Gyro ARW</dt><dd>0.26 °/√hr</dd><dd class="vs">measured, 321k samples</dd></div>
+        </dl>
+      </div>
+
+      <div class="strip">
+        <figure><img src="assets/img/slam_bow.jpg" alt="Partial map during the bow pass" loading="lazy"><figcaption>Bow pass, partial map</figcaption></figure>
+        <figure><img src="assets/img/slam_half.jpg" alt="Starboard half map" loading="lazy"><figcaption>Starboard half</figcaption></figure>
+        <figure><img src="assets/img/slam_colour.jpg" alt="Colour pass beginning" loading="lazy"><figcaption>Colour pass start</figcaption></figure>
+        <figure><img src="assets/img/d455.jpg" alt="Depth camera colour pass" loading="lazy"><figcaption>RGB-D colour fusion</figcaption></figure>
+      </div>
+
+      <p class="tags">ROS 2 Jazzy &middot; GTSAM iSAM2 &middot; Python &middot; Open3D &middot; Gazebo Harmonic &middot; Docker</p>
+      <p class="proj-link muted">Private repository. Details on request.</p>
+    </div>
+  </article>
+
+  <!-- 02 Detection -->
+  <article class="proj">
+    <div class="wrap">
+      <div class="proj-head">
+        <p class="proj-num">02</p>
+        <div>
+          <h3>Training a detector with no real data to train on</h3>
+          <p class="proj-role">Archenaux Robotics &middot; Sole engineer, simulation and ML pipeline &middot; 26 commits</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="proj-figure">
+      <video poster="assets/img/detect_poster.jpg" muted loop playsinline preload="none" aria-label="Detector running on a recorded survey"><source src="assets/video/detection.mp4" type="video/mp4"></video>
+      <figcaption>Deployed detector on a recorded survey run. Live confidence overlay.</figcaption>
+    </figure>
+
+    <div class="wrap">
+      <div class="proj-body">
+        <div class="proj-text">
+          <p>
+            Imagery of the target objects is classified or does not exist. So I generated it. A
+            seeded procedural world generator emits ground-truth labels by 3D-to-2D projection,
+            which means every frame is labeled for free and any scene is reproducible from its seed.
+          </p>
+          <p>
+            The difficulty is deliberate: seven object types, three turbidity levels, current
+            drift, marine snow, kelp, and seabed distractors that a naive detector calls targets.
+            The blocking problem was never recall, it was that the model flagged every barrel.
+          </p>
+          <p>
+            The evaluation also showed 0% recall on three object types, because the real-photo
+            training set contained no flat or torpedo-shaped examples. I would rather publish that
+            than a clean chart. An unevaluated detector is worse than none, because someone trusts it.
+          </p>
+        </div>
+        <dl class="figs">
+          <div><dt>Clutter false positives</dt><dd>54% &rarr; 0%</dd></div>
+          <div><dt>False alarms, empty frames</dt><dd>0 / 9</dd></div>
+          <div><dt>Recall, moored and drifting</dt><dd>100%</dd></div>
+          <div><dt>mAP@50</dt><dd>0.471</dd><dd class="vs">sim, 0.61 real-photo</dd></div>
+        </dl>
+      </div>
+
+      <figure class="proj-figure inset">
+        <img src="assets/img/mine_gallery.jpg" alt="Grid of twelve simulated object classes including hard negatives" loading="lazy">
+        <figcaption>Object classes and the hard negatives. Barrels, anchors, crates, and rocks are in the set precisely because a naive detector calls them targets.</figcaption>
+      </figure>
+
+      <div class="strip">
+        <figure><img src="assets/img/eval_pr.jpg" alt="Precision recall curve" loading="lazy"><figcaption>Precision / recall</figcaption></figure>
+        <figure><img src="assets/img/eval_f1.jpg" alt="F1 confidence curve" loading="lazy"><figcaption>F1 vs confidence</figcaption></figure>
+        <figure><img src="assets/img/eval_cm.jpg" alt="Confusion matrix" loading="lazy"><figcaption>Confusion matrix</figcaption></figure>
+        <figure><img src="assets/img/detect_grid.jpg" alt="Detection frames across turbidity levels" loading="lazy"><figcaption>Clear and murky frames</figcaption></figure>
+      </div>
+
+      <p class="tags">Python &middot; PyTorch &middot; Ultralytics YOLO11 / YOLO26 &middot; OpenCV &middot; Gazebo &middot; Docker</p>
+      <p class="proj-link muted">Private repository. Details on request.</p>
+    </div>
+  </article>
+
+  <!-- 03 Sim platform -->
+  <article class="proj">
+    <div class="wrap">
+      <div class="proj-head">
+        <p class="proj-num">03</p>
+        <div>
+          <h3>A simulator other engineers can actually run</h3>
+          <p class="proj-role">Archenaux Robotics &middot; Owner, shared simulation core &middot; 97 commits across two repos</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="proj-figure">
+      <img src="assets/img/sim_stack.jpg" alt="Simulated vehicle running a survey leg alongside a hull" loading="lazy">
+      <figcaption>Autopilot software-in-the-loop wired to Gazebo Harmonic over a JSON physics backend.</figcaption>
+    </figure>
+
+    <div class="wrap">
+      <div class="proj-body">
+        <div class="proj-text">
+          <p>
+            A simulator only one engineer can start is not an asset. I own the core the other
+            projects build on, and most of its value is that it runs on someone else's laptop on
+            the first try.
+          </p>
+          <p>
+            Three containers on one network: autopilot software-in-the-loop, physics, and a ground
+            control station with joystick passthrough, plus a dev container. GPU is optional with
+            auto-detected vendor overrides, and a browser-based fallback means the interface works
+            on headless, Wayland, and WSL hosts. That last one resolved a display crash blocking a
+            teammate.
+          </p>
+        </div>
+        <dl class="figs">
+          <div><dt>Commits, two repos</dt><dd>97</dd></div>
+          <div><dt>Machines validated</dt><dd>3</dd></div>
+          <div><dt>Compose overlays</dt><dd>10</dd></div>
+          <div><dt>Clone to running</dt><dd>1 command</dd></div>
+        </dl>
+      </div>
+
+      <div class="strip two">
+        <figure><img src="assets/img/gz_bow.jpg" alt="Vehicle at the bow of the structure" loading="lazy"><figcaption>Bow survey leg</figcaption></figure>
+        <figure><img src="assets/img/hero_gazebo.jpg" alt="Vehicle under the hull" loading="lazy"><figcaption>Colour pass</figcaption></figure>
+      </div>
+
+      <p class="tags">Docker Compose &middot; ROS 2 Jazzy &middot; Gazebo Harmonic &middot; ArduSub &middot; MAVROS &middot; Bash &middot; noVNC</p>
+      <p class="proj-link muted">Private repository. Details on request.</p>
+    </div>
+  </article>
+
+  <!-- 04 Field -->
+  <article class="proj">
+    <div class="wrap">
+      <div class="proj-head">
+        <p class="proj-num">04</p>
+        <div>
+          <h3>Bringing up a real eight-thruster ROV</h3>
+          <p class="proj-role">Archenaux Robotics &middot; Primary engineer, vehicle runtime and sensor bring-up &middot; 52 commits</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="proj-figure wide">
+      <img src="assets/img/archelon_wiring.png" alt="As-built system wiring diagram for the Archelon ROV across topside, bulkhead, and subsea zones" loading="lazy">
+      <figcaption>Archelon as-built power and data architecture. 12&nbsp;V down a 50&nbsp;ft AWG&nbsp;8 umbilical, three power distribution boards, eight T200 thrusters on MAIN OUT, three M200 aux motors, Pixhawk 1 and a Raspberry Pi 5 companion.</figcaption>
+    </figure>
+
+    <div class="wrap">
+      <div class="proj-body">
+        <div class="proj-text">
+          <p>
+            Archelon is a bespoke eight-thruster vehicle running ArduSub in a vectored six-degree-of-freedom
+            configuration. I own the runtime that ships to it and I did the sensor bring-up, which is
+            mostly a story about failures that look like software and are not.
+          </p>
+          <p>
+            The depth sensor read nothing no matter how it was wired, because
+            <span class="mono">BARO_PROBE_EXT</span> was a bitmask missing the bit for the MS5837, so
+            the autopilot never probed the I2C bus for it. The joystick moved every topic on the
+            dashboard and no thrusters, because ArduPilot silently discards RC override from any
+            system ID other than the one it is told to trust. The companion computer browned out
+            under load, which turned out to be rail sag down the tether rather than thermal
+            throttling, and is why the vehicle now carries a Pi 5 instead of a Jetson.
+          </p>
+          <p>
+            None of those are findable in simulation. I wrote the power-tree analysis that justified
+            the companion swap, and it says plainly which of its figures are measured and which are
+            estimated, because a number nobody can trace is worse than no number.
+          </p>
+        </div>
+        <dl class="figs">
+          <div><dt>Thrusters</dt><dd>8 + 3 aux</dd></div>
+          <div><dt>Firmware flash-verified</dt><dd>3 builds</dd></div>
+          <div><dt>Pool-test data analyzed</dt><dd>7.1 GB</dd></div>
+          <div><dt>Depth sensor</dt><dd>Fixed at the bitmask</dd></div>
+        </dl>
+      </div>
+
+      <div class="strip">
+        <figure><img src="assets/img/archelon_power.png" alt="Power distribution schematic, revision B" loading="lazy"><figcaption>Power tree, Rev B</figcaption></figure>
+        <figure><img src="assets/img/archelon_interconnect.png" alt="Bulkhead penetrator interconnect detail" loading="lazy"><figcaption>Bulkhead interconnect</figcaption></figure>
+        <figure><img src="assets/img/companion_wiring.png" alt="Flight controller to companion computer wiring" loading="lazy"><figcaption>Companion wiring</figcaption></figure>
+        <figure><img src="assets/img/zeus_bench.png" alt="Four-in-one ESC bench test rig schematic" loading="lazy"><figcaption>Track ESC bench rig</figcaption></figure>
+      </div>
+
+      <p class="tags">Pixhawk 1 &middot; ArduSub 4.5.7 &middot; MAVLink &middot; pymavlink &middot; MAVROS &middot; Ping360 sonar &middot; VectorNav VN-100 &middot; Bar30 / Bar02 &middot; T200 &amp; M200 thrusters &middot; I2C &middot; Raspberry Pi 5 &middot; Jetson Orin Nano &middot; Docker</p>
+      <p class="proj-link muted">Private repository. Details on request.</p>
+    </div>
+  </article>
+
+  <!-- 05 Isaac Sim -->
+  <article class="proj">
+    <div class="wrap">
+      <div class="proj-head">
+        <p class="proj-num">05</p>
+        <div>
+          <h3>A second physics backend, and a test suite that argues with it</h3>
+          <p class="proj-role">Archenaux Robotics &middot; Sole engineer, NVIDIA Isaac Sim port</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="proj-figure">
+      <video poster="assets/img/isaac.jpg" muted loop playsinline preload="none" aria-label="Animated ocean rendered in NVIDIA Isaac Sim"><source src="assets/video/isaac.mp4" type="video/mp4"></video>
+      <figcaption>Animated Gerstner-wave ocean, rendered offscreen with the RTX real-time renderer. Eight simulation steps, looped.</figcaption>
+    </figure>
+
+    <div class="wrap">
+      <div class="proj-body">
+        <div class="proj-text">
+          <p>
+            Porting the vehicle to a second physics engine: an animated Gerstner-wave ocean with
+            underwater rendering, hydrodynamics covering buoyancy, damping, and added mass, and a
+            bridge closing the control loop against Isaac physics.
+          </p>
+          <p>
+            Physics code is easy to write tests for and hard to write good ones for, because a
+            wrong model still produces plausible motion. I used mutation testing to attack my own
+            assertions until they were strict enough to notice, which surfaced distributed-buoyancy
+            and NaN-propagation bugs before anyone else hit them.
+          </p>
+          <p>
+            The renders on this page were produced by the offscreen render path from that work,
+            which exists so scene composition can be checked without a GPU-heavy interactive session.
+          </p>
+        </div>
+        <dl class="figs">
+          <div><dt>Physics model</dt><dd>Mutation-tested</dd></div>
+          <div><dt>Control loop</dt><dd>Closed against Isaac</dd></div>
+          <div><dt>Render path</dt><dd>Offscreen RTX</dd></div>
+        </dl>
+      </div>
+
+      <div class="strip two">
+        <figure><img src="assets/img/isaac.jpg" alt="Marina scene above water" loading="lazy"><figcaption>Surface, animated ocean</figcaption></figure>
+        <figure><img src="assets/img/isaac_under.jpg" alt="Underwater view showing hull and pilings" loading="lazy"><figcaption>Submerged camera, underwater FX</figcaption></figure>
+      </div>
+
+      <p class="tags">NVIDIA Isaac Sim &middot; Python &middot; USD &middot; ArduSub &middot; pytest &middot; mutation testing</p>
+      <p class="proj-link muted">Private repository. Details on request.</p>
+    </div>
+  </article>
+
+  <!-- 06 Perimeter film -->
+  <article class="proj">
+    <div class="wrap">
+      <div class="proj-head">
+        <p class="proj-num">06</p>
+        <div>
+          <h3>An intercept simulation for a real client, and a film generated from code</h3>
+          <p class="proj-role">Lytespace &middot; Sole engineer, systems architecture and simulation &middot; Client proposal, Chile</p>
+        </div>
+      </div>
+    </div>
+
+    <figure class="proj-figure">
+      <video poster="assets/img/perimeter_poster.jpg" muted loop playsinline preload="none" aria-label="Procedurally generated perimeter surveillance film"><source src="assets/video/perimeter.mp4" type="video/mp4"></video>
+      <figcaption>Every shot, camera move, and cut generated by Python. No manual keyframing.</figcaption>
+    </figure>
+
+    <div class="wrap">
+      <div class="proj-body">
+        <div class="proj-text">
+          <p>
+            This existed to win a real client: a white-label perimeter surveillance system for a
+            monitoring centre in Chile. I wrote the four-layer systems architecture and the costing
+            behind the proposal, including the regulatory work on Chilean BVLOS permitting and the
+            procurement constraints that ruled out most of the obvious camera vendors.
+          </p>
+          <p>
+            The technical core is an intercept simulation: ten ArduCopter instances armed in
+            parallel against a radar model, tracked by an interacting-multiple-model estimator,
+            with lead-pursuit guidance closing the loop on real autopilot firmware.
+          </p>
+          <p>
+            Then the film, because the buyer was not an engineer. Three Blender scene scripts define
+            geometry, lighting, and camera language, and a Python assembler cuts the edit. Changing
+            a shot means changing a parameter, not reopening a timeline.
+          </p>
+        </div>
+        <dl class="figs">
+          <div><dt>Autopilots in parallel</dt><dd>10</dd></div>
+          <div><dt>Threats intercepted</dt><dd>4 / 4</dd></div>
+          <div><dt>Tracker</dt><dd>IMM</dd></div>
+          <div><dt>Pipeline</dt><dd>Fully procedural</dd></div>
+        </dl>
+      </div>
+      <p class="tags">Blender Python API &middot; Gazebo &middot; ArduCopter &middot; Python &middot; ffmpeg</p>
+      <p class="proj-link muted">Client work. Details on request.</p>
+    </div>
+  </article>
+
+</section>
+
+<!-- ================= SECONDARY PROJECTS ================= -->
+<section id="more">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2>Other projects</h2>
+      <span class="sec-note">Selected from 44 repositories</span>
+    </div>
+
+    <div class="tiles">
+      <a class="tile" href="https://github.com/FERBIN12/Seed_spacing_robot">
+        <div class="tile-media placeholder"><span>Raspberry Pi 4 &middot; ESP32 &middot; RP-LiDAR A1</span></div>
+        <h4>Seed spacing robot</h4>
+        <p>Final-year build. A full autonomous ground vehicle for precision planting: SLAM Toolbox and Nav2 mapping of a real corridor, waypoint navigation, and a self-made CoreXY manipulator placing seeds at a set interval.</p>
+        <p class="tile-tags">ROS 2 &middot; Nav2 &middot; RealSense &middot; CoreXY</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/Buck_ws">
+        <div class="tile-media placeholder"><span>Pixhawk 2.4.8 &middot; Raspberry Pi 4</span></div>
+        <h4>Artimesis &mdash; drone and rover</h4>
+        <p>A combined aerial and ground surveillance platform built at Universiti Teknologi PETRONAS. Pixhawk flight controller, Pi 4 companion, RealSense and 2D LiDAR, ROS 2 navigation across both vehicles.</p>
+        <p class="tile-tags">ROS 2 &middot; Pixhawk &middot; LiDAR &middot; Research</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/hand_gesture_controlled-drone-using-ROS2">
+        <div class="tile-media placeholder"><span>Raspberry Pi 4 &middot; Arduino Uno &middot; Hall encoders</span></div>
+        <h4>Gesture-controlled robots</h4>
+        <p>Hand gestures to motion, in simulation and then on real hardware. A face-recognition gate so only an authorized operator can command it, then a physical rover on a Pi 4 and an Arduino Uno with Hall-effect encoders.</p>
+        <p class="tile-tags">MediaPipe &middot; OpenCV &middot; ROS 2 &middot; Arduino</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/Mazix">
+        <div class="tile-media placeholder"><span>2D LiDAR &middot; QR decision points</span></div>
+        <h4>Mazix &mdash; maze solving AMR</h4>
+        <p>Autonomous maze navigation fusing 2D LiDAR for obstacle avoidance with QR codes read by OpenCV as decision points. One of eight mobile robots I built across five years, each one correcting the last.</p>
+        <p class="tile-tags">ROS 2 &middot; LiDAR &middot; OpenCV &middot; Sensor fusion</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/emme-onboarding">
+        <div class="tile-media tall"><video poster="assets/img/emme_poster.jpg" muted loop playsinline preload="none" aria-label="Emme onboarding walkthrough"><source src="assets/video/emme.mp4" type="video/mp4"></video></div>
+        <h4>emme-onboarding &mdash; hackathon winner</h4>
+        <p><strong>Won Track 2</strong> at The Open Accelerator healthcare hackathon, hosted by Red Hat with IBM Ventures and the Mass AI Hub. Health insurance documents turned readable, with confidence-tiered confirmation. Built in a day, deployed live.</p>
+        <p class="tile-tags">Flask &middot; Postgres &middot; Gemini &middot; Vercel</p>
+      </a>
+
+      <div class="tile">
+        <div class="tile-media"><video poster="assets/img/course_poster.jpg" muted loop playsinline preload="none" aria-label="Course lecture"><source src="assets/video/course.mp4" type="video/mp4"></video></div>
+        <h4>Robotics course series</h4>
+        <p>Written and produced end to end. Seventy narrated lectures across eight sections taking a student from install to a flying vehicle in ROS 2, Gazebo, and ArduCopter, with a second ROV course in production.</p>
+        <p class="tile-tags">ROS 2 &middot; Gazebo &middot; ArduCopter &middot; 70 lectures</p>
+      </div>
+
+      <div class="tile">
+        <div class="tile-media"><img src="assets/img/tile_galahub.jpg" alt="GalaHub product homepage" loading="lazy"></div>
+        <h4>GalaHub</h4>
+        <p>An event and vendor marketplace running in production. My largest single codebase, covering auth, payments, row-level security, and a vendor portal.</p>
+        <p class="tile-tags">Next.js &middot; Supabase &middot; Razorpay &middot; Production</p>
+      </div>
+
+      <a class="tile" href="https://github.com/FERBIN12/zoey">
+        <div class="tile-media"><img src="assets/img/tile_zoey.jpg" alt="zoey command line output" loading="lazy"></div>
+        <h4>zoey</h4>
+        <p>A personal AI agent whose memory is plain markdown files rather than a vector database. Zero runtime dependencies, runs offline with a mock provider.</p>
+        <p class="tile-tags">Python &middot; MIT &middot; Open source</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/cortex-oss">
+        <div class="tile-media"><img src="assets/img/tile_cortex.jpg" alt="cortex-oss router output" loading="lazy"></div>
+        <h4>cortex-oss</h4>
+        <p>A routing layer that dispatches tasks between specialized agents, shares memory between them, and enforces rules none of them can override.</p>
+        <p class="tile-tags">Python &middot; MIT &middot; Open source</p>
+      </a>
+
+      <div class="tile">
+        <div class="tile-media"><img src="assets/img/tile_motogo.jpg" alt="Embedded firmware simulator running device screens" loading="lazy"></div>
+        <h4>Embedded HMI simulator</h4>
+        <p>A desktop simulator that compiles unmodified ESP32-S3 production firmware against a graphics library and simulated hardware, so all seven screens run on Linux.</p>
+        <p class="tile-tags">C / C++ &middot; LVGL &middot; SDL2 &middot; ESP32-S3</p>
+      </div>
+
+      <a class="tile" href="https://github.com/FERBIN12/jarvis">
+        <div class="tile-media placeholder"><span>Voice agent, HUD overlay</span></div>
+        <h4>jarvis</h4>
+        <p>Wake-word voice assistant with a fullscreen heads-up display. Whisper speech recognition into an agent brain, Piper speech synthesis out, running as a system service.</p>
+        <p class="tile-tags">Python &middot; PySide6 &middot; Whisper &middot; systemd</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/PID_MPC">
+        <div class="tile-media placeholder"><span>Control theory, from the maths up</span></div>
+        <h4>Foundations, revisited</h4>
+        <p>After eight robot builds I went back to the theory rather than starting a ninth: linear algebra, PID and MPC control, and path planning from Dijkstra through RRT*. Understanding why things work, not just how to make them.</p>
+        <p class="tile-tags">Python &middot; Control &middot; Planning &middot; C++</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Experience</h2>
+    </div>
+
+    <div class="cv">
+      <div class="cv-row">
+        <div class="cv-when">Jun 2026 &ndash;</div>
+        <div class="cv-what">
+          <h3>Robotics Engineer, Co-op &mdash; Technical Lead</h3>
+          <p class="cv-org">Archenaux Robotics &middot; Boston, MA</p>
+          <p>
+            Autonomous subsea inspection vehicles. I lead the co-op engineering team and report
+            directly to the CEO. Sole author of the simulation, mapping, perception, and
+            vehicle-runtime stack across five repositories, and owner of the shared simulation core
+            the other engineers build on. Work runs from factor-graph SLAM and synthetic-data
+            machine learning through sensor bring-up and firmware flash-verified on the vehicle.
+          </p>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2024</div>
+        <div class="cv-what">
+          <h3>Research Intern</h3>
+          <p class="cv-org">Vellore Institute of Technology &middot; Chennai, India</p>
+          <p>
+            Deep learning for agricultural automation. Built and annotated a three-class okra
+            maturity dataset, benchmarked YOLOv7 / v8 / v10, and published the result. Dataset
+            open-sourced.
+          </p>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2023 &ndash; 2024</div>
+        <div class="cv-what">
+          <h3>Robotics Intern</h3>
+          <p class="cv-org">Mafkin Robotics &middot; Chennai, India</p>
+          <p>
+            Software for an autonomous ship-hull cleaning robot: navigation and control, plus
+            real-time 3D SLAM with RTAB-Map and sensor integration tested on real scenarios.
+          </p>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2023</div>
+        <div class="cv-what">
+          <h3>Research Intern</h3>
+          <p class="cv-org">Universiti Teknologi PETRONAS &middot; Perak, Malaysia</p>
+          <p>
+            Autonomous drones for surveillance. Built Artimesis, a combined drone and rover
+            platform on a Pixhawk 2.4.8 and a Raspberry Pi 4 with a RealSense camera and 2D LiDAR,
+            and the ROS 2 navigation stack behind it.
+          </p>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2022 &ndash; 2024</div>
+        <div class="cv-what">
+          <h3>Vice Captain</h3>
+          <p class="cv-org">ATOM Robotics &middot; Chennai, India</p>
+          <p>
+            Led the team building autonomous mobile robots, ran hands-on workshops, and owned
+            technical strategy for competition events. Path planning, navigation, and sensor
+            fusion.
+          </p>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2025 &ndash; 2027</div>
+        <div class="cv-what">
+          <h3>M.S. Robotics</h3>
+          <p class="cv-org">Northeastern University, Boston</p>
+        </div>
+      </div>
+      <div class="cv-row">
+        <div class="cv-when">2021 &ndash; 2025</div>
+        <div class="cv-what">
+          <h3>B.E. Mechatronics and Robotics</h3>
+          <p class="cv-org">Vellore Institute of Technology, Chennai</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pubs">
+      <h4>Publications</h4>
+      <ol>
+        <li>
+          <span class="pub-title">Automated detection and classification of rice leaf diseases using YOLOv8: a deep learning approach for enhanced crop monitoring</span>
+          <span class="pub-venue">IET &middot; January 2025</span>
+        </li>
+        <li>
+          <span class="pub-title">Efficient Real-Time Okra Stage Identification using YOLOv8</span>
+          <span class="pub-venue">IEEE &middot; September 2024</span>
+        </li>
+      </ol>
+      <p class="muted">Third publication listed on <a href="https://www.linkedin.com/in/ferbin12/">LinkedIn</a>.</p>
+    </div>
+
+    <blockquote class="rec">
+      <p>
+        &ldquo;Ferbin worked on the drone&rsquo;s navigation stack using ROS 2, implementing SLAM for
+        mapping and localization. He had a good handle on the technical challenges, from tuning the
+        SLAM parameters to integrating computer vision with the navigation system. He&rsquo;s
+        comfortable working with complex robotics systems and picks up new concepts quickly. Solid
+        technical foundation and good research instincts.&rdquo;
+      </p>
+      <footer>Patrick Sebastian &mdash; Senior Lecturer, Universiti Teknologi PETRONAS &middot; C.Eng (UK), P.Eng (Malaysia)</footer>
+    </blockquote>
+
+    <div class="skills">
+      <div>
+        <h4>Hardware and bring-up</h4>
+        <p>Pixhawk 1 / 2.4.8, ArduSub &amp; ArduPilot, NVIDIA Jetson Orin Nano, Raspberry Pi 5 &amp; 4, Arduino Uno, ESP32-S3, Ping360 scanning sonar, VectorNav VN-100, Bar30 / Bar02 pressure sensors, RealSense D455, RP-LiDAR, T200 &amp; M200 thrusters, 4-in-1 BLHeli ESCs, N20 / OE-28 encoders, CoreXY manipulator, I2C and serial bring-up, hardware PWM, power-tree analysis</p>
+      </div>
+      <div>
+        <h4>Robotics</h4>
+        <p>ROS 2 Jazzy / Humble / Foxy, micro-ROS, Gazebo Harmonic &amp; Ignition, NVIDIA Isaac Sim, MAVLink, MAVROS, pymavlink, QGroundControl, Nav2, SLAM Toolbox, RTAB-Map, RViz2, EKF state estimation, PID and MPC control</p>
+      </div>
+      <div>
+        <h4>Perception and ML</h4>
+        <p>GTSAM iSAM2, factor-graph optimization, loop closure, GICP, Open3D, Ultralytics YOLOv7 through YOLO26, PyTorch, OpenCV, MediaPipe, AprilTags, sensor fusion, Allan-variance IMU characterization, underwater refraction calibration</p>
+      </div>
+      <div>
+        <h4>Languages</h4>
+        <p>Python, C++, C, Bash, CMake, SDF / URDF, YAML, SQL</p>
+      </div>
+      <div>
+        <h4>Infrastructure</h4>
+        <p>Docker, Docker Compose, dev containers, GitHub Actions, systemd, CycloneDDS, EGL / Xvfb headless rendering, noVNC, ffmpeg</p>
+      </div>
+      <div>
+        <h4>Full stack</h4>
+        <p>Next.js, Supabase, PostgreSQL, Flask, Vercel, LVGL, SDL2, Blender Python API, Whisper, Piper</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2>About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-portrait">
+        <img src="assets/img/portrait.jpg" alt="Ferbin Richard" loading="lazy">
+      </div>
+      <div class="about-text">
+        <p class="big">
+          I am a robotics engineer. Eight vehicles over five years, and the ones I learned most
+          from are the ones that broke in front of me.
+        </p>
+        <p>
+          It started with a 2D SLAM demo I thought meant I understood mobile robotics. It did not.
+          Then a research internship in Malaysia, a maze solver, an ESP32 rover that taught me what
+          real hardware costs, a final-year agricultural robot with a manipulator I built myself,
+          and now an eight-thruster ROV that goes in the water.
+        </p>
+        <p>
+          Underwater is unforgiving in a useful way. You cannot talk your way past a localization
+          error when the vehicle is down there and a tether is the only thing telling you what
+          happened. The bugs are not in your code, they are in a bitmask, a rail voltage, or the
+          refractive index of water.
+        </p>
+        <p>
+          The habit I care most about is measuring honestly. The evaluation harnesses I build are
+          the ones that produce the numbers showing where my own models still fail, and I would
+          rather publish those than a clean chart.
+        </p>
+        <p class="avail">M.S. Robotics, Northeastern. Graduating 2027 and looking for robotics roles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2>Contact</h2>
+    </div>
+    <p class="contact-lead">The fastest way to reach me is email.</p>
+    <ul class="contact-list">
+      <li><span>Email</span><a href="mailto:franklinrichardjep.f@northeastern.edu">franklinrichardjep.f@northeastern.edu</a></li>
+      <li><span>GitHub</span><a href="https://github.com/FERBIN12">github.com/FERBIN12</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/ferbin12/">linkedin.com/in/ferbin12</a></li>
+      <li><span>Engineering record</span><a href="assets/Ferbin_Richard_Brag_Doc_2026-07.pdf">PDF, 5 pages</a></li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>Ferbin Richard &middot; 2026</span>
+    <span><a href="https://github.com/FERBIN12">GitHub</a></span>
+    <button id="theme-toggle" type="button" aria-label="Toggle colour scheme">Dark</button>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
