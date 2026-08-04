@@ -27,6 +27,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="instrument.css">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Ferbin Richard",
@@ -80,9 +81,9 @@
     <div class="hero-grid">
       <div class="hero-lead">
         <p>
-          Five years of robotics, most of it with a vehicle in front of me. I work on an
-          eight-thruster ROV: factor-graph SLAM, learned detection, the containerized runtime
-          that ships to its flight controller, and firmware I flash-verified on the vehicle
+          M.S. Robotics student, three months into a co-op where I lead the engineering team. I
+          work on an eight-thruster ROV: factor-graph SLAM, learned detection, the containerized
+          runtime that ships to its flight controller, and firmware I flash-verified on the vehicle
           before it went in the pool.
         </p>
         <p>
@@ -97,11 +98,11 @@
           <a href="assets/Ferbin_Richard_Brag_Doc_2026-07.pdf">Engineering record</a>
         </p>
       </div>
-      <dl class="stats">
-        <div><dt>Robotics</dt><dd>5 yrs</dd></div>
-        <div><dt>Papers</dt><dd>3</dd></div>
-        <div><dt>Vehicles built</dt><dd>8</dd></div>
-        <div><dt>Repos</dt><dd>44</dd></div>
+      <dl class="stats ticked">
+        <div><dt>Robots built</dt><dd>8</dd></div>
+        <div><dt>Papers published</dt><dd>3</dd></div>
+        <div><dt>Internships</dt><dd>4</dd></div>
+        <div><dt>Repositories</dt><dd>44</dd></div>
       </dl>
     </div>
   </div>
@@ -306,7 +307,7 @@
       </div>
     </div>
 
-    <figure class="proj-figure wide">
+    <figure class="proj-figure wide ticked">
       <img src="assets/img/archelon_wiring.png" alt="As-built system wiring diagram for the Archelon ROV across topside, bulkhead, and subsea zones" loading="lazy">
       <figcaption>Archelon as-built power and data architecture. 12&nbsp;V down a 50&nbsp;ft AWG&nbsp;8 umbilical, three power distribution boards, eight T200 thrusters on MAIN OUT, three M200 aux motors, Pixhawk 1 and a Raspberry Pi 5 companion.</figcaption>
     </figure>
@@ -469,14 +470,14 @@
 
     <div class="tiles">
       <a class="tile" href="https://github.com/FERBIN12/Seed_spacing_robot">
-        <div class="tile-media placeholder"><span>Raspberry Pi 4 &middot; ESP32 &middot; RP-LiDAR A1</span></div>
+        <div class="tile-media"><img src="assets/img/tile_seed.jpg" alt="Seed spacing robot model in RViz with the Nav2 panel" loading="lazy"></div>
         <h4>Seed spacing robot</h4>
         <p>Final-year build. A full autonomous ground vehicle for precision planting: SLAM Toolbox and Nav2 mapping of a real corridor, waypoint navigation, and a self-made CoreXY manipulator placing seeds at a set interval.</p>
         <p class="tile-tags">ROS 2 &middot; Nav2 &middot; RealSense &middot; CoreXY</p>
       </a>
 
       <a class="tile" href="https://github.com/FERBIN12/Buck_ws">
-        <div class="tile-media placeholder"><span>Pixhawk 2.4.8 &middot; Raspberry Pi 4</span></div>
+        <div class="tile-media"><img src="assets/img/tile_artimesis.jpg" alt="Artimesis drone and rover platform in simulation" loading="lazy"></div>
         <h4>Artimesis &mdash; drone and rover</h4>
         <p>A combined aerial and ground surveillance platform built at Universiti Teknologi PETRONAS. Pixhawk flight controller, Pi 4 companion, RealSense and 2D LiDAR, ROS 2 navigation across both vehicles.</p>
         <p class="tile-tags">ROS 2 &middot; Pixhawk &middot; LiDAR &middot; Research</p>
@@ -490,7 +491,7 @@
       </a>
 
       <a class="tile" href="https://github.com/FERBIN12/Mazix">
-        <div class="tile-media placeholder"><span>2D LiDAR &middot; QR decision points</span></div>
+        <div class="tile-media"><img src="assets/img/tile_mazix.jpg" alt="Mazix robot navigating a maze with LiDAR scan overlay" loading="lazy"></div>
         <h4>Mazix &mdash; maze solving AMR</h4>
         <p>Autonomous maze navigation fusing 2D LiDAR for obstacle avoidance with QR codes read by OpenCV as decision points. One of eight mobile robots I built across five years, each one correcting the last.</p>
         <p class="tile-tags">ROS 2 &middot; LiDAR &middot; OpenCV &middot; Sensor fusion</p>
@@ -565,7 +566,7 @@
 
     <div class="cv">
       <div class="cv-row">
-        <div class="cv-when">Jun 2026 &ndash;</div>
+        <div class="cv-when">Jun 2026 &ndash;<br><span class="cv-dur">3 mos</span></div>
         <div class="cv-what">
           <h3>Robotics Engineer, Co-op &mdash; Technical Lead</h3>
           <p class="cv-org">Archenaux Robotics &middot; Boston, MA</p>
@@ -579,7 +580,7 @@
         </div>
       </div>
       <div class="cv-row">
-        <div class="cv-when">2024</div>
+        <div class="cv-when">Jun &ndash; Nov 2024<br><span class="cv-dur">6 mos</span></div>
         <div class="cv-what">
           <h3>Research Intern</h3>
           <p class="cv-org">Vellore Institute of Technology &middot; Chennai, India</p>
@@ -591,7 +592,7 @@
         </div>
       </div>
       <div class="cv-row">
-        <div class="cv-when">2023 &ndash; 2024</div>
+        <div class="cv-when">Oct 2023 &ndash; Feb 2024<br><span class="cv-dur">5 mos</span></div>
         <div class="cv-what">
           <h3>Robotics Intern</h3>
           <p class="cv-org">Mafkin Robotics &middot; Chennai, India</p>
@@ -602,7 +603,7 @@
         </div>
       </div>
       <div class="cv-row">
-        <div class="cv-when">2023</div>
+        <div class="cv-when">Oct &ndash; Dec 2023<br><span class="cv-dur">3 mos</span></div>
         <div class="cv-what">
           <h3>Research Intern</h3>
           <p class="cv-org">Universiti Teknologi PETRONAS &middot; Perak, Malaysia</p>
@@ -614,7 +615,7 @@
         </div>
       </div>
       <div class="cv-row">
-        <div class="cv-when">2022 &ndash; 2024</div>
+        <div class="cv-when">Sep 2022 &ndash; Jun 2024<br><span class="cv-dur">1 yr 10 mos</span></div>
         <div class="cv-what">
           <h3>Vice Captain</h3>
           <p class="cv-org">ATOM Robotics &middot; Chennai, India</p>
@@ -656,7 +657,7 @@
       <p class="muted">Third publication listed on <a href="https://www.linkedin.com/in/ferbin12/">LinkedIn</a>.</p>
     </div>
 
-    <blockquote class="rec">
+    <blockquote class="rec ticked">
       <p>
         &ldquo;Ferbin worked on the drone&rsquo;s navigation stack using ROS 2, implementing SLAM for
         mapping and localization. He had a good handle on the technical challenges, from tuning the
@@ -709,8 +710,8 @@
       </div>
       <div class="about-text">
         <p class="big">
-          I am a robotics engineer. Eight vehicles over five years, and the ones I learned most
-          from are the ones that broke in front of me.
+          I am early in my career and I have built eight robots. The ones I learned most from are
+          the ones that broke in front of me.
         </p>
         <p>
           It started with a 2D SLAM demo I thought meant I understood mobile robotics. It did not.

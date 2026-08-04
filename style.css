@@ -502,6 +502,14 @@ a.tile:hover .tile-media video { opacity: .85; }
   padding-top: .35rem;
 }
 
+.cv-dur {
+  display: inline-block;
+  margin-top: .3rem;
+  font-size: .75rem;
+  color: var(--ink-3);
+  opacity: .85;
+}
+
 .cv-what h3 { font-size: 1.375rem; margin-bottom: var(--s1); }
 .cv-org {
   font-family: var(--mono); font-size: .8125rem;
