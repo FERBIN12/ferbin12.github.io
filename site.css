@@ -1,0 +1,437 @@
+/* ============================================================
+   Ferbin Richard — robotics portfolio
+   ONE dark instrument theme, top to bottom.
+
+   The previous build flipped dark hero -> white body -> dark
+   again, which read as three different sites and was the main
+   reason the page felt cluttered and hard to parse. Everything
+   here sits on one surface scale so the eye only has to learn
+   the layout once.
+   ============================================================ */
+
+:root {
+  /* Surfaces: four steps, darkest at the back. */
+  --bg:        #07090c;
+  --bg-1:      #0b0e13;
+  --bg-2:      #11151c;
+  --line:      #222a36;
+  --line-hi:   #2e3846;
+
+  /* Ink */
+  --ink:       #e9eef5;
+  --ink-2:     #9aa7b8;
+  --muted:     #6b7888;
+
+  /* One accent, used for data and state only, never decoration. */
+  --accent:    #2dd4bf;
+  --accent-dim:#177f75;
+
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  --pad: clamp(1.25rem, 4vw, 3rem);
+  --maxw: 1180px;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img, video { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+.skip {
+  position: absolute; left: -9999px;
+}
+.skip:focus {
+  left: 1rem; top: 1rem; z-index: 99; padding: .6rem 1rem;
+  background: var(--accent); color: #04120f; border-radius: var(--radius);
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad); }
+
+/* ---------------------------------------------- nav */
+
+.nav {
+  position: sticky; top: 0; z-index: 40;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: var(--maxw); margin: 0 auto; padding: .85rem var(--pad);
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.nav-name {
+  font-family: var(--mono); font-size: .8rem; letter-spacing: .14em;
+  text-transform: uppercase; text-decoration: none; color: var(--ink);
+  display: flex; align-items: center; gap: .55rem;
+}
+.nav-name::before {
+  content: ""; width: 7px; height: 7px; background: var(--accent);
+  display: inline-block;
+}
+.nav nav { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+.nav nav a {
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .1em;
+  text-transform: uppercase; text-decoration: none; color: var(--ink-2);
+  padding-bottom: 2px; border-bottom: 1px solid transparent;
+  transition: color .15s, border-color .15s;
+}
+.nav nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+.nav nav a .n { color: var(--accent-dim); margin-right: .3rem; }
+@media (max-width: 720px) { .nav nav { display: none; } }
+
+/* ---------------------------------------------- hero */
+
+.hero {
+  padding: clamp(3.5rem, 11vh, 7rem) 0 0;
+  position: relative;
+  border-bottom: 1px solid var(--line);
+}
+.hero::before {
+  /* faint engineering grid, not a texture for its own sake */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+  background-size: 76px 76px;
+  opacity: .34; mask-image: linear-gradient(to bottom, #000 35%, transparent);
+}
+.hero-inner { position: relative; }
+
+.eyebrow {
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--ink-2);
+  display: flex; gap: .9rem; flex-wrap: wrap; align-items: center;
+  padding-bottom: .9rem; border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+.eyebrow b { color: var(--ink); font-weight: 500; }
+.eyebrow span::before { content: "▸ "; color: var(--accent-dim); }
+
+h1 {
+  font-size: clamp(2.1rem, 6.4vw, 4.4rem);
+  line-height: 1.04; letter-spacing: -.028em; font-weight: 600;
+  margin: 0 0 1.2rem; max-width: 20ch;
+}
+h1 em { font-style: normal; color: var(--accent); }
+
+.hero-sub {
+  font-size: clamp(1rem, 1.9vw, 1.2rem); color: var(--ink-2);
+  max-width: 62ch; margin: 0 0 2rem;
+}
+.hero-sub strong { color: var(--ink); font-weight: 500; }
+
+.hero-links { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.6rem; }
+.hero-links a {
+  font-family: var(--mono); font-size: .78rem; letter-spacing: .06em;
+  text-decoration: none; color: var(--ink);
+  border-bottom: 1px solid var(--line-hi); padding-bottom: 3px;
+  transition: border-color .15s, color .15s;
+}
+.hero-links a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+/* ---------------------------------------------- section furniture */
+
+section { padding: clamp(3.5rem, 9vh, 6.5rem) 0; }
+section + section { border-top: 1px solid var(--line); }
+
+.sec-head {
+  display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap;
+  margin-bottom: clamp(2rem, 5vw, 3.2rem);
+  padding-bottom: .9rem; border-bottom: 1px solid var(--line);
+}
+.sec-num {
+  font-family: var(--mono); font-size: .72rem; letter-spacing: .12em;
+  color: #04120f; background: var(--accent); padding: .2rem .45rem;
+  flex: 0 0 auto;
+}
+.sec-head h2 {
+  font-size: clamp(1.25rem, 2.6vw, 1.7rem); font-weight: 600;
+  letter-spacing: -.015em; margin: 0;
+  /* `flex: 1` alone let the heading shrink below its word widths, which on a
+     390px screen wrapped "Platforms I have written software for" to one word
+     per line. A min-width floor keeps it a heading; the note wraps instead. */
+  flex: 1 1 14ch; min-width: 0;
+}
+.sec-note {
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .08em;
+  color: var(--muted); text-transform: uppercase;
+  flex: 0 1 auto;
+}
+@media (max-width: 560px) {
+  /* Below this the note is noise next to the heading. */
+  .sec-note { flex-basis: 100%; }
+}
+
+/* ---------------------------------------------- morphology showcase */
+
+.morph-grid {
+  display: grid; gap: 1px; background: var(--line);
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  border: 1px solid var(--line);
+}
+.morph {
+  background: var(--bg-1); padding: 0; position: relative;
+  display: flex; flex-direction: column;
+}
+.morph-media {
+  position: relative; aspect-ratio: 16 / 9; overflow: hidden;
+  background: var(--bg-2);
+}
+.morph-media video, .morph-media img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.morph-media::after {
+  /* keeps light sim renders from fighting the dark UI */
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 55%, rgba(7,9,12,.72));
+  pointer-events: none;
+}
+.morph-tag {
+  position: absolute; left: .7rem; top: .7rem; z-index: 2;
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink);
+  background: rgba(7,9,12,.78); border: 1px solid var(--line-hi);
+  padding: .22rem .5rem;
+}
+.morph-body { padding: 1rem 1.1rem 1.2rem; }
+.morph-body h3 {
+  font-size: .98rem; font-weight: 600; margin: 0 0 .4rem; letter-spacing: -.01em;
+}
+.morph-body p {
+  font-size: .85rem; color: var(--ink-2); margin: 0 0 .6rem; line-height: 1.55;
+}
+.morph-stack {
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .05em;
+  color: var(--muted);
+}
+
+/* ---------------------------------------------- project */
+
+.proj { padding-top: clamp(2.5rem, 6vw, 4rem); }
+.proj:first-of-type { padding-top: 0; }
+.proj + .proj { border-top: 1px solid var(--line); }
+
+.proj-head { margin-bottom: 1.6rem; }
+.proj-idx {
+  font-family: var(--mono); font-size: .7rem; letter-spacing: .1em;
+  color: var(--accent); margin-bottom: .5rem; display: block;
+}
+.proj-head h3 {
+  font-size: clamp(1.4rem, 3.3vw, 2.15rem); font-weight: 600;
+  line-height: 1.12; letter-spacing: -.022em; margin: 0 0 .55rem; max-width: 26ch;
+}
+.proj-meta {
+  font-family: var(--mono); font-size: .71rem; letter-spacing: .04em;
+  color: var(--muted);
+}
+
+.proj-media {
+  border: 1px solid var(--line); background: var(--bg-2);
+  margin-bottom: 1.5rem; position: relative;
+}
+.proj-media video, .proj-media img { width: 100%; height: auto; display: block; }
+.proj-media figcaption {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .04em;
+  color: var(--muted); padding: .6rem .8rem; border-top: 1px solid var(--line);
+}
+
+.proj-cols {
+  display: grid; gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  align-items: start;
+}
+@media (max-width: 860px) { .proj-cols { grid-template-columns: 1fr; } }
+
+.proj-text p { margin: 0 0 1rem; color: var(--ink-2); }
+.proj-text p:first-child { color: var(--ink); font-size: 1.04rem; }
+.proj-text code {
+  font-family: var(--mono); font-size: .86em; color: var(--accent);
+  background: var(--bg-2); padding: .1rem .3rem; border-radius: 2px;
+}
+
+/* Detail that only some readers want. Collapsed by default so the
+   page is scannable; the previous build put five dense paragraphs
+   inline and nothing could be skimmed. */
+details.more {
+  margin: .4rem 0 0; border-top: 1px solid var(--line); padding-top: .8rem;
+}
+details.more summary {
+  font-family: var(--mono); font-size: .71rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--accent); cursor: pointer;
+  list-style: none;
+}
+details.more summary::-webkit-details-marker { display: none; }
+details.more summary::before { content: "+ "; }
+details.more[open] summary::before { content: "− "; }
+details.more p { margin-top: .8rem; font-size: .93rem; }
+
+/* instruments: the numbers, pulled out of prose */
+.inst { border: 1px solid var(--line); background: var(--bg-1); }
+.inst div {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; padding: .7rem .85rem; border-bottom: 1px solid var(--line);
+}
+.inst div:last-child { border-bottom: 0; }
+.inst dt {
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-2); margin: 0;
+}
+.inst dd {
+  font-family: var(--mono); font-size: 1.02rem; font-weight: 500;
+  color: var(--ink); margin: 0; text-align: right; white-space: nowrap;
+}
+.inst dd.vs {
+  font-size: .63rem; color: var(--muted); font-weight: 400;
+  display: block; width: 100%; text-align: right; margin-top: .15rem;
+}
+/* A stacked row keeps label and value on ONE line and drops only the
+   comparison note beneath, so "1.62 m" does not orphan onto its own row. */
+.inst div.stacked { flex-wrap: wrap; }
+.inst div.stacked dt { flex: 1 1 auto; }
+.inst div.stacked dd:not(.vs) { flex: 0 0 auto; }
+
+.proj-stack {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .04em;
+  color: var(--muted); margin-top: 1.2rem; padding-top: .9rem;
+  border-top: 1px solid var(--line);
+}
+
+/* gallery strip */
+.strip {
+  display: grid; gap: 1px; background: var(--line);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  border: 1px solid var(--line); margin-top: 1.5rem;
+}
+.strip figure { margin: 0; background: var(--bg-2); }
+.strip img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.strip figcaption {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted);
+  padding: .45rem .55rem; border-top: 1px solid var(--line);
+}
+
+/* ---------------------------------------------- tiles */
+
+.tiles {
+  display: grid; gap: 1px; background: var(--line);
+  /* auto-FILL, not auto-fit: with six tiles auto-fit stretched the last row
+     and left a visible empty cell at wide viewports. */
+  grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
+  border: 1px solid var(--line);
+}
+.sec-head-sub { margin-top: 3.5rem; }
+.tile {
+  background: var(--bg-1); padding: 1.15rem 1.2rem 1.3rem;
+  text-decoration: none; display: flex; flex-direction: column;
+  transition: background .15s;
+}
+a.tile:hover { background: var(--bg-2); }
+.tile h4 {
+  font-size: .95rem; font-weight: 600; margin: 0 0 .5rem; letter-spacing: -.01em;
+}
+a.tile h4::after { content: " ↗"; color: var(--accent); font-size: .8em; }
+.tile p { font-size: .84rem; color: var(--ink-2); margin: 0 0 .6rem; line-height: 1.55; }
+.tile-tags {
+  font-family: var(--mono); font-size: .65rem; letter-spacing: .05em;
+  color: var(--muted); margin-top: auto !important;
+}
+
+/* ---------------------------------------------- experience */
+
+.xp { display: grid; gap: 0; }
+.xp-row {
+  display: grid; grid-template-columns: 11rem minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding: 1.5rem 0; border-top: 1px solid var(--line);
+}
+.xp-row:first-child { border-top: 0; }
+@media (max-width: 720px) { .xp-row { grid-template-columns: 1fr; gap: .5rem; } }
+.xp-when {
+  font-family: var(--mono); font-size: .71rem; letter-spacing: .06em;
+  color: var(--muted); padding-top: .2rem;
+}
+.xp-what h3 { font-size: 1rem; font-weight: 600; margin: 0 0 .2rem; }
+.xp-org {
+  font-family: var(--mono); font-size: .72rem; color: var(--accent-dim);
+  margin: 0 0 .55rem;
+}
+.xp-what p { font-size: .88rem; color: var(--ink-2); margin: 0; }
+
+/* ---------------------------------------------- about + contact */
+
+.two-col {
+  display: grid; gap: clamp(1.5rem, 5vw, 3.5rem);
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  align-items: start;
+}
+@media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+.about-text p { color: var(--ink-2); margin: 0 0 1rem; }
+.about-text p:first-child { color: var(--ink); font-size: 1.06rem; }
+
+.chipset { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .3rem; }
+.chip {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .04em;
+  color: var(--ink-2); border: 1px solid var(--line-hi);
+  padding: .26rem .5rem; background: var(--bg-1);
+}
+.skill-group { margin-bottom: 1.1rem; }
+.skill-group h4 {
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin: 0 0 .5rem;
+}
+
+.contact-grid { display: flex; flex-wrap: wrap; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.contact-grid a {
+  flex: 1 1 190px; background: var(--bg-1); padding: 1.1rem 1.2rem;
+  text-decoration: none; transition: background .15s;
+}
+.contact-grid a:hover { background: var(--bg-2); }
+.contact-grid .k {
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .3rem;
+}
+.contact-grid .v { font-size: .9rem; color: var(--ink); word-break: break-word; }
+
+footer {
+  border-top: 1px solid var(--line); padding: 2rem 0 3rem;
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .06em;
+  color: var(--muted);
+}
+footer .wrap { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+/* ---------------------------------------------- publications */
+
+.pubs { border: 1px solid var(--line); }
+.pub {
+  padding: 1rem 1.1rem; border-bottom: 1px solid var(--line);
+  background: var(--bg-1);
+  display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 1rem;
+  align-items: baseline;
+}
+.pub:last-child { border-bottom: 0; }
+.pub-t { font-size: .9rem; color: var(--ink); margin: 0; }
+.pub-v {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .08em;
+  color: var(--accent-dim); white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

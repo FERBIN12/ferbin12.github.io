@@ -1,35 +1,8 @@
-/* Theme toggle + lazy video. No dependencies. */
+/* Lazy, in-view sim clips. No dependencies, no theme toggle:
+   the page is one dark surface now, so there is nothing to switch. */
 
 (function () {
   "use strict";
-
-  var root = document.documentElement;
-  var toggle = document.getElementById("theme-toggle");
-
-  /* ---------- theme ----------
-     Light is the designed default. Dark is available but opt-in,
-     so we do not follow prefers-color-scheme automatically. */
-
-  var stored = null;
-  try { stored = localStorage.getItem("theme"); } catch (e) { /* private mode */ }
-  root.setAttribute("data-theme", stored === "dark" ? "dark" : "light");
-
-  function syncLabel() {
-    if (!toggle) return;
-    var dark = root.getAttribute("data-theme") === "dark";
-    toggle.textContent = dark ? "Light" : "Dark";
-    toggle.setAttribute("aria-pressed", dark ? "true" : "false");
-  }
-  syncLabel();
-
-  if (toggle) {
-    toggle.addEventListener("click", function () {
-      var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
-      try { localStorage.setItem("theme", next); } catch (e) { /* ignore */ }
-      syncLabel();
-    });
-  }
 
   /* ---------- active nav ---------- */
 
@@ -56,7 +29,8 @@
      Clips load only when scrolled near, and stay paused entirely
      when the visitor has asked for reduced motion. */
 
-  var videos = Array.prototype.slice.call(document.querySelectorAll(".proj-figure video, .tile-media video"));
+  var videos = Array.prototype.slice.call(
+    document.querySelectorAll(".morph-media video, .proj-media video"));
   if (!videos.length) return;
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
