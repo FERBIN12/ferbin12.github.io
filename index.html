@@ -11,17 +11,17 @@
 
 <meta property="og:title" content="Ferbin Richard — Robotics Software Engineer">
 <meta property="og:description" content="SLAM, perception and reinforcement learning across quadruped, manipulator, drone, underwater and ground robots. Simulation, then hardware, then the field.">
-<meta property="og:image" content="https://ferbin12.github.io/assets/img/rl_parallel_poster.jpg">
+<meta property="og:image" content="https://ferbin12.github.io/assets/img/humanoid_poster.jpg">
 <meta property="og:image:width" content="1280">
-<meta property="og:image:height" content="720">
-<meta property="og:image:alt" content="Sixty-four quadruped robots training in parallel in NVIDIA Isaac Sim">
+<meta property="og:image:height" content="1152">
+<meta property="og:image:alt" content="Unitree H1-2 humanoid walking in MuJoCo under a whole-body QP controller">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ferbin12.github.io/">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ferbin Richard — Robotics Software Engineer">
-<meta name="twitter:description" content="SLAM, perception and reinforcement learning across nine robot platforms.">
-<meta name="twitter:image" content="https://ferbin12.github.io/assets/img/rl_parallel_poster.jpg">
+<meta name="twitter:description" content="Humanoid balance, quadruped RL, SLAM, perception and embedded work across twelve robot platforms.">
+<meta name="twitter:image" content="https://ferbin12.github.io/assets/img/humanoid_poster.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,9 +77,10 @@
     <p class="hero-sub">
       I write the perception, estimation and control software that moves robots, then
       I take it to hardware and find out what simulation did not tell me.
-      <strong>Nine platforms</strong> across quadruped, manipulator, ground, surgical,
-      underwater and marine. <strong>Three published papers.</strong> One eight-thruster
-      vehicle taken from bench bring-up to open water.
+      <strong>Humanoid, quadruped, manipulator, ground, surgical, underwater and
+      aerial</strong> platforms, in simulation and on hardware.
+      <strong>Three published papers.</strong> One eight-thruster vehicle taken from
+      bench bring-up to open water.
     </p>
 
     <p class="hero-links">
@@ -97,11 +98,39 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">01</span>
-      <h2>Platforms I have written software for</h2>
-      <span class="sec-note">Nine clips, captured from simulations I built</span>
+      <h2>Every robot I have written software for</h2>
+      <span class="sec-note">Twelve clips, captured from simulations I built</span>
     </div>
 
     <div class="morph-grid">
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Humanoid · MuJoCo</span>
+          <video poster="assets/img/humanoid_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Unitree H1-2 humanoid walking in MuJoCo under a whole-body QP controller">
+            <source src="assets/video/humanoid_walk.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>A 67 kg humanoid that walks because a controller says so</h3>
+          <p>Unitree H1-2, 51 actuated joints, built from torque control upward in MuJoCo. The measurement that starts everything: hold every joint at its commanded angle, let go, and the pelvis drops from 1.030 m to 0.415 m in six seconds. Angles are not momentum.</p>
+          <p class="morph-stack">MuJoCo · LIPM · whole-body QP · Pinocchio · 90 modules</p>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Humanoid · Isaac Lab</span>
+          <video poster="assets/img/g1_training_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Unitree G1 humanoid robots training in parallel in NVIDIA Isaac Lab">
+            <source src="assets/video/g1_training.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Which reward term is actually doing the work</h3>
+          <p>Unitree G1 humanoids training in parallel in Isaac Lab. Ablating one reward term at a time over 29 runs: removing the −200 termination penalty collapses learning to 4.2% of baseline episode length while the reward climbs, because falling becomes free.</p>
+          <p class="morph-stack">Isaac Lab · PPO · ONNX · reward ablation · 6 GB GPU</p>
+        </div>
+      </article>
 
       <article class="morph">
         <div class="morph-media">
@@ -112,49 +141,78 @@
         </div>
         <div class="morph-body">
           <h3>A policy that actually walks</h3>
-          <p>
-            A Unitree Go2 under a trained policy, blind versus perceptive on the same terrain.
-            Tracking improves from 64.6% to 69.9% once the policy can feel the ground. Gait is
-            verified on contact timing and foot clearance, never on the reward curve, because a
-            policy can score near-optimal while dragging itself along the floor.
-          </p>
+          <p>A Unitree Go2 under a trained policy, blind versus perceptive on the same terrain. Tracking improves from 64.6% to 69.9% once the policy can feel the ground. Gait is verified on contact timing and foot clearance, never on the reward curve.</p>
           <p class="morph-stack">Isaac Lab · PPO · MuJoCo · Python</p>
         </div>
       </article>
 
       <article class="morph">
         <div class="morph-media">
-          <span class="morph-tag">Quadruped · velocity control</span>
+          <span class="morph-tag">Quadruped · navigation</span>
           <video poster="assets/img/go2_vel_poster.jpg" muted loop playsinline preload="none"
                  aria-label="Quadruped following velocity commands derived from a planned path">
             <source src="assets/video/go2_velocity.mp4" type="video/mp4"></video>
         </div>
         <div class="morph-body">
           <h3>Velocity commands from a planned path</h3>
-          <p>
-            The layer between a navigation stack and a learned gait: a path becomes body-frame
-            velocity commands the policy can track, with footstep planning over an elevation map
-            built from a depth camera.
-          </p>
+          <p>The layer between a navigation stack and a learned gait: a path becomes body-frame velocity commands the policy can track, with footstep planning over an elevation map built from a depth camera.</p>
           <p class="morph-stack">Isaac Lab · elevation mapping · footstep planning</p>
         </div>
       </article>
 
       <article class="morph">
         <div class="morph-media">
-          <span class="morph-tag">Parallel RL training</span>
-          <video poster="assets/img/rl_parallel_poster.jpg" muted loop playsinline preload="none"
-                 aria-label="Sixty-four robots training simultaneously in one simulation">
-            <source src="assets/video/rl_parallel.mp4" type="video/mp4"></video>
+          <span class="morph-tag">Manipulator · SO-101</span>
+          <video poster="assets/img/so101_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="SO-101 robot arm performing pick and place in MuJoCo">
+            <source src="assets/video/so101_pick.mp4" type="video/mp4"></video>
         </div>
         <div class="morph-body">
-          <h3>Sixty-four robots, one solver call</h3>
-          <p>
-            Vectorized environments on the GPU: every robot advances inside a single physics
-            step, which is what makes reinforcement learning tractable on a laptop-class machine.
-            Throughput and step count are measured, not assumed.
-          </p>
-          <p class="morph-stack">Isaac Sim · vectorized envs · CUDA · PyTorch</p>
+          <h3>Pick and place, with an evaluation harness that argues back</h3>
+          <p>MuJoCo pick-and-place on the SO-101 arm, tested against its own failure modes: a contact gate that rejects a faked grasp, and a harness that fails when the evaluation is wrong rather than when the robot is.</p>
+          <p class="morph-stack">MuJoCo · SO-101 · evaluation harness · Python</p>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Manipulator · parallel RL</span>
+          <video poster="assets/img/franka_reach_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Multiple Franka robot arms reaching in parallel in Isaac Lab">
+            <source src="assets/video/franka_reach.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Many arms, one physics step</h3>
+          <p>Franka reach environments running vectorized on the GPU. Same principle as the humanoid and quadruped training: every robot advances inside a single solver call, which is what makes RL tractable on laptop-class hardware.</p>
+          <p class="morph-stack">Isaac Lab · vectorized envs · CUDA · PyTorch</p>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Manipulator · VLA</span>
+          <video poster="assets/img/manipulation_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Robot arm reaching for coloured blocks under a vision-language-action policy">
+            <source src="assets/video/manipulation_vla.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Language-conditioned pick and place</h3>
+          <p>A 7-DoF arm driven by a vision-language-action policy: an instruction in, a joint trajectory out. Built so every layer between the camera and the actuator is inspectable rather than a black box.</p>
+          <p class="morph-stack">Isaac Sim · VLA policy · ROS 2 · PyTorch</p>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Surgical · RCM</span>
+          <video poster="assets/img/surgical_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Surgical manipulator performing a precision task in simulation">
+            <source src="assets/video/surgical_arm.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Precision manipulation under constraint</h3>
+          <p>Laparoscopic arm simulation: remote-centre-of-motion constraint solving, damped least-squares IK near singularities, and the millimetre tolerances that make a general-purpose manipulator stack inadequate.</p>
+          <p class="morph-stack">Isaac Sim · RCM · DLS IK · ROS 2</p>
         </div>
       </article>
 
@@ -167,11 +225,7 @@
         </div>
         <div class="morph-body">
           <h3>Scan matching, built rather than imported</h3>
-          <p>
-            A ground robot mapping a warehouse with 2D LiDAR: ICP front end, mapper, loop closure
-            and pose graph written from scratch rather than pulled from a library. Point-to-line
-            registration lands at 2.3 mm against 8.1 mm for point-to-point on the same run.
-          </p>
+          <p>A ground robot mapping a warehouse with 2D LiDAR: ICP front end, mapper, loop closure and pose graph written from scratch. Point-to-line registration lands at 2.3 mm against 8.1 mm for point-to-point on the same run.</p>
           <p class="morph-stack">ROS 2 · ICP · pose graph · occupancy mapping</p>
         </div>
       </article>
@@ -185,47 +239,8 @@
         </div>
         <div class="morph-body">
           <h3>Measuring where SLAM fails, not just where it works</h3>
-          <p>
-            A wall is degenerate at 3747 against 1.9 on open floor, so the same scan matcher that
-            is excellent in a corridor is near-useless facing a flat surface. Every figure is
-            reproducible from the repository, including the ones that were inconvenient.
-          </p>
+          <p>A wall is degenerate at 3747 against 1.9 on open floor, so the same scan matcher that is excellent in a corridor is near-useless facing a flat surface. Every figure is reproducible from the repository, including the inconvenient ones.</p>
           <p class="morph-stack">ROS 2 · scan matching · loop closure · Python</p>
-        </div>
-      </article>
-
-      <article class="morph">
-        <div class="morph-media">
-          <span class="morph-tag">Manipulator · VLA</span>
-          <video poster="assets/img/manipulation_poster.jpg" muted loop playsinline preload="none"
-                 aria-label="Robot arm reaching for coloured blocks in simulation">
-            <source src="assets/video/manipulation_vla.mp4" type="video/mp4"></video>
-        </div>
-        <div class="morph-body">
-          <h3>Language-conditioned pick and place</h3>
-          <p>
-            A 7-DoF arm driven by a vision-language-action policy: an instruction in, a joint
-            trajectory out. Built so every layer between the camera and the actuator is
-            inspectable rather than a black box.
-          </p>
-          <p class="morph-stack">Isaac Sim · VLA policy · ROS 2 · PyTorch</p>
-        </div>
-      </article>
-
-      <article class="morph">
-        <div class="morph-media">
-          <span class="morph-tag">Surgical · precision</span>
-          <video poster="assets/img/surgical_poster.jpg" muted loop playsinline preload="none"
-                 aria-label="Surgical manipulator performing a precision task in simulation">
-            <source src="assets/video/surgical_arm.mp4" type="video/mp4"></video>
-        </div>
-        <div class="morph-body">
-          <h3>Precision manipulation under constraint</h3>
-          <p>
-            Surgical robotics: remote-centre-of-motion kinematics, tremor filtering and the
-            millimetre-scale tolerances that make a general-purpose manipulator stack inadequate.
-          </p>
-          <p class="morph-stack">ROS 2 · RCM kinematics · simulation</p>
         </div>
       </article>
 
@@ -238,11 +253,7 @@
         </div>
         <div class="morph-body">
           <h3>Detection with no real training data</h3>
-          <p>
-            A seeded procedural world emits its own ground truth by 3D-to-2D projection, so every
-            frame is labelled for free and any scene is reproducible from its seed. Clutter false
-            positives went from 54% to zero.
-          </p>
+          <p>A seeded procedural world emits its own ground truth by 3D-to-2D projection, so every frame is labelled for free and any scene is reproducible from its seed. Clutter false positives went from 54% to zero across three model generations.</p>
           <p class="morph-stack">YOLO11 · PyTorch · Gazebo · OpenCV</p>
         </div>
       </article>
@@ -256,12 +267,7 @@
         </div>
         <div class="morph-body">
           <h3>A second physics backend that argues with the first</h3>
-          <p>
-            The vehicle ported to Isaac Sim as a second physics engine: animated water with
-            underwater rendering, hydrodynamics covering buoyancy, damping and added mass, and a
-            bridge closing the control loop against Isaac physics. The test suite is
-            mutation-tested, so it fails when the model is wrong.
-          </p>
+          <p>The vehicle ported to Isaac Sim as a second physics engine: animated water with underwater rendering, hydrodynamics covering buoyancy, damping and added mass, and a bridge closing the control loop against Isaac physics.</p>
           <p class="morph-stack">Isaac Sim · RTX offscreen · ROS 2 · pytest</p>
         </div>
       </article>
@@ -601,70 +607,93 @@
     <div class="sec-head">
       <span class="sec-num">04</span>
       <h2>Open source &amp; teaching</h2>
-      <span class="sec-note">Public repositories</span>
+      <span class="sec-note">Fourteen public repositories</span>
     </div>
 
     <div class="tiles">
 
+      <a class="tile" href="https://github.com/FERBIN12/humanoid-balance-locomotion">
+        <h4>humanoid-balance-locomotion</h4>
+        <p>Balance and locomotion for a 67 kg, 51-DOF Unitree H1-2 in MuJoCo, built from torque control up: CoM/CoP estimation, ankle and momentum strategies, LIPM walking with a whole-body QP, an RL comparison, and a ROS 2/Gazebo port. 90 modules, every constant measured.</p>
+        <p class="tile-tags">MuJoCo · whole-body QP · Pinocchio · ROS 2</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/isaac-lab-rl-benchmarks">
+        <h4>isaac-lab-rl-benchmarks</h4>
+        <p>Reward-term ablation on a Unitree G1 across 29 training runs on a 6 GB laptop GPU, plus sim-to-sim ONNX parity and policy deployment with no simulator. Every figure regenerable from 54 measured fact groups.</p>
+        <p class="tile-tags">Isaac Lab · PPO · ONNX · 29 runs</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/barkour-isaac-lab-rl">
+        <h4>barkour-isaac-lab-rl</h4>
+        <p>Bringing a quadruped Isaac Lab does not ship: Barkour vB through URDF conversion, a manager-based RL environment, PPO training, evaluation and a simulator-free deployment path.</p>
+        <p class="tile-tags">Isaac Lab · URDF · PPO · Barkour vB</p>
+      </a>
+
       <a class="tile" href="https://github.com/FERBIN12/visual-slam-vio-ros2">
         <h4>visual-slam-vio-ros2</h4>
-        <p>
-          Stereo-inertial SLAM built from the geometry up: camera and stereo models,
-          calibration including camera-IMU extrinsics and time offset, feature-based visual
-          odometry, IMU preintegration and sliding-window optimization, with a ROS 2 layer
-          around ORB-SLAM3 evaluated on EuRoC and TUM-VI.
-        </p>
-        <p class="tile-tags">C++ &middot; GTSAM &middot; ORB-SLAM3 &middot; EuRoC / TUM-VI</p>
+        <p>Stereo-inertial SLAM built from the geometry up: camera and stereo models, camera-IMU extrinsics and time offset, feature-based VO, IMU preintegration, sliding-window optimisation, and a ROS 2 layer around ORB-SLAM3 on EuRoC and TUM-VI.</p>
+        <p class="tile-tags">C++ · GTSAM · ORB-SLAM3 · EuRoC</p>
       </a>
 
       <a class="tile" href="https://github.com/FERBIN12/av-perception-planning-stack">
         <h4>av-perception-planning-stack</h4>
-        <p>
-          Twelve-module driving stack: camera and lidar perception, sensor fusion,
-          localization, tracking, prediction, behaviour selection, planning, control and a
-          fail-closed safety layer. 227 tests across 71 test files.
-        </p>
-        <p class="tile-tags">Python &middot; 12 modules &middot; 227 tests</p>
+        <p>Twelve-module driving stack in pure Python: camera and lidar perception, fusion, localisation, tracking, prediction, behaviour selection, planning, control and a fail-closed safety layer. 227 tests across 71 files.</p>
+        <p class="tile-tags">Python · 12 modules · 227 tests</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/autonomous-drones-ros2-gazebo-ardupilot">
+        <h4>autonomous-drones-ros2-gazebo-ardupilot</h4>
+        <p>ArduPilot SITL and Gazebo in Docker with MAVROS bringup and seven finished autonomous missions, from takeoff through a perimeter survey. Runs on a laptop with no hardware.</p>
+        <p class="tile-tags">ArduPilot SITL · MAVROS · Gazebo · Docker</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/so101-manipulation-eval">
+        <h4>so101-manipulation-eval</h4>
+        <p>MuJoCo pick-and-place on the SO-101 arm with an evaluation harness tested against its own failure modes, including a contact gate that rejects a faked grasp.</p>
+        <p class="tile-tags">MuJoCo · SO-101 · evaluation harness</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/surgical-robotics-isaac-sim">
+        <h4>surgical-robotics-isaac-sim</h4>
+        <p>Laparoscopic arm simulation in Isaac Sim: remote-centre-of-motion constraint solving, damped least-squares IK near singularities, teleoperation and deformable tissue contact.</p>
+        <p class="tile-tags">Isaac Sim · RCM · DLS IK · ROS 2</p>
       </a>
 
       <a class="tile" href="https://github.com/FERBIN12/gazebo-to-isaac-migration">
         <h4>gazebo-to-isaac-migration</h4>
-        <p>
-          A ROS 2 diff-drive rover ported from Gazebo Harmonic to Isaac Sim 6.0.1, with a
-          harness that quantifies cross-simulator variance and four deliberately planted
-          defects: joint limits, permuted inertia axes and silent controller retuning.
-        </p>
-        <p class="tile-tags">Isaac Sim &middot; Gazebo &middot; ROS 2 &middot; benchmarking</p>
+        <p>A ROS 2 diff-drive rover ported from Gazebo Harmonic to Isaac Sim 6.0.1, with a harness that quantifies cross-simulator variance and five deliberately planted defects: joint limits, permuted inertia axes and silent controller retuning.</p>
+        <p class="tile-tags">Isaac Sim · Gazebo · benchmarking</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/vla-manipulation-ablations">
+        <h4>vla-manipulation-ablations</h4>
+        <p>Vision-language-action manipulation ablations with held-out generalisation tests and an OpenVLA-7B feasibility study, all measured on a 6 GB laptop GPU.</p>
+        <p class="tile-tags">VLA · OpenVLA · PyTorch · ablations</p>
+      </a>
+
+      <a class="tile" href="https://github.com/FERBIN12/av-safe-decision-contract">
+        <h4>av-safe-decision-contract</h4>
+        <p>Coordinate-frame transforms and a fail-safe perception-to-planning decision contract for an AV stack: rigid map/base_link transforms with a contract that degrades safely rather than guessing.</p>
+        <p class="tile-tags">Python · TF2 · safety contract</p>
       </a>
 
       <div class="tile">
         <h4>Robotics course series</h4>
-        <p>
-          Written and produced end to end. Narrated lecture courses taking a student from
-          install to a flying vehicle in ROS 2, Gazebo and ArduCopter, plus quadruped
-          reinforcement learning in Isaac Lab, LiDAR SLAM, visual SLAM and manipulation.
-          The sim clips at the top of this page are from that work.
-        </p>
-        <p class="tile-tags">ROS 2 &middot; Isaac Lab &middot; Gazebo &middot; ArduCopter</p>
+        <p>Written and produced end to end. Narrated courses covering humanoid balance, quadruped RL in Isaac Lab, LiDAR SLAM, visual SLAM/VIO, manipulation, surgical robotics, autonomous driving and drones. Most clips at the top of this page are captured from that work.</p>
+        <p class="tile-tags">Isaac Lab · MuJoCo · ROS 2 · Gazebo</p>
       </div>
 
       <a class="tile" href="https://github.com/FERBIN12/emme-onboarding">
         <h4>emme-onboarding &mdash; hackathon winner</h4>
-        <p>
-          <strong>Won Track 2</strong> at The Open Accelerator healthcare hackathon, hosted by
-          Red Hat with IBM Ventures and the Mass AI Hub. Health insurance documents turned
-          readable, with confidence-tiered confirmation. Built in a day, deployed live.
-        </p>
-        <p class="tile-tags">Flask &middot; Postgres &middot; Gemini &middot; Vercel</p>
+        <p><strong>Won Track 2</strong> at The Open Accelerator healthcare hackathon, hosted by Red Hat with IBM Ventures and the Mass AI Hub. Health insurance documents turned readable, with confidence-tiered confirmation. Built in a day, deployed live.</p>
+        <p class="tile-tags">Flask · Postgres · Gemini · Vercel</p>
       </a>
 
       <div class="tile">
         <h4>Automated seed-spacing robot</h4>
-        <p>
-          Undergraduate capstone: an autonomous mobile robot for precision agriculture using
-          ROS 2, SLAM Toolbox and Nav2, with a CoreXY manipulator for seed placement.
-        </p>
-        <p class="tile-tags">ROS 2 &middot; Nav2 &middot; SLAM Toolbox &middot; CoreXY</p>
+        <p>Undergraduate capstone: an autonomous mobile robot for precision agriculture using ROS 2, SLAM Toolbox and Nav2, with a CoreXY manipulator for seed placement.</p>
+        <p class="tile-tags">ROS 2 · Nav2 · SLAM Toolbox · CoreXY</p>
       </div>
 
     </div>
