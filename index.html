@@ -49,13 +49,14 @@
   <div class="nav-inner">
     <a class="nav-name" href="#top">Ferbin&nbsp;Richard</a>
     <nav aria-label="Sections">
-      <a href="#platforms"><span class="n">01</span> Platforms</a>
-      <a href="#work"><span class="n">02</span> Co-op</a>
-      <a href="#field"><span class="n">03</span> Field</a>
-      <a href="#projects"><span class="n">04</span> Projects</a>
-      <a href="#experience"><span class="n">05</span> Experience</a>
-      <a href="#about"><span class="n">06</span> About</a>
-      <a href="#contact"><span class="n">07</span> Contact</a>
+      <a href="#hardware"><span class="n">01</span> Hardware</a>
+      <a href="#platforms"><span class="n">02</span> Platforms</a>
+      <a href="#work"><span class="n">03</span> Co-op</a>
+      <a href="#field"><span class="n">04</span> Field</a>
+      <a href="#projects"><span class="n">05</span> Projects</a>
+      <a href="#experience"><span class="n">06</span> Experience</a>
+      <a href="#about"><span class="n">07</span> About</a>
+      <a href="#contact"><span class="n">08</span> Contact</a>
     </nav>
   </div>
 </header>
@@ -84,7 +85,7 @@
     </p>
 
     <p class="hero-links">
-      <a href="#platforms">See the robots</a>
+      <a href="#hardware">See the robot in the water</a>
       <a href="#work">Read the engineering</a>
       <a href="https://github.com/FERBIN12">GitHub</a>
       <a href="https://www.linkedin.com/in/ferbin12/">LinkedIn</a>
@@ -94,10 +95,154 @@
 </section>
 
 <!-- ===================================================== platforms -->
-<section id="platforms">
+<section id="hardware">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">01</span>
+      <h2>The robot, in real water</h2>
+      <span class="sec-note">Archelon &middot; pool and open water &middot; my own footage</span>
+    </div>
+
+    <p class="field-lede">
+      This is the vehicle I worked on during my co-op, in the water, with the sensor stack I
+      owned. Everything below is footage I took on site. The simulation work further down is
+      how I got here safely, not a substitute for it.
+    </p>
+
+    <div class="morph-grid">
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Pool &middot; sensor stack</span>
+          <video muted loop playsinline preload="metadata"
+                 aria-label="Close-up of the Archelon ROV at the pool edge showing thrusters, scanning sonar, cameras and lights">
+            <source src="assets/real/rov_closeup_hardware.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>The stack I was responsible for</h3>
+          <p>
+            Ping360 scanning sonar, three cameras, a VectorNav VN-100, Bar30 depth and the
+            lighting rig. This is the hardware behind the driver bug where the sonar reported a
+            wall at 0.3&nbsp;m while the real wall sat at 4&nbsp;to&nbsp;5&nbsp;m.
+          </p>
+          <span class="morph-stack">T200 thrusters &middot; Ping360 &middot; VN-100 &middot; Bar30</span>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media wide">
+          <span class="morph-tag">Lake &middot; live detection</span>
+          <video muted loop playsinline preload="none"
+                 aria-label="Three-camera lake footage with the object detector running live, showing mine and not-mine classifications">
+            <source src="assets/real/detector_lake_mine.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>The detector running on the vehicle</h3>
+          <p>
+            Three cameras at once in murky lake water. The model was trained entirely on a
+            seeded procedural world that emits its own labels by 3D-to-2D projection, so it
+            never saw a real frame in training, and reached 0.969&nbsp;mAP@50.
+          </p>
+          <span class="morph-stack">YOLO11 &middot; synthetic-only training &middot; 3 cameras</span>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media wide">
+          <span class="morph-tag">Lake &middot; rejecting clutter</span>
+          <video muted loop playsinline preload="none"
+                 aria-label="Detector marking submerged vegetation as not-mine rather than raising a false positive">
+            <source src="assets/real/detector_lake_reject.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Saying no is the hard part</h3>
+          <p>
+            Weeds and silt marked <em>not_mine</em> instead of firing. Getting clutter false
+            positives from 54% to 0% across three model generations took more work than raising
+            precision on the targets themselves.
+          </p>
+          <span class="morph-stack">54% &rarr; 0% clutter false positives</span>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Pool &middot; FPV piloting</span>
+          <video muted loop playsinline preload="none"
+                 aria-label="Piloting the ROV through a head-mounted display with a hand controller">
+            <source src="assets/real/fpv_piloting_pool.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Flying it from the camera feed</h3>
+          <p>
+            Head-mounted display and a hand controller, driving the vehicle on the video feed
+            rather than by line of sight. The operator interface on the other end of this is
+            the PyQt UI I built.
+          </p>
+          <span class="morph-stack">MAVLink &middot; joystick piloting &middot; PyQt UI</span>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Open water &middot; New Hampshire</span>
+          <video muted loop playsinline preload="none"
+                 aria-label="Open-water lake deployment with the surface station laptop on a boat console">
+            <source src="assets/real/lake_deployment_boat.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Off the boat, into a real lake</h3>
+          <p>
+            Surface station on the console, tether over the side, no pool wall to stop the
+            vehicle. Three to four of these deployments, which is where tether handling and
+            recovery stop being theoretical.
+          </p>
+          <span class="morph-stack">Surface station &middot; tether ops &middot; recovery</span>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Pool &middot; team testing</span>
+          <video muted loop playsinline preload="none"
+                 aria-label="Two engineers on the pool deck operating the vehicle during a wet test">
+            <source src="assets/real/team_pool_testing.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Wet testing with the team</h3>
+          <p>
+            Ten to fifteen pool sessions. This is where a dead depth sensor turned out to be a
+            missing bit in an I2C probe mask, and where the joystick moved every topic and not
+            one thruster.
+          </p>
+          <span class="morph-stack">10&ndash;15 sessions &middot; 7.1 GB analysed</span>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="bench-strip">
+      <figure>
+        <img src="assets/img/real/rov_bench_hero.jpg" alt="Archelon ROV on the bench showing four thruster nozzles and dome lights" loading="lazy">
+        <figcaption>Bench, between dives</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/real/rov_brushes_front.jpg" alt="Front view of the vehicle with hull-cleaning brushes and lights" loading="lazy">
+        <figcaption>Hull-cleaning brushes fitted</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/img/real/rov_bench_three_quarter.jpg" alt="Three-quarter view of the vehicle with tether attached" loading="lazy">
+        <figcaption>Tether and tracks</figcaption>
+      </figure>
+    </div>
+
+  </div>
+</section>
+
+<section id="platforms">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
       <h2>Every robot I have written software for</h2>
       <span class="sec-note">Twelve clips, captured from simulations I built</span>
     </div>
@@ -280,7 +425,7 @@
 <section id="work">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">02</span>
+      <span class="sec-num">03</span>
       <h2>The co-op: Archenaux Robotics</h2>
       <span class="sec-note">June &ndash; Sep 2026 &middot; Boston, MA</span>
     </div>
@@ -530,7 +675,7 @@
 <section id="field">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">03</span>
+      <span class="sec-num">04</span>
       <h2>Real-world testing, not just simulation</h2>
       <span class="sec-note">Pool &middot; open water &middot; bench</span>
     </div>
@@ -538,6 +683,7 @@
     <p class="field-lede">
       Every result on this page that is labelled measured was taken off real hardware or a
       real dataset. Simulation is how I get there safely; it is not what I do instead.
+      The footage in <a href="#hardware">section 01</a> is mine, taken during these sessions.
     </p>
 
     <div class="field-grid">
@@ -606,7 +752,7 @@
 <section id="projects">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">04</span>
+      <span class="sec-num">05</span>
       <h2>Open source &amp; teaching</h2>
       <span class="sec-note">Fourteen public repositories</span>
     </div>
@@ -725,7 +871,7 @@
 <section id="experience">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">05</span>
+      <span class="sec-num">06</span>
       <h2>Experience &amp; education</h2>
     </div>
 
@@ -814,7 +960,7 @@
 <section id="about">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">06</span>
+      <span class="sec-num">07</span>
       <h2>About</h2>
     </div>
 
@@ -900,7 +1046,7 @@
 <section id="contact">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">07</span>
+      <span class="sec-num">08</span>
       <h2>Contact</h2>
       <span class="sec-note">Open to 2027 new-grad roles</span>
     </div>
