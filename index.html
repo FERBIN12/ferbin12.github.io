@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ferbin Richard — Robotics Software Engineer</title>
-<meta name="description" content="Robotics software engineer: factor-graph SLAM, perception, reinforcement learning in simulation, and firmware flash-verified on a real eight-thruster vehicle. Quadruped, manipulator, drone, underwater and ground platforms. Three published papers. M.S. Robotics, Northeastern.">
+<meta name="description" content="Robotics software engineer: perception, state estimation, reinforcement learning in simulation, and firmware flash-verified on a real eight-thruster vehicle. Quadruped, manipulator, ground, surgical, underwater and marine platforms. Three published papers. M.S. Robotics, Northeastern.">
 
 <link rel="canonical" href="https://ferbin12.github.io/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -20,7 +20,7 @@
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ferbin Richard — Robotics Software Engineer">
-<meta name="twitter:description" content="SLAM, perception and reinforcement learning across five robot morphologies.">
+<meta name="twitter:description" content="SLAM, perception and reinforcement learning across nine robot platforms.">
 <meta name="twitter:image" content="https://ferbin12.github.io/assets/img/rl_parallel_poster.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,11 +50,12 @@
     <a class="nav-name" href="#top">Ferbin&nbsp;Richard</a>
     <nav aria-label="Sections">
       <a href="#platforms"><span class="n">01</span> Platforms</a>
-      <a href="#work"><span class="n">02</span> Work</a>
-      <a href="#projects"><span class="n">03</span> Projects</a>
-      <a href="#experience"><span class="n">04</span> Experience</a>
-      <a href="#about"><span class="n">05</span> About</a>
-      <a href="#contact"><span class="n">06</span> Contact</a>
+      <a href="#work"><span class="n">02</span> Co-op</a>
+      <a href="#field"><span class="n">03</span> Field</a>
+      <a href="#projects"><span class="n">04</span> Projects</a>
+      <a href="#experience"><span class="n">05</span> Experience</a>
+      <a href="#about"><span class="n">06</span> About</a>
+      <a href="#contact"><span class="n">07</span> Contact</a>
     </nav>
   </div>
 </header>
@@ -76,9 +77,9 @@
     <p class="hero-sub">
       I write the perception, estimation and control software that moves robots, then
       I take it to hardware and find out what simulation did not tell me.
-      <strong>Quadruped, manipulator, underwater, ground and aerial</strong> platforms,
-      in simulation and on hardware. <strong>Three published papers.</strong> One
-      eight-thruster vehicle that now works in open water.
+      <strong>Nine platforms</strong> across quadruped, manipulator, ground, surgical,
+      underwater and marine. <strong>Three published papers.</strong> One eight-thruster
+      vehicle taken from bench bring-up to open water.
     </p>
 
     <p class="hero-links">
@@ -97,51 +98,105 @@
     <div class="sec-head">
       <span class="sec-num">01</span>
       <h2>Platforms I have written software for</h2>
-      <span class="sec-note">Six clips &middot; captured from my own simulations</span>
+      <span class="sec-note">Nine clips, captured from simulations I built</span>
     </div>
 
     <div class="morph-grid">
 
       <article class="morph">
         <div class="morph-media">
-          <span class="morph-tag">Quadruped &middot; RL</span>
-          <video poster="assets/img/quadruped_poster.jpg" muted loop playsinline preload="none"
-                 aria-label="Quadruped robot walking with a learned policy in NVIDIA Isaac Sim">
-            <source src="assets/video/quadruped_rl.mp4" type="video/mp4"></video>
+          <span class="morph-tag">Quadruped · locomotion</span>
+          <video poster="assets/img/go2_walk_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Unitree Go2 quadruped walking with a trained policy over terrain">
+            <source src="assets/video/go2_walk.mp4" type="video/mp4"></video>
         </div>
         <div class="morph-body">
-          <h3>Learned locomotion, not a scripted gait</h3>
+          <h3>A policy that actually walks</h3>
           <p>
-            A quadruped trained in Isaac Lab with PPO. The interesting part is what the
-            reward does <em>not</em> say: a policy can score 1.43 of a 1.5 maximum and
-            still not be walking, which is why every gait claim here is checked against
-            foot-contact and clearance metrics rather than the reward curve.
+            A Unitree Go2 under a trained policy, blind versus perceptive on the same terrain.
+            Tracking improves from 64.6% to 69.9% once the policy can feel the ground. Gait is
+            verified on contact timing and foot clearance, never on the reward curve, because a
+            policy can score near-optimal while dragging itself along the floor.
           </p>
-          <p class="morph-stack">Isaac Lab &middot; PPO &middot; MuJoCo &middot; Python</p>
+          <p class="morph-stack">Isaac Lab · PPO · MuJoCo · Python</p>
         </div>
       </article>
 
       <article class="morph">
         <div class="morph-media">
-          <span class="morph-tag">Parallel training</span>
+          <span class="morph-tag">Quadruped · velocity control</span>
+          <video poster="assets/img/go2_vel_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Quadruped following velocity commands derived from a planned path">
+            <source src="assets/video/go2_velocity.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Velocity commands from a planned path</h3>
+          <p>
+            The layer between a navigation stack and a learned gait: a path becomes body-frame
+            velocity commands the policy can track, with footstep planning over an elevation map
+            built from a depth camera.
+          </p>
+          <p class="morph-stack">Isaac Lab · elevation mapping · footstep planning</p>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Parallel RL training</span>
           <video poster="assets/img/rl_parallel_poster.jpg" muted loop playsinline preload="none"
-                 aria-label="Sixty-four quadruped robots training simultaneously in one simulation">
+                 aria-label="Sixty-four robots training simultaneously in one simulation">
             <source src="assets/video/rl_parallel.mp4" type="video/mp4"></video>
         </div>
         <div class="morph-body">
           <h3>Sixty-four robots, one solver call</h3>
           <p>
-            Vectorized environments on the GPU: every robot advances inside a single
-            physics step, which is what makes RL on a laptop-class machine tractable at
-            all. Throughput and step count are measured, not assumed.
+            Vectorized environments on the GPU: every robot advances inside a single physics
+            step, which is what makes reinforcement learning tractable on a laptop-class machine.
+            Throughput and step count are measured, not assumed.
           </p>
-          <p class="morph-stack">Isaac Sim &middot; vectorized envs &middot; CUDA &middot; PyTorch</p>
+          <p class="morph-stack">Isaac Sim · vectorized envs · CUDA · PyTorch</p>
         </div>
       </article>
 
       <article class="morph">
         <div class="morph-media">
-          <span class="morph-tag">Manipulator</span>
+          <span class="morph-tag">AMR · ground robot</span>
+          <video poster="assets/img/amr_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Autonomous mobile robot mapping a warehouse with LiDAR">
+            <source src="assets/video/amr_slam.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Scan matching, built rather than imported</h3>
+          <p>
+            A ground robot mapping a warehouse with 2D LiDAR: ICP front end, mapper, loop closure
+            and pose graph written from scratch rather than pulled from a library. Point-to-line
+            registration lands at 2.3 mm against 8.1 mm for point-to-point on the same run.
+          </p>
+          <p class="morph-stack">ROS 2 · ICP · pose graph · occupancy mapping</p>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">LiDAR SLAM</span>
+          <video poster="assets/img/lidar_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Occupancy map building during a LiDAR SLAM run">
+            <source src="assets/video/lidar_map.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Measuring where SLAM fails, not just where it works</h3>
+          <p>
+            A wall is degenerate at 3747 against 1.9 on open floor, so the same scan matcher that
+            is excellent in a corridor is near-useless facing a flat surface. Every figure is
+            reproducible from the repository, including the ones that were inconvenient.
+          </p>
+          <p class="morph-stack">ROS 2 · scan matching · loop closure · Python</p>
+        </div>
+      </article>
+
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Manipulator · VLA</span>
           <video poster="assets/img/manipulation_poster.jpg" muted loop playsinline preload="none"
                  aria-label="Robot arm reaching for coloured blocks in simulation">
             <source src="assets/video/manipulation_vla.mp4" type="video/mp4"></video>
@@ -149,36 +204,34 @@
         <div class="morph-body">
           <h3>Language-conditioned pick and place</h3>
           <p>
-            A 7-DoF arm driven by a vision-language-action policy: an instruction in,
-            a joint trajectory out. Built as a teaching stack, so every layer between
-            the camera and the actuator is inspectable rather than a black box.
+            A 7-DoF arm driven by a vision-language-action policy: an instruction in, a joint
+            trajectory out. Built so every layer between the camera and the actuator is
+            inspectable rather than a black box.
           </p>
-          <p class="morph-stack">Isaac Sim &middot; VLA policy &middot; ROS 2 &middot; PyTorch</p>
+          <p class="morph-stack">Isaac Sim · VLA policy · ROS 2 · PyTorch</p>
         </div>
       </article>
 
       <article class="morph">
         <div class="morph-media">
-          <span class="morph-tag">Quadruped &middot; Unitree Go2</span>
-          <video poster="assets/img/go2_poster.jpg" muted loop playsinline preload="none"
-                 aria-label="Unitree Go2 quadruped in simulation with a measured reward readout">
-            <source src="assets/video/go2_gait.mp4" type="video/mp4"></video>
+          <span class="morph-tag">Surgical · precision</span>
+          <video poster="assets/img/surgical_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Surgical manipulator performing a precision task in simulation">
+            <source src="assets/video/surgical_arm.mp4" type="video/mp4"></video>
         </div>
         <div class="morph-body">
-          <h3>A reward of 1.43 out of 1.5, and it is not walking</h3>
+          <h3>Precision manipulation under constraint</h3>
           <p>
-            The same policy on a Unitree Go2. This clip is the counter-example I teach from:
-            the reward curve says the policy is nearly optimal while the robot is dragging
-            itself along the floor. Gait has to be verified on contact timing and foot
-            clearance, never on the scalar you optimised.
+            Surgical robotics: remote-centre-of-motion kinematics, tremor filtering and the
+            millimetre-scale tolerances that make a general-purpose manipulator stack inadequate.
           </p>
-          <p class="morph-stack">Unitree Go2 &middot; MuJoCo &middot; Isaac Lab &middot; Python</p>
+          <p class="morph-stack">ROS 2 · RCM kinematics · simulation</p>
         </div>
       </article>
 
       <article class="morph">
         <div class="morph-media">
-          <span class="morph-tag">Underwater</span>
+          <span class="morph-tag">Underwater · detection</span>
           <video poster="assets/img/detect_poster.jpg" muted loop playsinline preload="none"
                  aria-label="Underwater object detector running on a recorded survey with a live confidence overlay">
             <source src="assets/video/detection.mp4" type="video/mp4"></video>
@@ -186,17 +239,17 @@
         <div class="morph-body">
           <h3>Detection with no real training data</h3>
           <p>
-            A seeded procedural world emits its own ground truth by 3D-to-2D projection,
-            so every frame is labelled for free and any scene is reproducible from its
-            seed. Clutter false positives went from 54% to zero.
+            A seeded procedural world emits its own ground truth by 3D-to-2D projection, so every
+            frame is labelled for free and any scene is reproducible from its seed. Clutter false
+            positives went from 54% to zero.
           </p>
-          <p class="morph-stack">YOLO11 &middot; PyTorch &middot; Gazebo &middot; OpenCV</p>
+          <p class="morph-stack">YOLO11 · PyTorch · Gazebo · OpenCV</p>
         </div>
       </article>
 
       <article class="morph">
         <div class="morph-media">
-          <span class="morph-tag">Marine &middot; Isaac Sim</span>
+          <span class="morph-tag">Marine · Isaac Sim</span>
           <video poster="assets/img/isaac_poster.jpg" muted loop playsinline preload="none"
                  aria-label="Coastal marine environment with animated water rendered in NVIDIA Isaac Sim">
             <source src="assets/video/isaac.mp4" type="video/mp4"></video>
@@ -205,11 +258,11 @@
           <h3>A second physics backend that argues with the first</h3>
           <p>
             The vehicle ported to Isaac Sim as a second physics engine: animated water with
-            underwater rendering, hydrodynamics covering buoyancy, damping and added mass,
-            and a bridge closing the control loop against Isaac physics. The test suite is
+            underwater rendering, hydrodynamics covering buoyancy, damping and added mass, and a
+            bridge closing the control loop against Isaac physics. The test suite is
             mutation-tested, so it fails when the model is wrong.
           </p>
-          <p class="morph-stack">Isaac Sim &middot; RTX offscreen &middot; ROS 2 &middot; pytest</p>
+          <p class="morph-stack">Isaac Sim · RTX offscreen · ROS 2 · pytest</p>
         </div>
       </article>
 
@@ -222,16 +275,31 @@
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">02</span>
-      <h2>Selected engineering</h2>
-      <span class="sec-note">Four writeups &middot; measured numbers</span>
+      <h2>The co-op: Archenaux Robotics</h2>
+      <span class="sec-note">June &ndash; Sep 2026 &middot; Boston, MA</span>
+    </div>
+
+    <div class="coop-frame">
+      <p class="coop-lede">
+        A four-month Northeastern co-op on <strong>Archelon</strong>, a bespoke
+        eight-thruster inspection ROV. I led the co-op engineering team reporting to the
+        CEO and worked across five repositories. The four writeups below are that work,
+        and each states plainly which parts were mine and which were the team's.
+      </p>
+      <dl class="coop-roles">
+        <div><dt>My ownership</dt><dd>Vehicle runtime &middot; sensor bring-up &middot; detection pipeline &middot; shared simulation core</dd></div>
+        <div><dt>My contribution</dt><dd>Sensor simulation and IMU characterisation on the mapping stack</dd></div>
+        <div><dt>Led by others</dt><dd>Factor-graph SLAM back end (senior engineer)</dd></div>
+        <div><dt>Field record</dt><dd>10&ndash;15 pool sessions &middot; 3&ndash;4 open-water deployments, New Hampshire</dd></div>
+      </dl>
     </div>
 
     <!-- 01 SLAM -->
     <article class="proj">
       <header class="proj-head">
-        <span class="proj-idx">01 / SLAM &amp; state estimation</span>
+        <span class="proj-idx">Co-op 01 / SLAM &amp; state estimation <b class="own own-part">contributor</b></span>
         <h3>Mapping without the most expensive sensor on the vehicle</h3>
-        <p class="proj-meta">Archenaux Robotics &middot; primary engineer, sensor simulation and SLAM back end &middot; 45 commits</p>
+        <p class="proj-meta">Team result &middot; back end led by a senior engineer &middot; my contribution: sensor simulation and IMU characterisation &middot; 45 commits</p>
       </header>
 
       <figure class="proj-media">
@@ -243,38 +311,45 @@
         <div class="proj-text">
           <p>
             A Doppler Velocity Log costs $8,710 and was the single most expensive item in the
-            sensor budget, roughly four times the sonar and seventeen times the IMU. I helped
-            validate that it is not required.
+            sensor budget, roughly four times the sonar and seventeen times the IMU. The team
+            validated that it is not required, and this is the result I contributed to.
           </p>
           <p>
-            An IMU, a 2D mechanical scanning sonar, the known contour of the structure and loop
-            closure together produce a metrically accurate map. The back end is GTSAM iSAM2 with
-            corner-based loop closure and GICP registration.
+            <strong>Credit where it belongs:</strong> the factor-graph back end (GTSAM iSAM2,
+            corner-based loop closure, GICP registration) was designed and led by a senior
+            engineer on the team. My part was the sensor side: the simulated scanning sonar and
+            IMU that feed it, and the characterisation of the real IMU the estimate depends on.
           </p>
           <details class="more">
-            <summary>The failure that made it work</summary>
+            <summary>What I actually did here</summary>
             <p>
-              The graph diverged whenever a closure fired, which is the failure mode that makes a
-              factor graph worse than dead reckoning. Separately, the registration acceptance
-              threshold shipped at <code>0.15</code> and admitted bad matches. Raising it to
-              <code>0.6</code> after characterizing the score distribution made the pipeline
-              drift-free without tuning.
+              <strong>Mine:</strong> I characterised the IMU the whole estimate rests on. A
+              30-minute stationary log, 321k samples, Allan variance and Kalibr noise parameters.
+              The first attempt was contaminated by a nearby speaker coupling into the MEMS
+              accelerometer, which is the kind of thing you only find by looking at the FFT. I
+              also built the simulated sonar and IMU models that let the back end be developed
+              and regression-tested before the vehicle existed.
             </p>
             <p>
-              These numbers come from the Bremen MSS real-pool dataset, not the simulator. I also
-              characterized the IMU that feeds it: a 30-minute stationary log, 321k samples, Allan
-              variance and Kalibr noise parameters. The first attempt was contaminated by a nearby
-              speaker coupling into the MEMS accelerometer, which is the kind of thing you only
-              find by looking at the FFT.
+              <strong>The team's:</strong> the graph diverged whenever a closure fired, which is
+              the failure mode that makes a factor graph worse than dead reckoning. The
+              registration acceptance threshold shipped at <code>0.15</code> and admitted bad
+              matches; raising it to <code>0.6</code> after characterising the score distribution
+              made the pipeline drift-free. That diagnosis and fix sat with the engineer who owned
+              the back end.
+            </p>
+            <p>
+              The trajectory and RMSE figures come from the Bremen MSS real-pool dataset, not the
+              simulator.
             </p>
           </details>
         </div>
 
         <dl class="inst">
-          <div class="stacked"><dt>Trajectory error</dt><dd>1.62 m</dd><dd class="vs">vs 5.04 m, real pool data</dd></div>
-          <div><dt>Wall RMSE</dt><dd>0.08 m</dd></div>
-          <div><dt>Cost removed</dt><dd>$8,710</dd></div>
-          <div class="stacked"><dt>Gyro ARW</dt><dd>0.26 °/√hr</dd><dd class="vs">measured, 321k samples</dd></div>
+          <div class="stacked"><dt>Trajectory error</dt><dd>1.62 m</dd><dd class="vs">team result, real pool data</dd></div>
+          <div class="stacked"><dt>Wall RMSE</dt><dd>0.08 m</dd><dd class="vs">team result</dd></div>
+          <div class="stacked"><dt>Cost removed</dt><dd>$8,710</dd><dd class="vs">team result</dd></div>
+          <div class="stacked"><dt>Gyro ARW</dt><dd>0.26 °/√hr</dd><dd class="vs">my measurement, 321k samples</dd></div>
         </dl>
       </div>
 
@@ -291,7 +366,7 @@
     <!-- 02 detection -->
     <article class="proj">
       <header class="proj-head">
-        <span class="proj-idx">02 / Perception &amp; machine learning</span>
+        <span class="proj-idx">Co-op 02 / Perception &amp; machine learning <b class="own own-sole">sole engineer</b></span>
         <h3>Training a detector with no real data to train on</h3>
         <p class="proj-meta">Archenaux Robotics &middot; sole engineer, simulation and ML pipeline &middot; 26 commits</p>
       </header>
@@ -347,7 +422,7 @@
     <!-- 03 bring-up -->
     <article class="proj">
       <header class="proj-head">
-        <span class="proj-idx">03 / Embedded &amp; hardware bring-up</span>
+        <span class="proj-idx">Co-op 03 / Embedded &amp; hardware bring-up <b class="own own-own">my ownership</b></span>
         <h3>Three failures that looked like software and were not</h3>
         <p class="proj-meta">Archenaux Robotics &middot; primary engineer, vehicle runtime and sensor bring-up &middot; 52 commits</p>
       </header>
@@ -404,7 +479,7 @@
     <!-- 04 simulator -->
     <article class="proj">
       <header class="proj-head">
-        <span class="proj-idx">04 / Simulation infrastructure</span>
+        <span class="proj-idx">Co-op 04 / Simulation infrastructure <b class="own own-own">my ownership</b></span>
         <h3>A simulator other engineers can actually run</h3>
         <p class="proj-meta">Archenaux Robotics &middot; owner, shared simulation core &middot; 97 commits across two repositories</p>
       </header>
@@ -444,11 +519,87 @@
   </div>
 </section>
 
+<!-- ===================================================== field -->
+<section id="field">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2>Real-world testing, not just simulation</h2>
+      <span class="sec-note">Pool &middot; open water &middot; bench</span>
+    </div>
+
+    <p class="field-lede">
+      Every result on this page that is labelled measured was taken off real hardware or a
+      real dataset. Simulation is how I get there safely; it is not what I do instead.
+    </p>
+
+    <div class="field-grid">
+      <div class="field-card">
+        <span class="field-k">Pool testing</span>
+        <span class="field-v">10 &ndash; 15</span>
+        <p>
+          Wet sessions with the vehicle in the water. This is where the depth sensor turned
+          out to be an I2C bitmask, where the joystick moved every topic and no thruster, and
+          where the companion computer browned out on rail sag rather than heat. None of those
+          are findable in a simulator.
+        </p>
+      </div>
+
+      <div class="field-card">
+        <span class="field-k">Open-water deployments</span>
+        <span class="field-v">3 &ndash; 4</span>
+        <p>
+          Lake deployments in New Hampshire, taking Archelon from bench bring-up to operation
+          in real water. Tether handling, surface station, and a vehicle that has to come back.
+        </p>
+      </div>
+
+      <div class="field-card">
+        <span class="field-k">Pool-test data analysed</span>
+        <span class="field-v">7.1 GB</span>
+        <p>
+          Logs from those sessions, which is where the Ping360 sonar driver was caught
+          returning a fake wall at 0.3 m on every beam while the real wall sat at 4 to 5 m.
+          The bags looked valid, so nothing downstream flagged it.
+        </p>
+      </div>
+
+      <div class="field-card">
+        <span class="field-k">Firmware flash-verified</span>
+        <span class="field-v">3 builds</span>
+        <p>
+          Flashed and verified on the vehicle before it went in, with a 14-second preflight
+          GO / NO-GO check gating every dive and a boot service that survives power-on.
+        </p>
+      </div>
+
+      <div class="field-card">
+        <span class="field-k">Real dataset validation</span>
+        <span class="field-v">Bremen MSS</span>
+        <p>
+          The mapping figures come from a real pool dataset, not the simulator. The IMU
+          behind the estimate was characterised on a 30-minute stationary log, 321k samples,
+          Allan variance and Kalibr noise parameters.
+        </p>
+      </div>
+
+      <div class="field-card">
+        <span class="field-k">Hardware brought up</span>
+        <span class="field-v">8 + 3</span>
+        <p>
+          Eight T200 thrusters plus three M200 auxiliaries, Pixhawk autopilot, Ping360 sonar,
+          Bar30 depth, VectorNav IMU and a Raspberry Pi 5 companion, on a 50 ft tether.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===================================================== projects -->
 <section id="projects">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">03</span>
+      <span class="sec-num">04</span>
       <h2>Open source &amp; teaching</h2>
       <span class="sec-note">Public repositories</span>
     </div>
@@ -544,7 +695,7 @@
 <section id="experience">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">04</span>
+      <span class="sec-num">05</span>
       <h2>Experience &amp; education</h2>
     </div>
 
@@ -556,9 +707,11 @@
           <h3>Robotics Engineer, Co-op &mdash; technical lead</h3>
           <p class="xp-org">Archenaux Robotics &middot; Boston, MA</p>
           <p>
-            Led the co-op engineering team reporting to the CEO. Factor-graph SLAM back end,
-            learned detection, the containerized runtime that ships to the vehicle, and the
-            sensor bring-up that took it from bench to open water across five repositories.
+            Led the co-op engineering team reporting to the CEO across five repositories. I
+            owned the containerized vehicle runtime, the learned detection pipeline, the shared
+            simulation core, and the sensor bring-up that took Archelon from bench to open
+            water. On the mapping stack I contributed the sensor simulation and IMU
+            characterisation; a senior engineer led the factor-graph back end.
           </p>
         </div>
       </div>
@@ -639,21 +792,26 @@
 <section id="about">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">05</span>
+      <span class="sec-num">06</span>
       <h2>About</h2>
     </div>
 
-    <div class="two-col">
+    <div class="two-col about-col">
       <div class="about-text">
+        <figure class="portrait">
+          <img src="assets/img/portrait.jpg" width="760" height="760"
+               alt="Ferbin Richard" loading="lazy">
+        </figure>
         <p>
           I am an M.S. Robotics student at Northeastern, graduating April 2027, coming off a
           co-op where I led the engineering team on an eight-thruster inspection vehicle.
         </p>
         <p>
-          My work sits where estimation and perception meet real hardware. I wrote the
-          factor-graph SLAM back end that removed an $8,710 sensor from the bill of materials,
-          trained a detector on a world I generated because the real imagery does not exist,
-          and I own the containerized runtime that ships to the vehicle.
+          My work sits where estimation and perception meet real hardware. I trained a
+          detector on a world I generated because the real imagery does not exist, I own the
+          containerized runtime that ships to the vehicle, and on the mapping stack that
+          removed an $8,710 sensor from the bill of materials I built the simulated sonar and
+          IMU and characterised the real IMU the estimate depends on.
         </p>
         <p>
           Simulation is how I get there safely, not what I do instead. The mapping result on
@@ -721,7 +879,7 @@
 <section id="contact">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">06</span>
+      <span class="sec-num">07</span>
       <h2>Contact</h2>
       <span class="sec-note">Open to 2027 new-grad roles</span>
     </div>
