@@ -244,7 +244,7 @@
     <div class="sec-head">
       <span class="sec-num">02</span>
       <h2>Every robot I have written software for</h2>
-      <span class="sec-note">4 clips, captured from simulations I built</span>
+      <span class="sec-note">Twelve clips, captured from simulations I built</span>
     </div>
 
     <div class="morph-grid">
@@ -263,7 +263,19 @@
         </div>
       </article>
 
-      
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Humanoid · Isaac Lab</span>
+          <video poster="assets/img/g1_training_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Unitree G1 humanoid robots training in parallel in NVIDIA Isaac Lab">
+            <source src="assets/video/g1_training.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Which reward term is actually doing the work</h3>
+          <p>Unitree G1 humanoids training in parallel in Isaac Lab. Ablating one reward term at a time over 29 runs: removing the −200 termination penalty collapses learning to 4.2% of baseline episode length while the reward climbs, because falling becomes free.</p>
+          <p class="morph-stack">Isaac Lab · PPO · ONNX · reward ablation · 6 GB GPU</p>
+        </div>
+      </article>
 
       <article class="morph">
         <div class="morph-media">
@@ -279,7 +291,19 @@
         </div>
       </article>
 
-      
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Quadruped · navigation</span>
+          <video poster="assets/img/go2_vel_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Quadruped following velocity commands derived from a planned path">
+            <source src="assets/video/go2_velocity.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Velocity commands from a planned path</h3>
+          <p>The layer between a navigation stack and a learned gait: a path becomes body-frame velocity commands the policy can track, with footstep planning over an elevation map built from a depth camera.</p>
+          <p class="morph-stack">Isaac Lab · elevation mapping · footstep planning</p>
+        </div>
+      </article>
 
       <article class="morph">
         <div class="morph-media">
@@ -295,17 +319,89 @@
         </div>
       </article>
 
-      
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Manipulator · parallel RL</span>
+          <video poster="assets/img/franka_reach_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Multiple Franka robot arms reaching in parallel in Isaac Lab">
+            <source src="assets/video/franka_reach.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Many arms, one physics step</h3>
+          <p>Franka reach environments running vectorized on the GPU. Same principle as the humanoid and quadruped training: every robot advances inside a single solver call, which is what makes RL tractable on laptop-class hardware.</p>
+          <p class="morph-stack">Isaac Lab · vectorized envs · CUDA · PyTorch</p>
+        </div>
+      </article>
 
-      
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Manipulator · VLA</span>
+          <video poster="assets/img/manipulation_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Robot arm reaching for coloured blocks under a vision-language-action policy">
+            <source src="assets/video/manipulation_vla.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Language-conditioned pick and place</h3>
+          <p>A 7-DoF arm driven by a vision-language-action policy: an instruction in, a joint trajectory out. Built so every layer between the camera and the actuator is inspectable rather than a black box.</p>
+          <p class="morph-stack">Isaac Sim · VLA policy · ROS 2 · PyTorch</p>
+        </div>
+      </article>
 
-      
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Surgical · RCM</span>
+          <video poster="assets/img/surgical_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Surgical manipulator performing a precision task in simulation">
+            <source src="assets/video/surgical_arm.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Precision manipulation under constraint</h3>
+          <p>Laparoscopic arm simulation: remote-centre-of-motion constraint solving, damped least-squares IK near singularities, and the millimetre tolerances that make a general-purpose manipulator stack inadequate.</p>
+          <p class="morph-stack">Isaac Sim · RCM · DLS IK · ROS 2</p>
+        </div>
+      </article>
 
-      
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">AMR · ground robot</span>
+          <video poster="assets/img/amr_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Autonomous mobile robot mapping a warehouse with LiDAR">
+            <source src="assets/video/amr_slam.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Scan matching, built rather than imported</h3>
+          <p>A ground robot mapping a warehouse with 2D LiDAR: ICP front end, mapper, loop closure and pose graph written from scratch. Point-to-line registration lands at 2.3 mm against 8.1 mm for point-to-point on the same run.</p>
+          <p class="morph-stack">ROS 2 · ICP · pose graph · occupancy mapping</p>
+        </div>
+      </article>
 
-      
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">LiDAR SLAM</span>
+          <video poster="assets/img/lidar_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Occupancy map building during a LiDAR SLAM run">
+            <source src="assets/video/lidar_map.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Measuring where SLAM fails, not just where it works</h3>
+          <p>A wall is degenerate at 3747 against 1.9 on open floor, so the same scan matcher that is excellent in a corridor is near-useless facing a flat surface. Every figure is reproducible from the repository, including the inconvenient ones.</p>
+          <p class="morph-stack">ROS 2 · scan matching · loop closure · Python</p>
+        </div>
+      </article>
 
-      
+      <article class="morph">
+        <div class="morph-media">
+          <span class="morph-tag">Underwater · detection</span>
+          <video poster="assets/img/detect_poster.jpg" muted loop playsinline preload="none"
+                 aria-label="Underwater object detector running on a recorded survey with a live confidence overlay">
+            <source src="assets/video/detection.mp4" type="video/mp4"></video>
+        </div>
+        <div class="morph-body">
+          <h3>Detection with no real training data</h3>
+          <p>A seeded procedural world emits its own ground truth by 3D-to-2D projection, so every frame is labelled for free and any scene is reproducible from its seed. Clutter false positives went from 54% to zero across three model generations.</p>
+          <p class="morph-stack">YOLO11 · PyTorch · Gazebo · OpenCV</p>
+        </div>
+      </article>
 
       <article class="morph">
         <div class="morph-media">
