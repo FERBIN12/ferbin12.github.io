@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ferbin Richard, {{ v.title_role }}</title>
+<meta name="description" content="{{ v.meta_desc }}">
+<link rel="canonical" href="https://ferbin12.github.io/">
+{% if v.path %}<meta name="robots" content="noindex, follow">{% endif %}
+<link rel="icon" href="{{ b }}assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Ferbin Richard, {{ v.title_role }}">
+<meta property="og:description" content="{{ v.og_desc }}">
+<meta property="og:image" content="https://ferbin12.github.io/assets/img/bridge_drone_poster.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Inspection drone flying under a Boston bridge deck in Isaac Sim, flown by real ArduCopter firmware">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ferbin12.github.io/{{ v.path }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ferbin Richard, {{ v.title_role }}">
+<meta name="twitter:description" content="{{ v.og_desc }}">
+<meta name="twitter:image" content="https://ferbin12.github.io/assets/img/bridge_drone_poster.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ b }}site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Ferbin Richard",
+ "jobTitle":"Robotics Software Engineer",
+ "url":"https://ferbin12.github.io/","email":"franklinrichardjep.f@northeastern.edu",
+ "sameAs":["https://github.com/FERBIN12","https://www.linkedin.com/in/ferbin12/"],
+ "alumniOf":[{"@type":"CollegeOrUniversity","name":"Northeastern University"},
+             {"@type":"CollegeOrUniversity","name":"Vellore Institute of Technology"}],
+ "award":["2nd place, Robotics track, Hackachusetts 2026"],
+ "knowsAbout":["Robotics","ROS 2","Simulation","NVIDIA Isaac Sim","Isaac Lab","MuJoCo","Gazebo","ArduPilot","SLAM","Perception",
+               "Reinforcement Learning","Embedded Systems","Sensor Fusion","Field Deployment"],
+ "address":{"@type":"PostalAddress","addressLocality":"Boston","addressRegion":"MA","addressCountry":"US"}}
+</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-name" href="#top">Ferbin&nbsp;Richard</a>
+    <nav aria-label="Sections">
+      {% for s in v.sections if s in navnames %}<a href="#{{ s }}">{{ navnames[s] }}</a>{% endfor %}
+    </nav>
+    <a class="nav-cta" href="{{ b }}{{ site.resume }}">Resume</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ hero -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-text">
+      <p class="eyebrow">{{ v.eyebrow }}</p>
+      <h1>{{ site.headline }}</h1>
+      <p class="hero-sub">{{ v.sub }}</p>
+      <p class="hero-links">
+        <a class="btn btn-p" href="#{{ v.sections[0] }}">See the work</a>
+        <a class="btn" href="{{ b }}{{ site.resume }}">Resume PDF</a>
+        <a class="btn" href="https://github.com/FERBIN12">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/ferbin12/">LinkedIn</a>
+      </p>
+    </div>
+    <div class="diptych">
+      <figure class="dip-wide">
+        <video class="lazy" data-eager poster="{{ b }}assets/img/hero_bridge_poster.jpg" muted loop playsinline preload="none"
+               aria-label="Inspection drone under the Craigie bridge deck in Isaac Sim, flown by ArduCopter SITL">
+          <source src="{{ b }}assets/video/hero_bridge.mp4" type="video/mp4"></video>
+        <figcaption><span class="chip sim">Simulation &middot; ArduCopter SITL in Isaac Sim</span></figcaption>
+      </figure>
+      <figure class="dip-tall">
+        <video class="lazy" data-eager poster="{{ b }}assets/img/real/rov_closeup_hardware_poster.jpg" muted loop playsinline preload="none"
+               aria-label="The Archelon ROV at the pool edge, real hardware">
+          <source src="{{ b }}assets/real/rov_closeup_hardware.mp4" type="video/mp4"></video>
+        <figcaption><span class="chip hw">Real &middot; Archelon ROV</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="wrap">
+    <ul class="proof">
+      {% for k in v.proof %}{% set p = site.proof[k] %}
+      <li class="{{ p.cls or '' }}"><b>{{ p.v }}</b><span>{{ p.k }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+{% for sec in v.sections %}
+{% set n = '%02d' % loop.index %}
+
+{% if sec == 'work' %}
+<!-- ============================================================ selected work -->
+<section id="work" class="band">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">{{ n }}</span><h2>Selected work</h2><span class="sec-note">Five builds &middot; open any card for the full writeup</span></div>
+    <div class="bento">
+      {% for key in v.featured %}{% set f = site.featured[key] %}
+      <article class="pcard{% if loop.first %} lead{% endif %}" id="w-{{ key }}">
+        <div class="pmedia">
+          {% if f.video %}
+          <video class="lazy" poster="{{ b }}{{ f.poster }}" muted loop playsinline preload="none" aria-label="{{ f.aria }}">
+            <source src="{{ b }}{{ f.video }}" type="video/mp4"></video>
+          {% else %}
+          <img src="{{ b }}{{ f.image }}" alt="{{ f.image_alt }}" loading="lazy">
+          {% endif %}
+          <span class="chip {{ f.badge.cls }} on-media">{{ f.badge.text }}</span>
+        </div>
+        <div class="pbody">
+          <p class="ctx">{{ f.ctx }}</p>
+          <h3>{{ f.title }}</h3>
+          <p class="sum">{{ f.summary }}</p>
+          <dl class="m3">
+            {% for m in f.metrics %}<div><dt>{{ m[1] }}</dt><dd>{{ m[0] }}</dd></div>{% endfor %}
+          </dl>
+          {% if f.full %}
+          <details class="more">
+            <summary>Details, my part and the stack</summary>
+            <div class="more-body">
+              {% if f.full.meta %}<p class="proj-meta">{{ f.full.meta }}</p>{% endif %}
+              {% if f.caption %}<p class="cap">{{ f.caption }}</p>{% endif %}
+              <div class="prose">{{ f.full.text }}</div>
+              <dl class="inst">{{ f.full.inst }}</dl>
+              <p class="stack">{{ f.full.stack }}</p>
+            </div>
+          </details>
+          {% else %}
+          <a class="more-link" href="{{ f.link }}">The co-op writeups, footage and field record &darr;</a>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% elif sec == 'hardware' %}
+<!-- ============================================================ real hardware -->
+<section id="hardware">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">{{ n }}</span><h2>Real hardware: the Archelon co-op</h2><span class="sec-note">June to Sep 2026 &middot; Boston, MA &middot; my own footage</span></div>
+
+    <div class="hw-top">
+      <div class="hw-intro">
+        <p class="lede">{{ c.coop.lede }}</p>
+        <dl class="roles">{{ c.coop.roles }}</dl>
+        <p class="note">{{ c.hardware.lede }}</p>
+      </div>
+      <div class="filmstrip">
+        {% for i in [0, 3, 4, 5] %}{% set h = c.hardware['items'][i] %}
+        <figure class="reel">
+          <video class="lazy" poster="{{ b }}{{ h.poster_auto }}" muted loop playsinline preload="none" aria-label="{{ h.aria }}">
+            <source src="{{ b }}{{ h.video }}" type="video/mp4"></video>
+          <figcaption><span class="reel-tag">{{ h.tag }}</span>{{ h.title }}</figcaption>
+        </figure>
+        {% endfor %}
+      </div>
+    </div>
+
+    <details class="more wide-more">
+      <summary>What each clip shows</summary>
+      <div class="clip-notes">
+        {% for i in [0, 3, 4, 5] %}{% set h = c.hardware['items'][i] %}
+        <div><h4>{{ h.title }}</h4>{{ h.body }}<p class="stack">{{ h.stack }}</p></div>
+        {% endfor %}
+      </div>
+    </details>
+
+    <div class="lake-pair">
+      {% for i in [1, 2] %}{% set h = c.hardware['items'][i] %}
+      <figure class="lake">
+        <video class="lazy" poster="{{ b }}{{ h.poster_auto }}" muted loop playsinline preload="none" aria-label="{{ h.aria }}">
+          <source src="{{ b }}{{ h.video }}" type="video/mp4"></video>
+        <figcaption><span class="chip hw">{{ h.tag }}</span><h4>{{ h.title }}</h4>{{ h.body }}<p class="stack">{{ h.stack }}</p></figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+
+    <ul class="stats">
+      {% for s in c.field.cards %}
+      <li><details><summary><b>{{ s.v }}</b><span>{{ s.k }}</span></summary><p>{{ s.p }}</p></details></li>
+      {% endfor %}
+    </ul>
+    <p class="stats-note">{{ c.field.lede }}</p>
+
+    <div class="bench">{{ c.bench }}</div>
+
+    <h3 class="sub-h">The engineering, in four writeups</h3>
+    <div class="acc">
+      {% for a in c.coop['items'] %}
+      <details class="acc-item">
+        <summary>
+          <span class="acc-idx">{{ a.idx }}</span>
+          <span class="acc-title">{{ a.title }}</span>
+          {% if a.badge %}<span class="own {{ a.badge.cls }}">{{ a.badge.text }}</span>{% endif %}
+        </summary>
+        <div class="acc-body">
+          {% if a.meta %}<p class="proj-meta">{{ a.meta }}</p>{% endif %}
+          {{ a.figure }}
+          <div class="acc-cols">
+            <div class="prose">{{ a.text }}</div>
+            <dl class="inst">{{ a.inst }}</dl>
+          </div>
+          {{ a.extra }}
+          <p class="stack">{{ a.stack }}</p>
+        </div>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% elif sec == 'range' %}
+<!-- ============================================================ simulation range -->
+<section id="range" class="band">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">{{ n }}</span><h2>Simulation range</h2><span class="sec-note">Twelve robots, captured from simulations I built</span></div>
+    <div class="filters" role="group" aria-label="Filter robots">
+      <button type="button" class="fchip on" data-f="all">All 12</button>
+      {% for g in site.range_groups %}<button type="button" class="fchip" data-f="{{ g|slug }}">{{ g }}</button>{% endfor %}
+    </div>
+    <div class="range">
+      {% for g, idxs in site.range_groups.items() %}{% for i in idxs %}{% set r = c.platforms[i] %}
+      <article class="rtile" data-g="{{ g|slug }}">
+        <div class="rmedia">
+          <video class="lazy hover" poster="{{ b }}{{ r.poster }}" muted loop playsinline preload="none" aria-label="{{ r.aria }}">
+            <source src="{{ b }}{{ r.video }}" type="video/mp4"></video>
+          <span class="rtag">{{ r.tag }}</span>
+        </div>
+        <h3>{{ r.title }}</h3>
+        <details class="rmore"><summary>What it shows</summary>{{ r.body }}<p class="stack">{{ r.stack }}</p></details>
+      </article>
+      {% endfor %}{% endfor %}
+    </div>
+  </div>
+</section>
+
+{% elif sec == 'experience' %}
+<!-- ============================================================ experience -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">{{ n }}</span><h2>Experience, awards &amp; papers</h2><span class="sec-note">Open to 2027 new-grad roles, from May 2027</span></div>
+    <div class="exp-grid">
+      <div class="xp">{{ c.experience_html }}</div>
+      <aside class="exp-side">
+        <h3 class="side-h">Awards</h3>
+        <ul class="awards">
+          {% for a in site.awards %}<li><b>{{ a[0] }}</b><span>{{ a[1] }}</span><time>{{ a[2] }}</time></li>{% endfor %}
+        </ul>
+        <h3 class="side-h">Publications</h3>
+        {{ c.pubs_html }}
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% elif sec == 'oss' %}
+<!-- ============================================================ open source -->
+<section id="oss" class="band">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">{{ n }}</span><h2>Open source &amp; other projects</h2><span class="sec-note">Grouped by what they prove</span></div>
+    {% for gname, titles in site.oss_groups %}
+    <h3 class="sub-h">{{ gname }}</h3>
+    <div class="tiles{% if titles|length == 2 %} tiles-2{% endif %}">
+      {% for t in titles %}{% set tile = tiles[t] %}
+      {% if tile.href %}<a class="tile" href="{{ tile.href }}">{% else %}<div class="tile">{% endif %}
+        <h4>{{ tile.title }}</h4>{{ tile.body }}<p class="tile-tags">{{ tile.tags }}</p>
+      {% if tile.href %}</a>{% else %}</div>{% endif %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% elif sec == 'about' %}
+<!-- ============================================================ about -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">{{ n }}</span><h2>About</h2></div>
+    <div class="about-grid">
+      <div class="about-text">{{ c.about_text }}</div>
+      <div class="skills">{{ c.skills_html }}</div>
+    </div>
+  </div>
+</section>
+
+{% elif sec == 'contact' %}
+<!-- ============================================================ contact -->
+<section id="contact" class="band">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">{{ n }}</span><h2>Contact</h2><span class="sec-note">Open to 2027 new-grad roles</span></div>
+    <div class="contact-grid">{{ c.contact_html }}
+      <a href="{{ b }}{{ site.resume }}"><span class="k">Resume</span><span class="v">Download the PDF</span></a>
+    </div>
+    <p class="variants">Also: <a href="{{ b }}sim/">simulation focus</a> &middot; <a href="{{ b }}field/">field &amp; deployment focus</a> &middot; <a href="{{ b }}">general</a></p>
+  </div>
+</section>
+{% endif %}
+{% endfor %}
+
+</main>
+
+<footer class="foot"><div class="wrap">Ferbin Richard &middot; Boston, MA &middot; M.S. Robotics, Northeastern, April 2027</div></footer>
+
+<script src="{{ b }}main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,453 @@
+{
+ "hardware": {
+  "lede": "This is the vehicle I worked on during my co-op, in the water, with the sensor stack I\n      owned. Everything below is footage I took on site. The simulation work further down is\n      how I got here safely, not a substitute for it.",
+  "items": [
+   {
+    "tag": "Pool · sensor stack",
+    "video": "assets/real/rov_closeup_hardware.mp4",
+    "poster": null,
+    "aria": "Close-up of the Archelon ROV at the pool edge showing thrusters, scanning sonar, cameras and lights",
+    "wide": false,
+    "title": "The stack I was responsible for",
+    "body": "<p>\n            Ping360 scanning sonar, three cameras, a VectorNav VN-100, Bar30 depth and the\n            lighting rig. This is the hardware behind the driver bug where the sonar reported a\n            wall at 0.3 m while the real wall sat at 4 to 5 m.\n          </p>",
+    "stack": "T200 thrusters · Ping360 · VN-100 · Bar30"
+   },
+   {
+    "tag": "Lake · live detection",
+    "video": "assets/real/detector_lake_mine.mp4",
+    "poster": null,
+    "aria": "Three-camera lake footage with the object detector running live, showing mine and not-mine classifications",
+    "wide": true,
+    "title": "The detector running on the vehicle",
+    "body": "<p>\n            Three cameras at once in murky lake water. The model was trained entirely on a\n            seeded procedural world that emits its own labels by 3D-to-2D projection, so it\n            never saw a real frame in training, and reached 0.969 mAP@50.\n          </p>",
+    "stack": "YOLO11 · synthetic-only training · 3 cameras"
+   },
+   {
+    "tag": "Lake · rejecting clutter",
+    "video": "assets/real/detector_lake_reject.mp4",
+    "poster": null,
+    "aria": "Detector marking submerged vegetation as not-mine rather than raising a false positive",
+    "wide": true,
+    "title": "Saying no is the hard part",
+    "body": "<p>\n            Weeds and silt marked <em>not_mine</em> instead of firing. Getting clutter false\n            positives from 54% to 0% across three model generations took more work than raising\n            precision on the targets themselves.\n          </p>",
+    "stack": "54% → 0% clutter false positives"
+   },
+   {
+    "tag": "Pool · FPV piloting",
+    "video": "assets/real/fpv_piloting_pool.mp4",
+    "poster": null,
+    "aria": "Piloting the ROV through a head-mounted display with a hand controller",
+    "wide": false,
+    "title": "Flying it from the camera feed",
+    "body": "<p>\n            Head-mounted display and a hand controller, driving the vehicle on the video feed\n            rather than by line of sight. The operator interface on the other end of this is\n            the PyQt UI I built.\n          </p>",
+    "stack": "MAVLink · joystick piloting · PyQt UI"
+   },
+   {
+    "tag": "Open water · New Hampshire",
+    "video": "assets/real/lake_deployment_boat.mp4",
+    "poster": null,
+    "aria": "Open-water lake deployment with the surface station laptop on a boat console",
+    "wide": false,
+    "title": "Off the boat, into a real lake",
+    "body": "<p>\n            Surface station on the console, tether over the side, no pool wall to stop the\n            vehicle. Three to four of these deployments, which is where tether handling and\n            recovery stop being theoretical.\n          </p>",
+    "stack": "Surface station · tether ops · recovery"
+   },
+   {
+    "tag": "Pool · team testing",
+    "video": "assets/real/team_pool_testing.mp4",
+    "poster": null,
+    "aria": "Two engineers on the pool deck operating the vehicle during a wet test",
+    "wide": false,
+    "title": "Wet testing with the team",
+    "body": "<p>\n            Ten to fifteen pool sessions. This is where a dead depth sensor turned out to be a\n            missing bit in an I2C probe mask, and where the joystick moved every topic and not\n            one thruster.\n          </p>",
+    "stack": "10 to 15 sessions · 7.1 GB analysed"
+   }
+  ]
+ },
+ "sim": [
+  {
+   "idx": "Sim 01 / Hackachusetts 2026",
+   "badge": {
+    "cls": "own-award",
+    "text": "2nd place, Robotics track"
+   },
+   "title": "A drone above the water and an ROV below it, inspecting a real Boston bridge",
+   "meta": "Team of 3 · I built the robots, the simulation, the autopilot loop and ROS 2",
+   "figure": "<figure class=\"proj-media\">\n<video aria-label=\"Inspection drone flying under the Craigie drawbridge deck in Isaac Sim, flown by ArduCopter SITL\" loop=\"\" muted=\"\" playsinline=\"\" poster=\"assets/img/bridge_drone_poster.jpg\" preload=\"none\">\n<source src=\"assets/video/bridge_drone.mp4\" type=\"video/mp4\"/></video>\n<figcaption>The Charles River Dam crossing rebuilt in Isaac Sim. ArduCopter flies the drone, ArduSub flies the ROV.</figcaption>\n</figure>",
+   "video": "assets/video/bridge_drone.mp4",
+   "poster": "assets/img/bridge_drone_poster.jpg",
+   "text": "<p>\n            Built in one day for challenge R6, safer inspection of critical infrastructure. A\n            Holybro X500 flown by real ArduCopter SITL runs a 37-waypoint mission along the canal\n            walls and under the deck, where the bridge cuts GPS from 12 satellites to 7. Every\n            waterline defect it flags becomes a task for a BlueROV2 Heavy on ArduSub, which dives\n            with GPS off and navigates on a modelled DVL fed into the autopilot's EKF.\n          </p>\n<p>\n            Both robots build one model of the structure: 2.96 million lidar points above the\n            water and 1.58 million sonar points below it. The ROV never drifted more than 60 cm\n            over a 200 m dive, and 4 of 4 flagged defects were inspected underwater. The demo is a\n            replay of a recorded 21-topic ROS 2 bag, run live on stage from one Docker launch.\n          </p>\n<details class=\"more\">\n<summary>What is modelled and what is real</summary>\n<p>\n              Real: ArduCopter and ArduSub flight code, MAVLink mission upload, the EKF, ROS 2 Jazzy,\n              RViz2 and QGroundControl. Modelled: the GPS drop under the deck (the bridge lowers\n              the satellite count), the Ouster OS0-128 lidar and 130-degree multibeam sonar as ray\n              casts, murky water as Beer-Lambert attenuation plus silt, and a simulated thermal\n              camera. Thirteen defects were planted as ground truth, nine above the water and four\n              below, including a scour pit with exposed timber piles.\n            </p>\n</details>",
+   "inst": "<div><dt>Result</dt><dd>2nd place</dd></div>\n<div class=\"stacked\"><dt>ROV nav error, GPS off</dt><dd>≤ 0.60 m</dd><dd class=\"vs\">over a ~200 m dive, 0.16 m at the end</dd></div>\n<div class=\"stacked\"><dt>Combined model</dt><dd>4.54 M pts</dd><dd class=\"vs\">lidar above + sonar below</dd></div>\n<div class=\"stacked\"><dt>Defects flagged → inspected</dt><dd>4 / 4</dd><dd class=\"vs\">drone hands off to ROV</dd></div>",
+   "stack": "ArduCopter + ArduSub SITL · MAVLink · Isaac Sim 6 · ROS 2 Jazzy · RViz2 · QGroundControl · Docker · <a href=\"https://github.com/FERBIN12/detectfix\">repo</a>",
+   "extra": ""
+  },
+  {
+   "idx": "Sim 02 / Autonomous harbour inspection",
+   "badge": {
+    "cls": "own-sole",
+    "text": "solo build"
+   },
+   "title": "A waterjet boat that patrols a harbour, spots what changed, and docks itself",
+   "meta": "Concept for a USV startup · firmware-in-the-loop simulation and film",
+   "figure": "<figure class=\"proj-media\">\n<video aria-label=\"Twin-waterjet USV leaving its charging berth in a path-traced Isaac Sim harbour, with the mission state machine overlaid\" loop=\"\" muted=\"\" playsinline=\"\" poster=\"assets/img/harbour_usv_poster.jpg\" preload=\"none\">\n<source src=\"assets/video/harbour_usv.mp4\" type=\"video/mp4\"/></video>\n<figcaption>ArduRover 4.5 SITL drives the boat; Isaac Sim 6 path-traces the logged run.</figcaption>\n</figure>",
+   "video": "assets/video/harbour_usv.mp4",
+   "poster": "assets/img/harbour_usv_poster.jpg",
+   "text": "<p>\n            A 4.2 m twin-waterjet USV runs an approved patrol route, compares its lidar map with\n            yesterday's patrol and raises change alerts. On operator approval it stands off a\n            contact, loiters on its jets, rejoins the route and berths itself on a solar charging\n            float. The autopilot is the real Pixhawk firmware, ArduRover SITL, lock-stepped to my\n            own physics over ArduPilot's JSON backend.\n          </p>\n<p>\n            The physics is a Fossen 3-DOF manoeuvring model with jet spool-up lag, a reversing\n            bucket, current and shallow-water drag, on a JONSWAP wind sea plus swell. Heave, pitch\n            and roll come from the hull sampling that wave surface, and the rendered water uses\n            the same wave field. Tuning cut median cross-track error from 1.64 m with a 3 m weave\n            to 0.37 m.\n          </p>",
+   "inst": "<div class=\"stacked\"><dt>Cross-track error</dt><dd>1.64 → 0.37 m</dd><dd class=\"vs\">median, after tuning</dd></div>\n<div class=\"stacked\"><dt>Changes found</dt><dd>2 / 2</dd><dd class=\"vs\">new object, buoy moved 15.1 m</dd></div>\n<div class=\"stacked\"><dt>Docking error</dt><dd>0.17 m</dd><dd class=\"vs\">0 collisions</dd></div>\n<div class=\"stacked\"><dt>Recorded run</dt><dd>55,693 msgs</dd><dd class=\"vs\">559 s ROS 2 bag</dd></div>",
+   "stack": "ArduRover SITL · pymavlink · Fossen hydrodynamics · JONSWAP waves · ROS 2 Jazzy · Isaac Sim path tracing",
+   "extra": ""
+  },
+  {
+   "idx": "Sim 03 / Hyperion, three hackathons",
+   "badge": {
+    "cls": "own-part",
+    "text": "team builds, sim + agents mine"
+   },
+   "title": "A 20-robot warehouse where AI agents find the fault and get a technician on the phone",
+   "meta": "Dell x NVIDIA GB10 · Hyperion x Grok Bot · Wajo x Anthropic",
+   "figure": "<figure class=\"proj-media\">\n<video aria-label=\"Nova Carter robot driving down a warehouse aisle in the 20-robot Isaac Sim fleet\" loop=\"\" muted=\"\" playsinline=\"\" poster=\"assets/img/hyperion_fleet_poster.jpg\" preload=\"none\">\n<source src=\"assets/video/hyperion_fleet.mp4\" type=\"video/mp4\"/></video>\n<figcaption>Twenty Nova Carters in an Isaac Sim warehouse, streaming live fleet telemetry.</figcaption>\n</figure>",
+   "video": "assets/video/hyperion_fleet.mp4",
+   "poster": "assets/img/hyperion_fleet_poster.jpg",
+   "text": "<p>\n            Started at the Dell x NVIDIA GB10 hackathon: a teammate and I built the Isaac Sim warehouse of 20\n            Nova Carters and shipped the stack as six services in one Docker image on the GB10,\n            where a local Qwen model on vLLM triages robot faults into tickets. I then added four\n            agents (surveillance, war room, technician scheduler, Hungarian re-allocation) under\n            one rule: code enforces, the model explains. Over 3 seeds they raised deliveries from\n            27.3 to 42.0, and every run replays to an identical event log.\n          </p>\n<p>\n            For Wajo x Anthropic, a Claude dispatcher hands a confirmed fault to Fo, which places\n            real phone calls, calendar invites and emails to an on-call technician while the fleet\n            re-plans around the repair. Who it may contact is enforced in code: in a live run, when\n            a technician said to send someone off the list, the agent refused. I also mounted a\n            Franka arm on all twenty Carters as a mobile-manipulation testbed.\n          </p>",
+   "inst": "<div class=\"stacked\"><dt>Simulated deliveries</dt><dd>27.3 → 42.0</dd><dd class=\"vs\">+54%, 3 seeds, same faults</dd></div>\n<div class=\"stacked\"><dt>Replay check</dt><dd>3 / 3</dd><dd class=\"vs\">identical event logs</dd></div>\n<div class=\"stacked\"><dt>Live dispatch runs</dt><dd>5 runs, 10 calls</dd><dd class=\"vs\">real phone calls, simulated robots</dd></div>\n<div><dt>Fleet</dt><dd>20 robots</dd></div>",
+   "stack": "Isaac Sim 6 · Nova Carter · Franka · vLLM · Claude · Docker · NVIDIA GB10 · Hungarian assignment",
+   "extra": ""
+  },
+  {
+   "idx": "Sim 04 / Intake-cleaning robot, YC pitch",
+   "badge": {
+    "cls": "own-sole",
+    "text": "solo build"
+   },
+   "title": "An underwater robot that clears mussels from power-plant intakes, rendered physically",
+   "meta": "Startup study and pitch film · Isaac Sim path tracing + a custom water renderer",
+   "figure": "<figure class=\"proj-media\">\n<video aria-label=\"Wall-crawling intake-cleaning robot with lamps on, inside a fouled water intake tunnel\" loop=\"\" muted=\"\" playsinline=\"\" poster=\"assets/img/intake_robot_poster.jpg\" preload=\"none\">\n<source src=\"assets/video/intake_robot.mp4\" type=\"video/mp4\"/></video>\n<figcaption>Path-traced in Isaac Sim; the water itself is a ray-marched medium composited from depth.</figcaption>\n</figure>",
+   "video": "assets/video/intake_robot.mp4",
+   "poster": "assets/img/intake_robot_poster.jpg",
+   "text": "<p>\n            Divers clean zebra and quagga mussels out of power-plant and desalination intakes, and\n            OSHA counted six suction-related diver deaths in 13 months. I built the case for sending a robot instead, then the film to pitch\n            it. The robot and intake are rendered with Isaac Sim path tracing, MDL materials and\n            procedural mussel-clump instancers, writing raw HDR and depth for every frame.\n          </p>\n<p>\n            The water is my own compositor working from that depth: absorption, backscatter,\n            ray-marched god rays and lamp beams, caustics, Snell's window and drifting particles.\n            Profiling the render found that hiding instances far below the scene bloated the BVH\n            and made every frame 24 s; sinking them into the wall instead brought it to 5.7 s.\n          </p>",
+   "inst": "<div class=\"stacked\"><dt>Render time per frame</dt><dd>24 → 5.7 s</dd><dd class=\"vs\">BVH fix, GPU-bound</dd></div>\n<div class=\"stacked\"><dt>Market sized</dt><dd>1,065 sites</dd><dd class=\"vs\">regulated US intakes</dd></div>\n<div><dt>Water model</dt><dd>custom, post</dd></div>",
+   "stack": "Isaac Sim path tracing · USD · MDL · NumPy compositor · Python",
+   "extra": ""
+  }
+ ],
+ "platforms": [
+  {
+   "tag": "Humanoid · MuJoCo",
+   "video": "assets/video/humanoid_walk.mp4",
+   "poster": "assets/img/humanoid_poster.jpg",
+   "aria": "Unitree H1-2 humanoid walking in MuJoCo under a whole-body QP controller",
+   "wide": false,
+   "title": "A 67 kg humanoid that walks because a controller says so",
+   "body": "<p>Unitree H1-2, 51 actuated joints, built from torque control upward in MuJoCo. The measurement that starts everything: hold every joint at its commanded angle, let go, and the pelvis drops from 1.030 m to 0.415 m in six seconds. Angles are not momentum.</p>",
+   "stack": "MuJoCo · LIPM · whole-body QP · Pinocchio · 90 modules"
+  },
+  {
+   "tag": "Humanoid · Isaac Lab",
+   "video": "assets/video/g1_training.mp4",
+   "poster": "assets/img/g1_training_poster.jpg",
+   "aria": "Unitree G1 humanoid robots training in parallel in NVIDIA Isaac Lab",
+   "wide": false,
+   "title": "Which reward term is actually doing the work",
+   "body": "<p>Unitree G1 humanoids training in parallel in Isaac Lab. Ablating one reward term at a time over 29 runs: removing the −200 termination penalty collapses learning to 4.2% of baseline episode length while the reward climbs, because falling becomes free.</p>",
+   "stack": "Isaac Lab · PPO · ONNX · reward ablation · 6 GB GPU"
+  },
+  {
+   "tag": "Quadruped · locomotion",
+   "video": "assets/video/go2_walk.mp4",
+   "poster": "assets/img/go2_walk_poster.jpg",
+   "aria": "Unitree Go2 quadruped walking with a trained policy over terrain",
+   "wide": false,
+   "title": "A policy that actually walks",
+   "body": "<p>A Unitree Go2 under a trained policy, blind versus perceptive on the same terrain. Tracking improves from 64.6% to 69.9% once the policy can feel the ground. Gait is verified on contact timing and foot clearance, never on the reward curve.</p>",
+   "stack": "Isaac Lab · PPO · MuJoCo · Python"
+  },
+  {
+   "tag": "Quadruped · navigation",
+   "video": "assets/video/go2_velocity.mp4",
+   "poster": "assets/img/go2_vel_poster.jpg",
+   "aria": "Quadruped following velocity commands derived from a planned path",
+   "wide": false,
+   "title": "Velocity commands from a planned path",
+   "body": "<p>The layer between a navigation stack and a learned gait: a path becomes body-frame velocity commands the policy can track, with footstep planning over an elevation map built from a depth camera.</p>",
+   "stack": "Isaac Lab · elevation mapping · footstep planning"
+  },
+  {
+   "tag": "Manipulator · SO-101",
+   "video": "assets/video/so101_pick.mp4",
+   "poster": "assets/img/so101_poster.jpg",
+   "aria": "SO-101 robot arm performing pick and place in MuJoCo",
+   "wide": false,
+   "title": "Pick and place, with an evaluation harness that argues back",
+   "body": "<p>MuJoCo pick-and-place on the SO-101 arm, tested against its own failure modes: a contact gate that rejects a faked grasp, and a harness that fails when the evaluation is wrong rather than when the robot is.</p>",
+   "stack": "MuJoCo · SO-101 · evaluation harness · Python"
+  },
+  {
+   "tag": "Manipulator · parallel RL",
+   "video": "assets/video/franka_reach.mp4",
+   "poster": "assets/img/franka_reach_poster.jpg",
+   "aria": "Multiple Franka robot arms reaching in parallel in Isaac Lab",
+   "wide": false,
+   "title": "Many arms, one physics step",
+   "body": "<p>Franka reach environments running vectorized on the GPU. Same principle as the humanoid and quadruped training: every robot advances inside a single solver call, which is what makes RL tractable on laptop-class hardware.</p>",
+   "stack": "Isaac Lab · vectorized envs · CUDA · PyTorch"
+  },
+  {
+   "tag": "Manipulator · VLA",
+   "video": "assets/video/manipulation_vla.mp4",
+   "poster": "assets/img/manipulation_poster.jpg",
+   "aria": "Robot arm reaching for coloured blocks under a vision-language-action policy",
+   "wide": false,
+   "title": "Language-conditioned pick and place",
+   "body": "<p>A 7-DoF arm driven by a vision-language-action policy: an instruction in, a joint trajectory out. Built so every layer between the camera and the actuator is inspectable rather than a black box.</p>",
+   "stack": "Isaac Sim · VLA policy · ROS 2 · PyTorch"
+  },
+  {
+   "tag": "Surgical · RCM",
+   "video": "assets/video/surgical_arm.mp4",
+   "poster": "assets/img/surgical_poster.jpg",
+   "aria": "Surgical manipulator performing a precision task in simulation",
+   "wide": false,
+   "title": "Precision manipulation under constraint",
+   "body": "<p>Laparoscopic arm simulation: remote-centre-of-motion constraint solving, damped least-squares IK near singularities, and the millimetre tolerances that make a general-purpose manipulator stack inadequate.</p>",
+   "stack": "Isaac Sim · RCM · DLS IK · ROS 2"
+  },
+  {
+   "tag": "AMR · ground robot",
+   "video": "assets/video/amr_slam.mp4",
+   "poster": "assets/img/amr_poster.jpg",
+   "aria": "Autonomous mobile robot mapping a warehouse with LiDAR",
+   "wide": false,
+   "title": "Scan matching, built rather than imported",
+   "body": "<p>A ground robot mapping a warehouse with 2D LiDAR: ICP front end, mapper, loop closure and pose graph written from scratch. Point-to-line registration lands at 2.3 mm against 8.1 mm for point-to-point on the same run.</p>",
+   "stack": "ROS 2 · ICP · pose graph · occupancy mapping"
+  },
+  {
+   "tag": "LiDAR SLAM",
+   "video": "assets/video/lidar_map.mp4",
+   "poster": "assets/img/lidar_poster.jpg",
+   "aria": "Occupancy map building during a LiDAR SLAM run",
+   "wide": false,
+   "title": "Measuring where SLAM fails, not just where it works",
+   "body": "<p>A wall is degenerate at 3747 against 1.9 on open floor, so the same scan matcher that is excellent in a corridor is near-useless facing a flat surface. Every figure is reproducible from the repository, including the inconvenient ones.</p>",
+   "stack": "ROS 2 · scan matching · loop closure · Python"
+  },
+  {
+   "tag": "Underwater · detection",
+   "video": "assets/video/detection.mp4",
+   "poster": "assets/img/detect_poster.jpg",
+   "aria": "Underwater object detector running on a recorded survey with a live confidence overlay",
+   "wide": false,
+   "title": "Detection with no real training data",
+   "body": "<p>A seeded procedural world emits its own ground truth by 3D-to-2D projection, so every frame is labelled for free and any scene is reproducible from its seed. Clutter false positives went from 54% to zero across three model generations.</p>",
+   "stack": "YOLO11 · PyTorch · Gazebo · OpenCV"
+  },
+  {
+   "tag": "Marine · Isaac Sim",
+   "video": "assets/video/isaac.mp4",
+   "poster": "assets/img/isaac_poster.jpg",
+   "aria": "Coastal marine environment with animated water rendered in NVIDIA Isaac Sim",
+   "wide": false,
+   "title": "A second physics backend that argues with the first",
+   "body": "<p>The vehicle ported to Isaac Sim as a second physics engine: animated water with underwater rendering, hydrodynamics covering buoyancy, damping and added mass, and a bridge closing the control loop against Isaac physics.</p>",
+   "stack": "Isaac Sim · RTX offscreen · ROS 2 · pytest"
+  }
+ ],
+ "coop": {
+  "lede": "A four-month Northeastern co-op on <strong>Archelon</strong>, a bespoke\n        eight-thruster inspection ROV. I led the co-op engineering team reporting to the\n        CEO and worked across five repositories. The four writeups below are that work,\n        and each states plainly which parts were mine and which were the team's.",
+  "roles": "<div><dt>My ownership</dt><dd>Vehicle runtime · sensor bring-up · detection pipeline · shared simulation core</dd></div>\n<div><dt>My contribution</dt><dd>Sensor simulation and IMU characterisation feeding the mapping attempt</dd></div>\n<div><dt>Led by others</dt><dd>Factor-graph SLAM back end (senior engineer)</dd></div>\n<div><dt>Field record</dt><dd>10 to 15 pool sessions · 3 to 4 open-water deployments, New Hampshire</dd></div>",
+  "items": [
+   {
+    "idx": "Co-op 01 / Sensors, perception hardware and the operator UI",
+    "badge": {
+     "cls": "own-own",
+     "text": "my ownership"
+    },
+    "title": "Every sensor on the vehicle, and the interface the pilot flies it with",
+    "meta": "Primary engineer, sensor stack and operator interface",
+    "figure": "<figure class=\"proj-media\">\n<img alt=\"Eight-thruster inspection vehicle in simulation\" loading=\"lazy\" src=\"assets/img/hero_gazebo.jpg\"/>\n<figcaption>Eight-thruster inspection vehicle, vectored six-degree-of-freedom configuration.</figcaption>\n</figure>",
+    "video": null,
+    "poster": null,
+    "text": "<p>\n            This was my primary work: bringing up and owning every sensor the vehicle\n            carries, and the interface the operator actually uses. Ping360 scanning sonar,\n            three cameras, the VectorNav VN-100 IMU, depth, and the lighting.\n          </p>\n<p>\n            A sensor that returns plausible-looking garbage is worse than one that fails,\n            because nothing downstream flags it. The Ping360 drew a fake circular wall at\n            0.3 m on every beam while the real wall sat at 4 to 5 m. The bags looked\n            valid, correct message counts, correct rates, non-zero ranges, so it cost two\n            pool sessions before I traced it to first-echo detection in both the Python\n            and C++ drivers and fixed it with a regression test.\n          </p>\n<details class=\"more\">\n<summary>The sensor stack in detail</summary>\n<p>\n<strong>Sonar.</strong> Ping360 mounted vertically, which means roughly 40%\n              of beams hit the vehicle frame itself and return a tight 0.30 m. That is\n              only separable when the vehicle is still, so the sector mask is part of the\n              driver rather than a post-process. Raising the serial link to 2 Mbaud took a\n              full 360-degree sweep from 23.3 s to 5.9 s.\n            </p>\n<p>\n<strong>IMU.</strong> I characterised the VN-100 and the autopilot IMU the\n              estimate depends on: a 30-minute stationary log, 321k samples, Allan\n              variance and Kalibr noise parameters. Gyro ARW came out at 0.26 deg/sqrt-hr.\n              The first attempt was contaminated by a nearby speaker coupling into the\n              MEMS accelerometer, visible only as tonal peaks in the FFT.\n            </p>\n<p>\n<strong>Cameras and lights.</strong> Three cameras streaming to the topside\n              station, plus the lighting rig. Underwater the D455 stereo depth returned\n              only 8 to 40% valid pixels, and flat-port refraction invalidates the factory\n              calibration outright, so I derived an empirical correction that flattened a\n              known-flat pool floor from 15 mm to 6 mm median plane residual.\n            </p>\n<p>\n<strong>Depth.</strong> The Bar30 read nothing however it was wired, because\n              <code>BARO_PROBE_EXT</code> was a bitmask missing the bit for the MS5837, so\n              the autopilot never probed the I2C bus for it.\n            </p>\n</details>",
+    "inst": "<div><dt>Sensors owned</dt><dd>6 classes</dd></div>\n<div class=\"stacked\"><dt>Sonar sweep time</dt><dd>23.3 s → 5.9 s</dd><dd class=\"vs\">serial raised to 2 Mbaud</dd></div>\n<div class=\"stacked\"><dt>Gyro ARW</dt><dd>0.26 °/√hr</dd><dd class=\"vs\">measured, 321k samples</dd></div>\n<div class=\"stacked\"><dt>Depth-camera correction</dt><dd>15 mm → 6 mm</dd><dd class=\"vs\">plane residual, known-flat floor</dd></div>",
+    "stack": "Ping360 sonar · VectorNav VN-100 · RealSense D455 · Bar30 · I2C · ROS 2 Jazzy · PyQt5 · Docker",
+    "extra": ""
+   },
+   {
+    "idx": "Co-op 02 / Perception & machine learning",
+    "badge": {
+     "cls": "own-sole",
+     "text": "sole engineer"
+    },
+    "title": "Training a detector with no real data to train on",
+    "meta": "Archenaux Robotics · sole engineer, simulation and ML pipeline · 26 commits",
+    "figure": "<figure class=\"proj-media\">\n<video aria-label=\"Deployed detector running on a recorded survey with a live confidence overlay\" loop=\"\" muted=\"\" playsinline=\"\" poster=\"assets/img/detect_poster.jpg\" preload=\"none\">\n<source src=\"assets/video/detection.mp4\" type=\"video/mp4\"/></video>\n<figcaption>Deployed detector on a recorded survey run. Live confidence overlay.</figcaption>\n</figure>",
+    "video": "assets/video/detection.mp4",
+    "poster": "assets/img/detect_poster.jpg",
+    "text": "<p>\n            Imagery of the target objects is classified or does not exist. So I generated it.\n            A seeded procedural world generator emits ground-truth labels by 3D-to-2D projection,\n            which means every frame is labelled for free and any scene is reproducible from its seed.\n          </p>\n<p>\n            The difficulty is deliberate: seven object types, three turbidity levels, current drift,\n            marine snow, kelp and seabed distractors that a naive detector calls targets. The\n            blocking problem was never recall, it was that the model flagged every barrel.\n          </p>\n<details class=\"more\">\n<summary>Why I publish the bad number too</summary>\n<p>\n              The evaluation also showed 0% recall on three object types, because the real-photo\n              training set contained no flat or torpedo-shaped examples. I would rather publish\n              that than a clean chart. An unevaluated detector is worse than none, because\n              someone trusts it.\n            </p>\n</details>",
+    "inst": "<div><dt>Clutter false positives</dt><dd>54% → 0%</dd></div>\n<div><dt>False alarms, empty frames</dt><dd>0 / 9</dd></div>\n<div><dt>Recall, moored &amp; drifting</dt><dd>100%</dd></div>\n<div class=\"stacked\"><dt>mAP@50</dt><dd>0.471</dd><dd class=\"vs\">sim; 0.61 real-photo</dd></div>",
+    "stack": "Python · PyTorch · Ultralytics YOLO11 / YOLO26 · OpenCV · Gazebo · Docker",
+    "extra": "<div class=\"strip\">\n<figure><img alt=\"Grid of generated training scenes\" loading=\"lazy\" src=\"assets/img/detect_grid.jpg\"/><figcaption>Generated scenes</figcaption></figure>\n<figure><img alt=\"Target object gallery\" loading=\"lazy\" src=\"assets/img/mine_gallery.jpg\"/><figcaption>Object gallery</figcaption></figure>\n<figure><img alt=\"Precision recall curve\" loading=\"lazy\" src=\"assets/img/eval_pr.jpg\"/><figcaption>Precision / recall</figcaption></figure>\n<figure><img alt=\"Confusion matrix\" loading=\"lazy\" src=\"assets/img/eval_cm.jpg\"/><figcaption>Confusion matrix</figcaption></figure>\n</div>"
+   },
+   {
+    "idx": "Co-op 03 / Embedded & hardware bring-up",
+    "badge": {
+     "cls": "own-own",
+     "text": "my ownership"
+    },
+    "title": "Three failures that looked like software and were not",
+    "meta": "Archenaux Robotics · primary engineer, vehicle runtime and sensor bring-up · 52 commits",
+    "figure": "<figure class=\"proj-media\">\n<img alt=\"Inspection vehicle beneath a ship hull in Gazebo Harmonic\" loading=\"lazy\" src=\"assets/img/hero_gazebo.jpg\"/>\n<figcaption>Eight-thruster inspection vehicle, vectored six-degree-of-freedom configuration.</figcaption>\n</figure>",
+    "video": null,
+    "poster": null,
+    "text": "<p>\n            Archelon runs ArduSub in a vectored six-degree-of-freedom configuration. I own the\n            runtime that ships to it and I did the sensor bring-up, which is mostly a story about\n            failures that look like software and are not.\n          </p>\n<p>\n            The depth sensor read nothing no matter how it was wired, because\n            <code>BARO_PROBE_EXT</code> was a bitmask missing the bit for the MS5837, so the\n            autopilot never probed the I2C bus for it. The joystick moved every topic on the\n            dashboard and no thrusters, because ArduPilot silently discards RC override from any\n            system ID other than the one it is told to trust. The companion computer browned out\n            under load, which turned out to be rail sag down the tether rather than thermal\n            throttling.\n          </p>\n<details class=\"more\">\n<summary>On numbers nobody can trace</summary>\n<p>\n              None of those are findable in simulation. I wrote the power-budget analysis that\n              justified swapping the companion computer, and it says plainly which of its figures\n              are measured and which are estimated, because a number nobody can trace is worse\n              than no number.\n            </p>\n<p>\n              The runtime itself is a containerized stack shipping to the real vehicle: MAVLink\n              router, MAVROS, cameras, joystick piloting, RViz and QGC as one multi-arch image,\n              with a 14-second preflight GO / NO-GO check gating every dive and a boot service\n              that survives power-on.\n            </p>\n</details>",
+    "inst": "<div><dt>Thrusters</dt><dd>8 + 3 aux</dd></div>\n<div><dt>Firmware flash-verified</dt><dd>3 builds</dd></div>\n<div><dt>Pool-test data analyzed</dt><dd>7.1 GB</dd></div>\n<div><dt>Open-water deployments</dt><dd>3 to 4</dd></div>",
+    "stack": "Pixhawk 1 · ArduSub 4.5.7 · MAVLink · pymavlink · MAVROS · Ping360 sonar · VectorNav VN-100 · Bar30 · T200 / M200 thrusters · I2C · Raspberry Pi 5 · Docker",
+    "extra": ""
+   },
+   {
+    "idx": "Co-op 04 / Simulation infrastructure",
+    "badge": {
+     "cls": "own-own",
+     "text": "my ownership"
+    },
+    "title": "A simulator other engineers can actually run",
+    "meta": "Archenaux Robotics · owner, shared simulation core · 97 commits across two repositories",
+    "figure": "<figure class=\"proj-media\">\n<img alt=\"Autopilot software-in-the-loop wired to Gazebo Harmonic\" loading=\"lazy\" src=\"assets/img/sim_stack.jpg\"/>\n<figcaption>Autopilot software-in-the-loop wired to Gazebo Harmonic over a JSON physics backend.</figcaption>\n</figure>",
+    "video": null,
+    "poster": null,
+    "text": "<p>\n            A simulator only one engineer can start is not an asset. I own the core the other\n            projects build on, and most of its value is that it runs on someone else's laptop on\n            the first try.\n          </p>\n<p>\n            Three containers on one network: autopilot software-in-the-loop, physics, and a ground\n            control station with joystick passthrough, plus a dev container. GPU is optional with\n            auto-detected vendor overrides, and a browser-based fallback means the interface works\n            on headless, Wayland and WSL hosts. That last one resolved a display crash blocking a\n            teammate.\n          </p>",
+    "inst": "<div><dt>Commits, two repos</dt><dd>97</dd></div>\n<div><dt>Machines validated</dt><dd>3</dd></div>\n<div><dt>Compose overlays</dt><dd>10</dd></div>\n<div><dt>Clone to running</dt><dd>1 command</dd></div>",
+    "stack": "Docker Compose · ROS 2 Jazzy · Gazebo Harmonic · ArduSub · MAVROS · Bash · noVNC",
+    "extra": ""
+   }
+  ]
+ },
+ "field": {
+  "lede": "Every result on this page that is labelled measured was taken off real hardware or a\n      real dataset. Simulation is how I get there safely; it is not what I do instead.\n      The footage in <a href=\"#hardware\">this section</a> is mine, taken during these sessions.",
+  "cards": [
+   {
+    "k": "Pool testing",
+    "v": "10 to 15",
+    "p": "Wet sessions with the vehicle in the water. This is where the depth sensor turned\n          out to be an I2C bitmask, where the joystick moved every topic and no thruster, and\n          where the companion computer browned out on rail sag rather than heat. None of those\n          are findable in a simulator."
+   },
+   {
+    "k": "Open-water deployments",
+    "v": "3 to 4",
+    "p": "Lake deployments in New Hampshire, taking Archelon from bench bring-up to operation\n          in real water. Tether handling, surface station, and a vehicle that has to come back."
+   },
+   {
+    "k": "Pool-test data analysed",
+    "v": "7.1 GB",
+    "p": "Logs from those sessions, which is where the Ping360 sonar driver was caught\n          returning a fake wall at 0.3 m on every beam while the real wall sat at 4 to 5 m.\n          The bags looked valid, so nothing downstream flagged it."
+   },
+   {
+    "k": "Firmware flash-verified",
+    "v": "3 builds",
+    "p": "Flashed and verified on the vehicle before it went in, with a 14-second preflight\n          GO / NO-GO check gating every dive and a boot service that survives power-on."
+   },
+   {
+    "k": "IMU characterised on",
+    "v": "321k samples",
+    "p": "A 30-minute stationary log, Allan variance and Kalibr noise parameters, gyro ARW\n          0.26 deg/sqrt-hr. Re-recorded after the first attempt turned out to be contaminated\n          by a nearby speaker coupling into the MEMS accelerometer."
+   },
+   {
+    "k": "Hardware brought up",
+    "v": "8 + 3",
+    "p": "Eight T200 thrusters plus three M200 auxiliaries, Pixhawk autopilot, Ping360 sonar,\n          Bar30 depth, VectorNav IMU and a Raspberry Pi 5 companion, on a 50 ft tether."
+   }
+  ]
+ },
+ "tiles": [
+  {
+   "href": "https://github.com/FERBIN12/humanoid-balance-locomotion",
+   "title": "humanoid-balance-locomotion",
+   "body": "<p>Balance and locomotion for a 67 kg, 51-DOF Unitree H1-2 in MuJoCo, built from torque control up: CoM/CoP estimation, ankle and momentum strategies, LIPM walking with a whole-body QP, an RL comparison, and a ROS 2/Gazebo port. 90 modules, every constant measured.</p>",
+   "tags": "MuJoCo · whole-body QP · Pinocchio · ROS 2"
+  },
+  {
+   "href": "https://github.com/FERBIN12/isaac-lab-rl-benchmarks",
+   "title": "isaac-lab-rl-benchmarks",
+   "body": "<p>Reward-term ablation on a Unitree G1 across 29 training runs on a 6 GB laptop GPU, plus sim-to-sim ONNX parity and policy deployment with no simulator. Every figure regenerable from 54 measured fact groups.</p>",
+   "tags": "Isaac Lab · PPO · ONNX · 29 runs"
+  },
+  {
+   "href": "https://github.com/FERBIN12/barkour-isaac-lab-rl",
+   "title": "barkour-isaac-lab-rl",
+   "body": "<p>Bringing a quadruped Isaac Lab does not ship: Barkour vB through URDF conversion, a manager-based RL environment, PPO training, evaluation and a simulator-free deployment path.</p>",
+   "tags": "Isaac Lab · URDF · PPO · Barkour vB"
+  },
+  {
+   "href": "https://github.com/FERBIN12/visual-slam-vio-ros2",
+   "title": "visual-slam-vio-ros2",
+   "body": "<p>Stereo-inertial SLAM built from the geometry up: camera and stereo models, camera-IMU extrinsics and time offset, feature-based VO, IMU preintegration, sliding-window optimisation, and a ROS 2 layer around ORB-SLAM3 on EuRoC and TUM-VI.</p>",
+   "tags": "C++ · GTSAM · ORB-SLAM3 · EuRoC"
+  },
+  {
+   "href": "https://github.com/FERBIN12/av-perception-planning-stack",
+   "title": "av-perception-planning-stack",
+   "body": "<p>Twelve-module driving stack in pure Python: camera and lidar perception, fusion, localisation, tracking, prediction, behaviour selection, planning, control and a fail-closed safety layer. 227 tests across 71 files.</p>",
+   "tags": "Python · 12 modules · 227 tests"
+  },
+  {
+   "href": "https://github.com/FERBIN12/autonomous-drones-ros2-gazebo-ardupilot",
+   "title": "autonomous-drones-ros2-gazebo-ardupilot",
+   "body": "<p>ArduPilot SITL and Gazebo in Docker with MAVROS bringup and seven finished autonomous missions, from takeoff through a perimeter survey. Runs on a laptop with no hardware.</p>",
+   "tags": "ArduPilot SITL · MAVROS · Gazebo · Docker"
+  },
+  {
+   "href": "https://github.com/FERBIN12/so101-manipulation-eval",
+   "title": "so101-manipulation-eval",
+   "body": "<p>MuJoCo pick-and-place on the SO-101 arm with an evaluation harness tested against its own failure modes, including a contact gate that rejects a faked grasp.</p>",
+   "tags": "MuJoCo · SO-101 · evaluation harness"
+  },
+  {
+   "href": "https://github.com/FERBIN12/surgical-robotics-isaac-sim",
+   "title": "surgical-robotics-isaac-sim",
+   "body": "<p>Laparoscopic arm simulation in Isaac Sim: remote-centre-of-motion constraint solving, damped least-squares IK near singularities, teleoperation and deformable tissue contact.</p>",
+   "tags": "Isaac Sim · RCM · DLS IK · ROS 2"
+  },
+  {
+   "href": "https://github.com/FERBIN12/gazebo-to-isaac-migration",
+   "title": "gazebo-to-isaac-migration",
+   "body": "<p>A ROS 2 diff-drive rover ported from Gazebo Harmonic to Isaac Sim 6.0.1, with a harness that quantifies cross-simulator variance and five deliberately planted defects: joint limits, permuted inertia axes and silent controller retuning.</p>",
+   "tags": "Isaac Sim · Gazebo · benchmarking"
+  },
+  {
+   "href": "https://github.com/FERBIN12/vla-manipulation-ablations",
+   "title": "vla-manipulation-ablations",
+   "body": "<p>Vision-language-action manipulation ablations with held-out generalisation tests and an OpenVLA-7B feasibility study, all measured on a 6 GB laptop GPU.</p>",
+   "tags": "VLA · OpenVLA · PyTorch · ablations"
+  },
+  {
+   "href": "https://github.com/FERBIN12/av-safe-decision-contract",
+   "title": "av-safe-decision-contract",
+   "body": "<p>Coordinate-frame transforms and a fail-safe perception-to-planning decision contract for an AV stack: rigid map/base_link transforms with a contract that degrades safely rather than guessing.</p>",
+   "tags": "Python · TF2 · safety contract"
+  },
+  {
+   "href": null,
+   "title": "Robotics course series",
+   "body": "<p>Written and produced end to end. Narrated courses covering humanoid balance, quadruped RL in Isaac Lab, LiDAR SLAM, visual SLAM/VIO, manipulation, surgical robotics, autonomous driving and drones. Most clips at the top of this page are captured from that work.</p>",
+   "tags": "Isaac Lab · MuJoCo · ROS 2 · Gazebo"
+  },
+  {
+   "href": "https://github.com/FERBIN12/emme-onboarding",
+   "title": "emme-onboarding, hackathon winner",
+   "body": "<p><strong>Won Track 2</strong> at The Open Accelerator healthcare hackathon, hosted by Red Hat with IBM Ventures and the Mass AI Hub. Health insurance documents turned readable, with confidence-tiered confirmation. Built in a day, deployed live.</p>",
+   "tags": "Flask · Postgres · Gemini · Vercel"
+  },
+  {
+   "href": null,
+   "title": "Automated seed-spacing robot",
+   "body": "<p>Undergraduate capstone: an autonomous mobile robot for precision agriculture using ROS 2, SLAM Toolbox and Nav2, with a CoreXY manipulator for seed placement.</p>",
+   "tags": "ROS 2 · Nav2 · SLAM Toolbox · CoreXY"
+  }
+ ],
+ "pubs_html": "<div class=\"pubs\">\n<div class=\"pub\">\n<p class=\"pub-t\">Automated Detection and Classification of Rice Leaf Diseases Using YOLOv8</p>\n<span class=\"pub-v\">IET · Jan 2025</span>\n</div>\n<div class=\"pub\">\n<p class=\"pub-t\">Efficient Real-Time Okra Stage Identification Using YOLOv8</p>\n<span class=\"pub-v\">IEEE · Sep 2024</span>\n</div>\n<div class=\"pub\">\n<p class=\"pub-t\">Power Transmission Line Inspection Using Unmanned Aerial Vehicle: A Review</p>\n<span class=\"pub-v\">IEEE · Feb 2024</span>\n</div>\n</div>",
+ "experience_html": "<div class=\"xp-row\">\n<div class=\"xp-when\">Jun 2026, Sep 2026</div>\n<div class=\"xp-what\">\n<h3>Robotics Engineer, Co-op, technical lead</h3>\n<p class=\"xp-org\">Archenaux Robotics · Boston, MA</p>\n<p>\n            Led the co-op engineering team reporting to the CEO across five repositories. I\n            owned the containerized vehicle runtime, the learned detection pipeline, the shared\n            simulation core, and the sensor bring-up that took Archelon from bench to open\n            water. On the mapping stack I contributed the sensor simulation and IMU\n            characterisation; a senior engineer led the factor-graph back end.\n          </p>\n</div>\n</div>\n<div class=\"xp-row\">\n<div class=\"xp-when\">Oct 2022, Aug 2024</div>\n<div class=\"xp-what\">\n<h3>Vice-President, Robotics Team</h3>\n<p class=\"xp-org\">Vellore Institute of Technology · India</p>\n<p>\n            Co-led a team of 80 designing and manufacturing FPV drones, autonomous drones,\n            battle bots and AMRs. Mentored students in ROS 2, Gazebo and OpenCV.\n          </p>\n</div>\n</div>\n<div class=\"xp-row\">\n<div class=\"xp-when\">Jan 2024, Jun 2024</div>\n<div class=\"xp-what\">\n<h3>Robotics Intern</h3>\n<p class=\"xp-org\">Mafkin Robotics · Chennai, India</p>\n<p>\n            Autonomous ship-hull cleaning robot for biofouling, which increases drag by up to\n            40%. Implemented real-time 3D SLAM in Gazebo using RTAB-Map.\n          </p>\n</div>\n</div>\n<div class=\"xp-row\">\n<div class=\"xp-when\">Sep 2023, Dec 2023</div>\n<div class=\"xp-what\">\n<h3>Research Intern</h3>\n<p class=\"xp-org\">Universiti Teknologi Petronas · Perak, Malaysia</p>\n<p>\n            Autonomous drone and AMR technologies for surveillance and navigation. SLAM and\n            navigation in Gazebo with RealSense D455i, RPLIDAR, wheel encoders and IMUs,\n            integrated through ROS 2.\n          </p>\n</div>\n</div>\n<div class=\"xp-row\">\n<div class=\"xp-when\">Sep 2025, Apr 2027</div>\n<div class=\"xp-what\">\n<h3>M.S. Robotics</h3>\n<p class=\"xp-org\">Northeastern University · Boston, MA</p>\n<p>Mobile Robotics · Robot Sensing and Navigation · Control Systems</p>\n</div>\n</div>\n<div class=\"xp-row\">\n<div class=\"xp-when\">Sep 2021, Apr 2025</div>\n<div class=\"xp-what\">\n<h3>B.Tech Mechatronics, Robotics and Automation</h3>\n<p class=\"xp-org\">Vellore Institute of Technology · Chennai, India</p>\n<p>Industrial Robotics · Control Systems · Kinematics and Dynamics · Mechatronics System Design</p>\n</div>\n</div>",
+ "about_text": "<figure class=\"portrait\">\n<img alt=\"Ferbin Richard\" height=\"760\" loading=\"lazy\" src=\"assets/img/portrait.jpg\" width=\"760\"/>\n</figure>\n<p>\n          I am an M.S. Robotics student at Northeastern, graduating April 2027, coming off a\n          co-op where I led the engineering team on an eight-thruster inspection vehicle.\n        </p>\n<p>\n          My work sits where perception hardware meets software. On the vehicle I owned the\n          sensor stack, sonar, cameras, IMU, depth and lighting, plus the operator interface\n          and the containerized runtime that ships to it. I also trained a detector on a\n          world I generated, because imagery of the real targets does not exist.\n        </p>\n<p>\n          Simulation is how I get there safely, not what I do instead. Every number on this\n          page that says measured was taken off real hardware or a real dataset, and the\n          bring-up behind it meant I2C bitmasks, refraction calibration and a power rail that\n          could not hold under load. I publish the attempts that did not work alongside the\n          ones that did, because an unevaluated result is worse than none.\n        </p>\n<p>\n          Outside the co-op I write and produce robotics courses, which is where the quadruped,\n          manipulator and parallel-training clips above come from. Teaching a thing end to end\n          is the fastest way I have found to learn where my own understanding is thin.\n        </p>",
+ "skills_html": "<div class=\"skill-group\">\n<h4>Languages</h4>\n<div class=\"chipset\">\n<span class=\"chip\">Python</span><span class=\"chip\">C++</span>\n<span class=\"chip\">Embedded C</span><span class=\"chip\">Bash</span>\n<span class=\"chip\">CMake</span>\n</div>\n</div><div class=\"skill-group\">\n<h4>Robotics</h4>\n<div class=\"chipset\">\n<span class=\"chip\">ROS 2</span><span class=\"chip\">Nav2</span>\n<span class=\"chip\">MoveIt 2</span><span class=\"chip\">GTSAM iSAM2</span>\n<span class=\"chip\">RTAB-Map</span><span class=\"chip\">SLAM Toolbox</span>\n<span class=\"chip\">MAVLink / MAVROS</span><span class=\"chip\">ArduPilot / PX4</span>\n</div>\n</div><div class=\"skill-group\">\n<h4>Perception &amp; learning</h4>\n<div class=\"chipset\">\n<span class=\"chip\">OpenCV</span><span class=\"chip\">YOLO11</span>\n<span class=\"chip\">PyTorch</span><span class=\"chip\">TensorFlow</span>\n<span class=\"chip\">Open3D</span><span class=\"chip\">Sensor fusion</span>\n</div>\n</div><div class=\"skill-group\">\n<h4>Simulation</h4>\n<div class=\"chipset\">\n<span class=\"chip\">Gazebo Harmonic</span><span class=\"chip\">Isaac Sim</span>\n<span class=\"chip\">Isaac Lab</span><span class=\"chip\">MuJoCo</span>\n<span class=\"chip\">SolidWorks</span>\n</div>\n</div><div class=\"skill-group\">\n<h4>Hardware &amp; tooling</h4>\n<div class=\"chipset\">\n<span class=\"chip\">Pixhawk</span><span class=\"chip\">Jetson Orin Nano</span>\n<span class=\"chip\">Raspberry Pi 5</span><span class=\"chip\">ESP32-S3</span>\n<span class=\"chip\">Ping360 sonar</span><span class=\"chip\">RealSense D455</span>\n<span class=\"chip\">Docker</span><span class=\"chip\">Linux</span>\n</div>\n</div>",
+ "contact_html": "<a href=\"mailto:franklinrichardjep.f@northeastern.edu\">\n<span class=\"k\">Email</span>\n<span class=\"v\">franklinrichardjep.f@northeastern.edu</span>\n</a>\n<a href=\"https://github.com/FERBIN12\">\n<span class=\"k\">GitHub</span>\n<span class=\"v\">github.com/FERBIN12</span>\n</a>\n<a href=\"https://www.linkedin.com/in/ferbin12/\">\n<span class=\"k\">LinkedIn</span>\n<span class=\"v\">linkedin.com/in/ferbin12</span>\n</a>\n<a href=\"tel:+18572604748\">\n<span class=\"k\">Phone</span>\n<span class=\"v\">+1 (857) 260-4748</span>\n</a>",
+ "bench": "<div class=\"bench-strip\">\n<figure>\n<img alt=\"Archelon ROV on the bench showing four thruster nozzles and dome lights\" loading=\"lazy\" src=\"assets/img/real/rov_bench_hero.jpg\"/>\n<figcaption>Bench, between dives</figcaption>\n</figure>\n<figure>\n<img alt=\"Front view of the vehicle with hull-cleaning brushes and lights\" loading=\"lazy\" src=\"assets/img/real/rov_brushes_front.jpg\"/>\n<figcaption>Hull-cleaning brushes fitted</figcaption>\n</figure>\n<figure>\n<img alt=\"Three-quarter view of the vehicle with tether attached\" loading=\"lazy\" src=\"assets/img/real/rov_bench_three_quarter.jpg\"/>\n<figcaption>Tether and tracks</figcaption>\n</figure>\n</div>",
+ "head_meta": "<head>\n<meta charset=\"utf-8\"/>\n<meta content=\"width=device-width, initial-scale=1\" name=\"viewport\"/>\n<title>Ferbin Richard, Robotics Software Engineer</title>\n<meta content=\"Robotics software engineer: perception, state estimation, reinforcement learning in simulation, and firmware flash-verified on a real eight-thruster vehicle. Quadruped, manipulator, ground, surgical, underwater and marine platforms. Three published papers. 2nd place, Robotics track, Hackachusetts 2026. M.S. Robotics, Northeastern.\" name=\"description\"/>\n<link href=\"https://ferbin12.github.io/\" rel=\"canonical\"/>\n<link href=\"assets/favicon.svg\" rel=\"icon\" type=\"image/svg+xml\"/>\n<meta content=\"Ferbin Richard, Robotics Software Engineer\" property=\"og:title\"/>\n<meta content=\"SLAM, perception and reinforcement learning across quadruped, manipulator, drone, underwater and ground robots. Simulation, then hardware, then the field.\" property=\"og:description\"/>\n<meta content=\"https://ferbin12.github.io/assets/img/humanoid_poster.jpg\" property=\"og:image\"/>\n<meta content=\"1280\" property=\"og:image:width\"/>\n<meta content=\"1152\" property=\"og:image:height\"/>\n<meta content=\"Unitree H1-2 humanoid walking in MuJoCo under a whole-body QP controller\" property=\"og:image:alt\"/>\n<meta content=\"website\" property=\"og:type\"/>\n<meta content=\"https://ferbin12.github.io/\" property=\"og:url\"/>\n<meta content=\"summary_large_image\" name=\"twitter:card\"/>\n<meta content=\"Ferbin Richard, Robotics Software Engineer\" name=\"twitter:title\"/>\n<meta content=\"Humanoid balance, quadruped RL, SLAM, perception and embedded work across twelve robot platforms.\" name=\"twitter:description\"/>\n<meta content=\"https://ferbin12.github.io/assets/img/humanoid_poster.jpg\" name=\"twitter:image\"/>\n<link href=\"https://fonts.googleapis.com\" rel=\"preconnect\"/>\n<link crossorigin=\"\" href=\"https://fonts.gstatic.com\" rel=\"preconnect\"/>\n<link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap\" rel=\"stylesheet\"/>\n<link href=\"site.css\" rel=\"stylesheet\"/>\n<script type=\"application/ld+json\">\n{\"@context\":\"https://schema.org\",\"@type\":\"Person\",\"name\":\"Ferbin Richard\",\n \"jobTitle\":\"Robotics Software Engineer\",\n \"url\":\"https://ferbin12.github.io/\",\"email\":\"franklinrichardjep.f@northeastern.edu\",\n \"sameAs\":[\"https://github.com/FERBIN12\",\"https://www.linkedin.com/in/ferbin12/\"],\n \"alumniOf\":[{\"@type\":\"CollegeOrUniversity\",\"name\":\"Northeastern University\"},\n             {\"@type\":\"CollegeOrUniversity\",\"name\":\"Vellore Institute of Technology\"}],\n \"knowsAbout\":[\"Robotics\",\"ROS 2\",\"SLAM\",\"Perception\",\"Computer Vision\",\n               \"Reinforcement Learning\",\"Simulation\",\"Embedded Systems\",\n               \"Sensor Fusion\",\"Motion Planning\"],\n \"address\":{\"@type\":\"PostalAddress\",\"addressLocality\":\"Boston\",\"addressRegion\":\"MA\",\"addressCountry\":\"US\"}}\n</script>\n</head>"
+}

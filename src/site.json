@@ -1,0 +1,327 @@
+{
+ "name": "Ferbin Richard",
+ "role": "Robotics Software Engineer",
+ "headline": "Autonomy that has to survive contact with the <em>real world</em>.",
+ "resume": "assets/Ferbin_Richard_Resume.pdf",
+ "proof": {
+  "award": {
+   "v": "2nd place",
+   "k": "Hackachusetts 2026, Robotics track",
+   "cls": "aw"
+  },
+  "papers": {
+   "v": "3 papers",
+   "k": "IEEE and IET, published"
+  },
+  "sims": {
+   "v": "5 simulators",
+   "k": "Isaac Sim, Isaac Lab, MuJoCo, Gazebo, ArduPilot SITL",
+   "cls": "sim"
+  },
+  "rov": {
+   "v": "8 thrusters",
+   "k": "ROV taken from bench to open water",
+   "cls": "hw"
+  },
+  "field": {
+   "v": "3 to 4",
+   "k": "open-water deployments, 10 to 15 pool sessions",
+   "cls": "hw"
+  },
+  "grad": {
+   "v": "May 2027",
+   "k": "available, M.S. Robotics, Northeastern"
+  }
+ },
+ "featured": {
+  "bridge": {
+   "from": "sim:0",
+   "badge": {
+    "cls": "aw",
+    "text": "2nd place, Robotics track"
+   },
+   "ctx": "Hackachusetts 2026 &middot; team of 3 &middot; robots, simulation and autopilot loop mine",
+   "title": "A drone above the water and an ROV below it, inspecting a real Boston bridge",
+   "summary": "Real ArduCopter and ArduSub firmware fly a drone and an ROV through an Isaac Sim rebuild of the Charles River Dam crossing. Every waterline defect the drone flags, the ROV dives to inspect.",
+   "metrics": [
+    [
+     "&le; 0.60 m",
+     "ROV nav error, GPS off"
+    ],
+    [
+     "4.54 M",
+     "points, lidar above + sonar below"
+    ],
+    [
+     "4 / 4",
+     "flagged defects inspected"
+    ]
+   ]
+  },
+  "archelon": {
+   "from": "coop",
+   "image": "assets/img/real/archelon_card.jpg",
+   "image_alt": "Archelon ROV on the bench, in the pool from above, and fitted with hull-cleaning brushes",
+   "badge": {
+    "cls": "hw",
+    "text": "Real hardware &middot; co-op lead"
+   },
+   "ctx": "Archenaux Robotics &middot; Jun to Sep 2026 &middot; Boston",
+   "title": "Archelon: an eight-thruster inspection ROV, from bench bring-up to open water",
+   "summary": "I led the co-op engineering team, owned the sensor stack, the vehicle runtime and the detector, and took the vehicle from the bench into lakes in New Hampshire.",
+   "metrics": [
+    [
+     "6 classes",
+     "of sensors brought up and owned"
+    ],
+    [
+     "0.969",
+     "detector mAP@50, trained on zero real images"
+    ],
+    [
+     "3 to 4",
+     "open-water deployments"
+    ]
+   ],
+   "link": "#hardware"
+  },
+  "usv": {
+   "from": "sim:1",
+   "badge": {
+    "cls": "sim",
+    "text": "Solo &middot; firmware in the loop"
+   },
+   "ctx": "Autonomous harbour inspection &middot; concept for a USV startup",
+   "title": "A waterjet boat that patrols a harbour, spots what changed, and docks itself",
+   "summary": "ArduRover SITL drives a 4.2 m twin-waterjet USV on my own Fossen hydrodynamics and JONSWAP sea, lock-stepped over ArduPilot's JSON backend and path-traced in Isaac Sim.",
+   "metrics": [
+    [
+     "1.64 &rarr; 0.37 m",
+     "median cross-track error, after tuning"
+    ],
+    [
+     "0.17 m",
+     "docking error"
+    ],
+    [
+     "0",
+     "collisions"
+    ]
+   ]
+  },
+  "hyperion": {
+   "from": "sim:2",
+   "badge": {
+    "cls": "sim",
+    "text": "3 hackathons &middot; team"
+   },
+   "ctx": "Hyperion &middot; Dell x NVIDIA GB10 &middot; Grok Bot &middot; Wajo x Anthropic",
+   "title": "A 20-robot warehouse where AI agents find the fault and get a technician on the phone",
+   "summary": "Twenty Nova Carters in Isaac Sim. Agents detect faults, re-plan the fleet with Hungarian assignment and, through Fo, place real calls to an on-call technician. Code enforces, the model explains.",
+   "metrics": [
+    [
+     "27.3 &rarr; 42.0",
+     "simulated deliveries, 3 seeds"
+    ],
+    [
+     "3 / 3",
+     "runs replay to identical logs"
+    ],
+    [
+     "10",
+     "real phone calls in live runs"
+    ]
+   ]
+  },
+  "intake": {
+   "from": "sim:3",
+   "badge": {
+    "cls": "sim",
+    "text": "Solo &middot; YC pitch"
+   },
+   "ctx": "Intake-cleaning robot &middot; startup study and pitch film",
+   "title": "An underwater robot that clears mussels from power-plant intakes, rendered physically",
+   "summary": "Path-traced in Isaac Sim with MDL materials and procedural mussel instancers; the water is my own compositor working from depth.",
+   "metrics": [
+    [
+     "24 &rarr; 5.7 s",
+     "render time per frame, BVH fix"
+    ],
+    [
+     "1,065",
+     "regulated US intake sites sized"
+    ],
+    [
+     "6 in 13 mo",
+     "diver deaths OSHA counted"
+    ]
+   ]
+  }
+ },
+ "range_groups": {
+  "Legged": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "Manipulation": [
+   4,
+   5,
+   6,
+   7
+  ],
+  "Mobile & SLAM": [
+   8,
+   9
+  ],
+  "Marine & perception": [
+   10,
+   11
+  ]
+ },
+ "oss_groups": [
+  [
+   "Legged robots & RL",
+   [
+    "humanoid-balance-locomotion",
+    "isaac-lab-rl-benchmarks",
+    "barkour-isaac-lab-rl"
+   ]
+  ],
+  [
+   "Manipulation",
+   [
+    "so101-manipulation-eval",
+    "surgical-robotics-isaac-sim",
+    "vla-manipulation-ablations"
+   ]
+  ],
+  [
+   "Autonomy & SLAM",
+   [
+    "visual-slam-vio-ros2",
+    "av-perception-planning-stack",
+    "av-safe-decision-contract"
+   ]
+  ],
+  [
+   "Simulation tooling & drones",
+   [
+    "gazebo-to-isaac-migration",
+    "autonomous-drones-ros2-gazebo-ardupilot",
+    "Robotics course series"
+   ]
+  ],
+  [
+   "Hackathon & capstone",
+   [
+    "emme-onboarding, hackathon winner",
+    "Automated seed-spacing robot"
+   ]
+  ]
+ ],
+ "awards": [
+  [
+   "2nd place, Robotics track, Hackachusetts 2026",
+   "Bridge inspection with a drone and an ROV on real ArduPilot firmware",
+   "Oct 2026"
+  ],
+  [
+   "Won Track 2, The Open Accelerator healthcare hackathon",
+   "Hosted by Red Hat with IBM Ventures and the Mass AI Hub",
+   "Jul 2026"
+  ],
+  [
+   "First prize, maze-solving robot competition",
+   "Hosted by IIT Hyderabad",
+   "Feb 2023"
+  ]
+ ],
+ "variants": {
+  "index": {
+   "path": "",
+   "eyebrow": "Robotics Software Engineer &middot; Boston, MA &middot; M.S. Robotics, Northeastern, April 2027",
+   "sub": "I build simulation rigs that run real autopilot firmware, then take the same code into the water. Perception, estimation and control across humanoid, quadruped, manipulator, ground, aerial and underwater robots.",
+   "proof": [
+    "award",
+    "rov",
+    "sims",
+    "papers",
+    "grad"
+   ],
+   "featured": [
+    "bridge",
+    "archelon",
+    "usv",
+    "hyperion",
+    "intake"
+   ],
+   "sections": [
+    "work",
+    "hardware",
+    "range",
+    "experience",
+    "oss",
+    "about",
+    "contact"
+   ]
+  },
+  "sim": {
+   "path": "sim/",
+   "eyebrow": "Robotics Simulation Engineer &middot; Boston, MA &middot; M.S. Robotics, Northeastern, April 2027",
+   "sub": "I build simulation rigs that run real autopilot firmware: ArduPilot SITL in the loop with Isaac Sim, Isaac Lab, MuJoCo and Gazebo, with every result measured and replayable, and I check them against a real robot in real water.",
+   "proof": [
+    "sims",
+    "award",
+    "rov",
+    "papers",
+    "grad"
+   ],
+   "featured": [
+    "bridge",
+    "usv",
+    "hyperion",
+    "intake",
+    "archelon"
+   ],
+   "sections": [
+    "work",
+    "range",
+    "hardware",
+    "experience",
+    "oss",
+    "about",
+    "contact"
+   ]
+  },
+  "field": {
+   "path": "field/",
+   "eyebrow": "Robotics Field &amp; Deployment Engineer &middot; Boston, MA &middot; M.S. Robotics, Northeastern, April 2027",
+   "sub": "I take robots from bench bring-up to open water and debug them where they fail: sensors, firmware, tethers, networks and the operator's console. Then I build the simulation that stops it happening twice.",
+   "proof": [
+    "rov",
+    "field",
+    "award",
+    "sims",
+    "grad"
+   ],
+   "featured": [
+    "archelon",
+    "bridge",
+    "usv",
+    "hyperion",
+    "intake"
+   ],
+   "sections": [
+    "hardware",
+    "work",
+    "range",
+    "experience",
+    "oss",
+    "about",
+    "contact"
+   ]
+  }
+ }
+}

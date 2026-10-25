@@ -1,0 +1,30 @@
+# Old-page headings/labels deliberately replaced in the 2026-10 redesign. check.py ignores these.
+Archelon · pool and open water · my own footage
+Co-op 01 / Sensors, perception hardware and the operator UI my ownership
+Co-op 02 / Perception & machine learning sole engineer
+Co-op 03 / Embedded & hardware bring-up my ownership
+Co-op 04 / Simulation infrastructure my ownership
+Every robot I have written software for
+Experience & education
+Ferbin Richard Robotics Software Engineer Boston, MA M.S. Robotics, Northeastern · April 2027
+Fourteen public repositories
+Full-stack simulations where the flight and boat controllers are the real ArduPilot firmware, the robots publish real ROS 2 topics, and ever
+I write the perception, estimation and control software that moves robots, then I take it to hardware and find out what simulation did not t
+M.S. Robotics, Northeastern · April 2027
+Open source & teaching
+Pool · open water · bench
+Real autopilot firmware in the loop · Isaac Sim · Oct 2026
+Real-world testing, not just simulation
+Robotics Software Engineer
+Robotics software · SLAM, perception, embedded
+See the robot in the water See the simulation rigs Read the engineering GitHub LinkedIn Email
+Sim 01 / Hackachusetts 2026 2nd place, Robotics track
+Sim 02 / Autonomous harbour inspection solo build
+Sim 03 / Hyperion, three hackathons team builds, sim + agents mine
+Sim 04 / Intake-cleaning robot, YC pitch solo build
+Simulation rigs & hackathons
+The co-op: Archenaux Robotics
+The robot, in real water
+Three papers
+Twelve clips, captured from simulations I built
+Every result on this page that is labelled measured was taken off real hardware or a real dataset. Simulation is how I get there safely; it is not what I do instead. The footage in section 01 is mine, taken during these sessions.
