@@ -529,3 +529,6 @@ footer .wrap {
   .morph:has(.morph-media.wide) { grid-column: 1 / -1; }
   .morph:has(.morph-media.wide) .morph-media.wide video { object-fit: cover; }
 }
+
+/* award badge (hackathon placings) */
+.own-award { color: #7a4a00; background: #fff1d6; }

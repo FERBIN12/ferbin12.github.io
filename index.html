@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ferbin Richard, Robotics Software Engineer</title>
-<meta name="description" content="Robotics software engineer: perception, state estimation, reinforcement learning in simulation, and firmware flash-verified on a real eight-thruster vehicle. Quadruped, manipulator, ground, surgical, underwater and marine platforms. Three published papers. M.S. Robotics, Northeastern.">
+<meta name="description" content="Robotics software engineer: perception, state estimation, reinforcement learning in simulation, and firmware flash-verified on a real eight-thruster vehicle. Quadruped, manipulator, ground, surgical, underwater and marine platforms. Three published papers. 2nd place, Robotics track, Hackachusetts 2026. M.S. Robotics, Northeastern.">
 
 <link rel="canonical" href="https://ferbin12.github.io/">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -50,13 +50,14 @@
     <a class="nav-name" href="#top">Ferbin&nbsp;Richard</a>
     <nav aria-label="Sections">
       <a href="#hardware"><span class="n">01</span> Hardware</a>
-      <a href="#platforms"><span class="n">02</span> Platforms</a>
-      <a href="#work"><span class="n">03</span> Co-op</a>
-      <a href="#field"><span class="n">04</span> Field</a>
-      <a href="#projects"><span class="n">05</span> Projects</a>
-      <a href="#experience"><span class="n">06</span> Experience</a>
-      <a href="#about"><span class="n">07</span> About</a>
-      <a href="#contact"><span class="n">08</span> Contact</a>
+      <a href="#sim"><span class="n">02</span> Sim &amp; hackathons</a>
+      <a href="#platforms"><span class="n">03</span> Platforms</a>
+      <a href="#work"><span class="n">04</span> Co-op</a>
+      <a href="#field"><span class="n">05</span> Field</a>
+      <a href="#projects"><span class="n">06</span> Projects</a>
+      <a href="#experience"><span class="n">07</span> Experience</a>
+      <a href="#about"><span class="n">08</span> About</a>
+      <a href="#contact"><span class="n">09</span> Contact</a>
     </nav>
   </div>
 </header>
@@ -81,11 +82,13 @@
       <strong>Humanoid, quadruped, manipulator, ground, surgical, underwater and
       aerial</strong> platforms, in simulation and on hardware.
       <strong>Three published papers.</strong> One eight-thruster vehicle taken from
-      bench bring-up to open water.
+      bench bring-up to open water. <strong>2nd place, Robotics track, Hackachusetts 2026</strong>,
+      with real ArduPilot firmware flying a drone and an ROV in Isaac Sim.
     </p>
 
     <p class="hero-links">
       <a href="#hardware">See the robot in the water</a>
+      <a href="#sim">See the simulation rigs</a>
       <a href="#work">Read the engineering</a>
       <a href="https://github.com/FERBIN12">GitHub</a>
       <a href="https://www.linkedin.com/in/ferbin12/">LinkedIn</a>
@@ -239,10 +242,213 @@
   </div>
 </section>
 
-<section id="platforms">
+<!-- ===================================================== simulation rigs -->
+<section id="sim">
   <div class="wrap">
     <div class="sec-head">
       <span class="sec-num">02</span>
+      <h2>Simulation rigs &amp; hackathons</h2>
+      <span class="sec-note">Real autopilot firmware in the loop &middot; Isaac Sim &middot; Oct 2026</span>
+    </div>
+
+    <p class="field-lede">
+      Full-stack simulations where the flight and boat controllers are the real ArduPilot
+      firmware, the robots publish real ROS 2 topics, and every pose on screen comes from a
+      logged run, not a keyframe. Four builds from one month, one of them placed at
+      Hackachusetts.
+    </p>
+
+    <!-- 01 bridge inspector -->
+    <article class="proj">
+      <header class="proj-head">
+        <span class="proj-idx">Sim 01 / Hackachusetts 2026 <b class="own own-award">2nd place, Robotics track</b></span>
+        <h3>A drone above the water and an ROV below it, inspecting a real Boston bridge</h3>
+        <p class="proj-meta">Team of 3 &middot; I built the robots, the simulation, the autopilot loop and ROS 2</p>
+      </header>
+
+      <figure class="proj-media">
+        <video poster="assets/img/bridge_drone_poster.jpg" muted loop playsinline preload="none"
+               aria-label="Inspection drone flying under the Craigie drawbridge deck in Isaac Sim, flown by ArduCopter SITL">
+          <source src="assets/video/bridge_drone.mp4" type="video/mp4"></video>
+        <figcaption>The Charles River Dam crossing rebuilt in Isaac Sim. ArduCopter flies the drone, ArduSub flies the ROV.</figcaption>
+      </figure>
+
+      <div class="proj-cols">
+        <div class="proj-text">
+          <p>
+            Built in one day for challenge R6, safer inspection of critical infrastructure. A
+            Holybro X500 flown by real ArduCopter SITL runs a 37-waypoint mission along the canal
+            walls and under the deck, where the bridge cuts GPS from 12 satellites to 7. Every
+            waterline defect it flags becomes a task for a BlueROV2 Heavy on ArduSub, which dives
+            with GPS off and navigates on a modelled DVL fed into the autopilot's EKF.
+          </p>
+          <p>
+            Both robots build one model of the structure: 2.96 million lidar points above the
+            water and 1.58 million sonar points below it. The ROV never drifted more than 60 cm
+            over a 200 m dive, and 4 of 4 flagged defects were inspected underwater. The demo is a
+            replay of a recorded 21-topic ROS 2 bag, run live on stage from one Docker launch.
+          </p>
+          <details class="more">
+            <summary>What is modelled and what is real</summary>
+            <p>
+              Real: ArduCopter and ArduSub flight code, MAVLink mission upload, the EKF, ROS 2 Jazzy,
+              RViz2 and QGroundControl. Modelled: the GPS drop under the deck (the bridge lowers
+              the satellite count), the Ouster OS0-128 lidar and 130-degree multibeam sonar as ray
+              casts, murky water as Beer-Lambert attenuation plus silt, and a simulated thermal
+              camera. Thirteen defects were planted as ground truth, nine above the water and four
+              below, including a scour pit with exposed timber piles.
+            </p>
+          </details>
+        </div>
+
+        <dl class="inst">
+          <div><dt>Result</dt><dd>2nd place</dd></div>
+          <div class="stacked"><dt>ROV nav error, GPS off</dt><dd>&le; 0.60 m</dd><dd class="vs">over a ~200 m dive, 0.16 m at the end</dd></div>
+          <div class="stacked"><dt>Combined model</dt><dd>4.54 M pts</dd><dd class="vs">lidar above + sonar below</dd></div>
+          <div class="stacked"><dt>Defects flagged &rarr; inspected</dt><dd>4 / 4</dd><dd class="vs">drone hands off to ROV</dd></div>
+        </dl>
+      </div>
+
+      <p class="proj-stack">ArduCopter + ArduSub SITL &middot; MAVLink &middot; Isaac Sim 6 &middot; ROS 2 Jazzy &middot; RViz2 &middot; QGroundControl &middot; Docker &middot; <a href="https://github.com/FERBIN12/detectfix">repo</a></p>
+    </article>
+
+    <!-- 02 harbour USV -->
+    <article class="proj">
+      <header class="proj-head">
+        <span class="proj-idx">Sim 02 / Autonomous harbour inspection <b class="own own-sole">solo build</b></span>
+        <h3>A waterjet boat that patrols a harbour, spots what changed, and docks itself</h3>
+        <p class="proj-meta">Concept for a USV startup &middot; firmware-in-the-loop simulation and film</p>
+      </header>
+
+      <figure class="proj-media">
+        <video poster="assets/img/harbour_usv_poster.jpg" muted loop playsinline preload="none"
+               aria-label="Twin-waterjet USV leaving its charging berth in a path-traced Isaac Sim harbour, with the mission state machine overlaid">
+          <source src="assets/video/harbour_usv.mp4" type="video/mp4"></video>
+        <figcaption>ArduRover 4.5 SITL drives the boat; Isaac Sim 6 path-traces the logged run.</figcaption>
+      </figure>
+
+      <div class="proj-cols">
+        <div class="proj-text">
+          <p>
+            A 4.2 m twin-waterjet USV runs an approved patrol route, compares its lidar map with
+            yesterday's patrol and raises change alerts. On operator approval it stands off a
+            contact, loiters on its jets, rejoins the route and berths itself on a solar charging
+            float. The autopilot is the real Pixhawk firmware, ArduRover SITL, lock-stepped to my
+            own physics over ArduPilot's JSON backend.
+          </p>
+          <p>
+            The physics is a Fossen 3-DOF manoeuvring model with jet spool-up lag, a reversing
+            bucket, current and shallow-water drag, on a JONSWAP wind sea plus swell. Heave, pitch
+            and roll come from the hull sampling that wave surface, and the rendered water uses
+            the same wave field. Tuning cut median cross-track error from 1.64 m with a 3 m weave
+            to 0.37 m.
+          </p>
+        </div>
+
+        <dl class="inst">
+          <div class="stacked"><dt>Cross-track error</dt><dd>1.64 &rarr; 0.37 m</dd><dd class="vs">median, after tuning</dd></div>
+          <div class="stacked"><dt>Changes found</dt><dd>2 / 2</dd><dd class="vs">new object, buoy moved 15.1 m</dd></div>
+          <div class="stacked"><dt>Docking error</dt><dd>0.17 m</dd><dd class="vs">0 collisions</dd></div>
+          <div class="stacked"><dt>Recorded run</dt><dd>55,693 msgs</dd><dd class="vs">559 s ROS 2 bag</dd></div>
+        </dl>
+      </div>
+
+      <p class="proj-stack">ArduRover SITL &middot; pymavlink &middot; Fossen hydrodynamics &middot; JONSWAP waves &middot; ROS 2 Jazzy &middot; Isaac Sim path tracing</p>
+    </article>
+
+    <!-- 03 hyperion -->
+    <article class="proj">
+      <header class="proj-head">
+        <span class="proj-idx">Sim 03 / Hyperion, three hackathons <b class="own own-part">team builds, sim + agents mine</b></span>
+        <h3>A 20-robot warehouse where AI agents find the fault and get a technician on the phone</h3>
+        <p class="proj-meta">Dell x NVIDIA GB10 &middot; Hyperion x Grok Bot &middot; Wajo x Anthropic</p>
+      </header>
+
+      <figure class="proj-media">
+        <video poster="assets/img/hyperion_fleet_poster.jpg" muted loop playsinline preload="none"
+               aria-label="Nova Carter robot driving down a warehouse aisle in the 20-robot Isaac Sim fleet">
+          <source src="assets/video/hyperion_fleet.mp4" type="video/mp4"></video>
+        <figcaption>Twenty Nova Carters in an Isaac Sim warehouse, streaming live fleet telemetry.</figcaption>
+      </figure>
+
+      <div class="proj-cols">
+        <div class="proj-text">
+          <p>
+            Started at the Dell x NVIDIA GB10 hackathon: a teammate and I built the Isaac Sim warehouse of 20
+            Nova Carters and shipped the stack as six services in one Docker image on the GB10,
+            where a local Qwen model on vLLM triages robot faults into tickets. I then added four
+            agents (surveillance, war room, technician scheduler, Hungarian re-allocation) under
+            one rule: code enforces, the model explains. Over 3 seeds they raised deliveries from
+            27.3 to 42.0, and every run replays to an identical event log.
+          </p>
+          <p>
+            For Wajo x Anthropic, a Claude dispatcher hands a confirmed fault to Fo, which places
+            real phone calls, calendar invites and emails to an on-call technician while the fleet
+            re-plans around the repair. Who it may contact is enforced in code: in a live run, when
+            a technician said to send someone off the list, the agent refused. I also mounted a
+            Franka arm on all twenty Carters as a mobile-manipulation testbed.
+          </p>
+        </div>
+
+        <dl class="inst">
+          <div class="stacked"><dt>Simulated deliveries</dt><dd>27.3 &rarr; 42.0</dd><dd class="vs">+54%, 3 seeds, same faults</dd></div>
+          <div class="stacked"><dt>Replay check</dt><dd>3 / 3</dd><dd class="vs">identical event logs</dd></div>
+          <div class="stacked"><dt>Live dispatch runs</dt><dd>5 runs, 10 calls</dd><dd class="vs">real phone calls, simulated robots</dd></div>
+          <div><dt>Fleet</dt><dd>20 robots</dd></div>
+        </dl>
+      </div>
+
+      <p class="proj-stack">Isaac Sim 6 &middot; Nova Carter &middot; Franka &middot; vLLM &middot; Claude &middot; Docker &middot; NVIDIA GB10 &middot; Hungarian assignment</p>
+    </article>
+
+    <!-- 04 intake robot -->
+    <article class="proj">
+      <header class="proj-head">
+        <span class="proj-idx">Sim 04 / Intake-cleaning robot, YC pitch <b class="own own-sole">solo build</b></span>
+        <h3>An underwater robot that clears mussels from power-plant intakes, rendered physically</h3>
+        <p class="proj-meta">Startup study and pitch film &middot; Isaac Sim path tracing + a custom water renderer</p>
+      </header>
+
+      <figure class="proj-media">
+        <video poster="assets/img/intake_robot_poster.jpg" muted loop playsinline preload="none"
+               aria-label="Wall-crawling intake-cleaning robot with lamps on, inside a fouled water intake tunnel">
+          <source src="assets/video/intake_robot.mp4" type="video/mp4"></video>
+        <figcaption>Path-traced in Isaac Sim; the water itself is a ray-marched medium composited from depth.</figcaption>
+      </figure>
+
+      <div class="proj-cols">
+        <div class="proj-text">
+          <p>
+            Divers clean zebra and quagga mussels out of power-plant and desalination intakes, and
+            OSHA counted six suction-related diver deaths in 13 months. I built the case for sending a robot instead, then the film to pitch
+            it. The robot and intake are rendered with Isaac Sim path tracing, MDL materials and
+            procedural mussel-clump instancers, writing raw HDR and depth for every frame.
+          </p>
+          <p>
+            The water is my own compositor working from that depth: absorption, backscatter,
+            ray-marched god rays and lamp beams, caustics, Snell's window and drifting particles.
+            Profiling the render found that hiding instances far below the scene bloated the BVH
+            and made every frame 24 s; sinking them into the wall instead brought it to 5.7 s.
+          </p>
+        </div>
+
+        <dl class="inst">
+          <div class="stacked"><dt>Render time per frame</dt><dd>24 &rarr; 5.7 s</dd><dd class="vs">BVH fix, GPU-bound</dd></div>
+          <div class="stacked"><dt>Market sized</dt><dd>1,065 sites</dd><dd class="vs">regulated US intakes</dd></div>
+          <div><dt>Water model</dt><dd>custom, post</dd></div>
+        </dl>
+      </div>
+
+      <p class="proj-stack">Isaac Sim path tracing &middot; USD &middot; MDL &middot; NumPy compositor &middot; Python</p>
+    </article>
+
+  </div>
+</section>
+
+<section id="platforms">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
       <h2>Every robot I have written software for</h2>
       <span class="sec-note">Twelve clips, captured from simulations I built</span>
     </div>
@@ -425,7 +631,7 @@
 <section id="work">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">03</span>
+      <span class="sec-num">04</span>
       <h2>The co-op: Archenaux Robotics</h2>
       <span class="sec-note">June to Sep 2026 &middot; Boston, MA</span>
     </div>
@@ -675,7 +881,7 @@
 <section id="field">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">04</span>
+      <span class="sec-num">05</span>
       <h2>Real-world testing, not just simulation</h2>
       <span class="sec-note">Pool &middot; open water &middot; bench</span>
     </div>
@@ -752,7 +958,7 @@
 <section id="projects">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">05</span>
+      <span class="sec-num">06</span>
       <h2>Open source &amp; teaching</h2>
       <span class="sec-note">Fourteen public repositories</span>
     </div>
@@ -871,7 +1077,7 @@
 <section id="experience">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">06</span>
+      <span class="sec-num">07</span>
       <h2>Experience &amp; education</h2>
     </div>
 
@@ -960,7 +1166,7 @@
 <section id="about">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">07</span>
+      <span class="sec-num">08</span>
       <h2>About</h2>
     </div>
 
@@ -1046,7 +1252,7 @@
 <section id="contact">
   <div class="wrap">
     <div class="sec-head">
-      <span class="sec-num">08</span>
+      <span class="sec-num">09</span>
       <h2>Contact</h2>
       <span class="sec-note">Open to 2027 new-grad roles</span>
     </div>
